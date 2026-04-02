@@ -6,8 +6,6 @@
     
     <!-- SEO Keywords -->
     <meta name="keywords" content="Techton Group, Techton Group International Limited, construction company Africa, civil engineering Africa, infrastructure development, building excellence, African construction industry, real estate development Africa">
-    
-    <!-- SEO Description -->
     <meta name="description" content="Techton Group International Limited - Delivering world-class construction, engineering, and infrastructure solutions across Africa with a commitment to excellence.">
 
     <title>Techton Group International Limited | Building Excellence Across Africa</title>
@@ -31,6 +29,8 @@
             --dark: #1A1A1A;
             --gray: #666666;
             --light-gray: #F8F9FA;
+            --glass: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.2);
         }
 
         * {
@@ -39,28 +39,32 @@
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             font-family: 'Inter', sans-serif;
             line-height: 1.6;
             color: var(--dark);
             overflow-x: hidden;
+            background-color: var(--white);
         }
 
         h1, h2, h3, h4 {
             font-family: 'Playfair Display', serif;
         }
 
-        /* Navigation (Left Untouched as requested) */
+        /* --- NAVIGATION --- */
         .navbar {
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(255, 255, 255, 0.98);
             backdrop-filter: blur(10px);
-            z-index: 1000;
-            padding: 1rem 0;
-            box-shadow: 0 2px 20px rgba(0,0,0,0.05);
-            transition: all 0.3s ease;
+            z-index: 2000;
+            padding: 15px 0;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.08);
         }
 
         .nav-container {
@@ -76,10 +80,11 @@
             display: flex;
             align-items: center;
             text-decoration: none;
+            gap: 12px;
         }
 
         .logo img {
-            height: 45px;
+            height: 55px;
             width: auto;
             object-fit: contain;
         }
@@ -87,18 +92,17 @@
         .logo-text {
             display: flex;
             flex-direction: column;
-            line-height: 1.2;
+            line-height: 1.1;
             font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             font-weight: 700;
             color: var(--navy-blue);
         }
 
         .logo-text span {
-            display: block;
             font-size: 0.7rem;
             font-family: 'Inter', sans-serif;
-            font-weight: 500;
+            font-weight: 600;
             letter-spacing: 2px;
             text-transform: uppercase;
             color: var(--olive-green);
@@ -114,10 +118,9 @@
         .nav-links a {
             text-decoration: none;
             color: var(--dark);
-            font-weight: 500;
+            font-weight: 600;
             font-size: 0.95rem;
             transition: color 0.3s ease;
-            position: relative;
         }
 
         .nav-links a:hover {
@@ -134,21 +137,16 @@
             top: 100%;
             left: 0;
             background: white;
-            min-width: 220px;
+            min-width: 250px;
             box-shadow: 0 10px 40px rgba(0,0,0,0.1);
             border-radius: 8px;
             padding: 1rem 0;
             margin-top: 1rem;
+            z-index: 3000;
         }
 
         .dropdown:hover .dropdown-content {
             display: block;
-            animation: slideDown 0.3s ease;
-        }
-
-        @keyframes slideDown {
-            from { opacity: 0; transform: translateY(-10px); }
-            to { opacity: 1; transform: translateY(0); }
         }
 
         .dropdown-content a {
@@ -157,83 +155,173 @@
             color: var(--dark);
         }
 
+        .dropdown-content .subsidiary {
+            font-size: 0.75rem;
+            color: var(--gray);
+            display: block;
+        }
+
         .cta-button {
             background: linear-gradient(135deg, var(--ox-red) 0%, var(--ox-red-light) 100%);
             color: white !important;
-            padding: 0.75rem 1.5rem;
-            border-radius: 30px;
-            font-weight: 600;
+            padding: 0.8rem 1.8rem;
+            border-radius: 50px;
+            font-weight: 700;
+            transition: all 0.3s ease;
         }
 
-        /* Hero Section - UPDATED WITH HAPPY AFRICAN ENGINEER IMAGE */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            cursor: pointer;
+        }
+
+        .menu-toggle span {
+            width: 30px;
+            height: 3px;
+            background: var(--navy-blue);
+            border-radius: 3px;
+        }
+
+        /* --- HERO SECTION --- */
         .hero {
             min-height: 100vh;
-            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), 
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.5)), 
                         url('https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&q=80&w=2070');
             background-size: cover;
             background-position: center;
             display: flex;
             align-items: center;
             position: relative;
-            padding-top: 80px;
+            padding-top: 100px;
         }
 
         .hero-content {
             max-width: 1400px;
             margin: 0 auto;
             padding: 0 2rem;
+            z-index: 10;
             width: 100%;
-            z-index: 2;
         }
 
-        .hero-text {
-            max-width: 800px;
+        .hero-text-box {
+            max-width: 850px;
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(15px);
-            padding: 3rem;
-            border-radius: 24px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 4rem;
+            border-radius: 30px;
+            border: 1px solid var(--glass-border);
+            color: white;
+            animation: fadeInUp 1s ease-out;
         }
 
-        .hero-text h1 {
-            font-size: 4.5rem;
-            color: white;
+        .hero-text-box h1 {
+            font-size: 4rem;
             line-height: 1.1;
             margin-bottom: 1.5rem;
-            font-weight: 800;
         }
 
-        .hero-text h1 span {
-            color: var(--olive-light);
-            text-transform: uppercase;
-            font-size: 1.2rem;
-            font-family: 'Inter', sans-serif;
-            letter-spacing: 5px;
+        .hero-text-box h1 span {
             display: block;
+            font-size: 1.1rem;
+            font-family: 'Inter', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            color: var(--olive-light);
             margin-bottom: 10px;
+            font-weight: 700;
         }
 
-        .hero-text p {
-            font-size: 1.25rem;
-            color: white;
+        .hero-text-box p {
+            font-size: 1.2rem;
             margin-bottom: 2.5rem;
-            line-height: 1.6;
+            opacity: 0.95;
+            line-height: 1.8;
         }
 
-        /* Hero Stats Adjustment */
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-main {
+            background: var(--ox-red);
+            color: white;
+            padding: 1.2rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: 0.3s;
+            display: inline-block;
+        }
+
+        .btn-ghost {
+            background: transparent;
+            color: white;
+            padding: 1.2rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            border: 2px solid white;
+            transition: 0.3s;
+        }
+
+        .btn-ghost:hover { background: white; color: var(--navy-blue); }
+
         .hero-stats {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 1.5rem;
-            margin-top: 2rem;
+            gap: 2rem;
+            margin-top: 3rem;
         }
 
-        /* About Section - UPDATED IMAGE */
-        .about-section {
-            padding: 8rem 0;
-            background: var(--white);
+        .stat-item {
+            text-align: center;
+            background: rgba(255,255,255,0.1);
+            padding: 1.5rem;
+            border-radius: 20px;
+            border: 1px solid var(--glass-border);
         }
 
+        .stat-item h3 { font-size: 2.5rem; color: white; }
+        .stat-item p { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; color: var(--olive-light); }
+
+        /* --- SUBSIDIARIES STRIP --- */
+        .subs-strip {
+            background: var(--navy-blue);
+            padding: 3rem 0;
+        }
+
+        .subs-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            padding: 0 2rem;
+        }
+
+        .sub-card {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            color: white;
+            text-decoration: none;
+            transition: 0.3s;
+            padding: 1rem;
+            border-radius: 12px;
+        }
+
+        .sub-card:hover { background: rgba(255,255,255,0.05); }
+
+        .sub-icon { font-size: 2rem; }
+        .sub-info h4 { font-size: 1.1rem; color: var(--olive-light); }
+        .sub-info p { font-size: 0.8rem; opacity: 0.7; }
+
+        /* --- ABOUT SECTION --- */
+        .about { padding: 8rem 0; background: var(--light-gray); }
         .about-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -241,111 +329,355 @@
             align-items: center;
         }
 
-        .about-image {
+        .about-image-wrapper {
             position: relative;
         }
 
-        .about-image img {
+        .about-image-wrapper img {
             width: 100%;
             height: 600px;
             object-fit: cover;
             border-radius: 30px;
-            box-shadow: 0 30px 60px rgba(0,0,0,0.1);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.15);
         }
-
-        /* HR/Winning Team Section - UPDATED IMAGE */
-        .hr-section {
-            padding: 8rem 0;
-            background: var(--navy-blue);
-            color: white;
-        }
-
-        .hr-grid {
-            display: grid;
-            grid-template-columns: 1.1fr 0.9fr;
-            gap: 4rem;
-            align-items: center;
-        }
-
-        .hr-image img {
-            width: 100%;
-            height: 550px;
-            object-fit: cover;
-            border-radius: 30px;
-            border: 10px solid rgba(255,255,255,0.05);
-        }
-
-        /* General Reusable Styles */
-        .container { max-width: 1400px; margin: 0 auto; padding: 0 2rem; }
-        .section-header { text-align: center; margin-bottom: 5rem; }
-        .section-tag { color: var(--olive-green); font-weight: 700; letter-spacing: 2px; text-transform: uppercase; font-size: 0.9rem; display: block; margin-bottom: 1rem; }
-        .section-title { font-size: 3.5rem; color: var(--navy-blue); }
-        
-        .btn-primary { background: var(--ox-red); color: white; padding: 1.2rem 2.5rem; border-radius: 50px; text-decoration: none; font-weight: 700; transition: 0.3s; display: inline-block; }
-        .btn-primary:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(139, 0, 0, 0.4); }
-
-        /* Responsive Fixes */
-        @media (max-width: 1024px) {
-            .hero-text h1 { font-size: 3.2rem; }
-            .about-grid, .hr-grid { grid-template-columns: 1fr; gap: 3rem; }
-            .about-image img, .hr-image img { height: 400px; }
-            .section-title { font-size: 2.5rem; }
-        }
-
-        @media (max-width: 768px) {
-            .nav-links { display: none; }
-            .menu-toggle { display: block; }
-            .hero-text { padding: 1.5rem; }
-            .hero-text h1 { font-size: 2.5rem; }
-            .hero-stats { grid-template-columns: 1fr; }
-            .experience-badge { right: 0; bottom: -20px; scale: 0.8; }
-        }
-
-        /* The following are needed for your existing nav logic */
-        .menu-toggle .bar { display: block; width: 25px; height: 3px; margin: 5px auto; background-color: #333; }
-        .nav-links.active { display: flex; flex-direction: column; position: absolute; top: 100%; left: 0; width: 100%; background: white; padding: 2rem; }
-
-        .stat-card { background: rgba(255,255,255,0.1); padding: 1rem; border-radius: 12px; text-align: center; color: white; border: 1px solid rgba(255,255,255,0.2); }
-        .stat-number { font-size: 2rem; font-weight: 700; display: block; }
 
         .experience-badge {
             position: absolute;
-            bottom: 40px;
-            right: -20px;
+            bottom: -30px;
+            right: -30px;
             background: var(--ox-red);
             color: white;
-            padding: 2rem;
-            border-radius: 20px;
+            padding: 2.5rem;
+            border-radius: 25px;
             text-align: center;
+            box-shadow: 0 20px 40px rgba(139,0,0,0.3);
+        }
+
+        .experience-badge h2 { font-size: 3rem; line-height: 1; }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .value-box {
+            display: flex;
+            gap: 15px;
+        }
+
+        .value-box span {
+            font-size: 2rem;
+            background: white;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+        }
+
+        /* --- THE TECHTON ADVANTAGE (GLASS BOXES) --- */
+        .advantages {
+            padding: 8rem 0;
+            background: linear-gradient(135deg, var(--navy-blue) 0%, #0a1421 100%);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .glass-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .glass-box {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            padding: 3rem;
+            border-radius: 25px;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.4s ease;
+            text-align: center;
+        }
+
+        .glass-box:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-10px);
+            border-color: var(--olive-green);
+        }
+
+        .glass-box .icon { font-size: 3rem; margin-bottom: 1.5rem; display: block; }
+        .glass-box h3 { font-size: 1.5rem; margin-bottom: 1rem; color: var(--olive-light); }
+        .glass-box p { font-size: 0.95rem; opacity: 0.8; line-height: 1.7; }
+
+        /* --- CAREERS SECTION --- */
+        .careers { padding: 8rem 0; background: white; }
+        .careers-grid {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 5rem;
+            align-items: center;
+        }
+
+        .career-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin-top: 2.5rem;
+        }
+
+        .career-item {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 1.5rem;
+            background: var(--light-gray);
+            border-radius: 20px;
+            border-left: 5px solid var(--olive-green);
+        }
+
+        .career-item span { font-size: 1.5rem; }
+
+        .hr-image-wrapper { position: relative; }
+        .hr-image-wrapper img { width: 100%; height: 650px; object-fit: cover; border-radius: 30px; }
+        
+        .hr-badge {
+            position: absolute;
+            bottom: 30px;
+            left: 30px;
+            background: var(--navy-blue);
+            color: white;
+            padding: 1.5rem 2.5rem;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        /* --- CONTACT SECTION --- */
+        .contact { padding: 8rem 0; background: var(--light-gray); }
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 0.8fr 1.2fr;
+            gap: 5rem;
+        }
+
+        .contact-card {
+            background: white;
+            padding: 3rem;
+            border-radius: 30px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.05);
+        }
+
+        .contact-method {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 2.5rem;
+        }
+
+        .method-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--light-gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-size: 1.5rem;
+        }
+
+        .contact-form {
+            background: white;
+            padding: 4rem;
+            border-radius: 30px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.05);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group { margin-bottom: 1.5rem; }
+        .form-group label { display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--navy-blue); }
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #eee;
+            border-radius: 12px;
+            font-family: inherit;
+            transition: 0.3s;
+        }
+
+        .form-group input:focus { border-color: var(--olive-green); outline: none; }
+
+        .btn-submit {
+            width: 100%;
+            background: var(--navy-blue);
+            color: white;
+            padding: 1.2rem;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn-submit:hover { background: var(--olive-green); }
+
+        /* --- FOOTER --- */
+        .footer { background: #0a1421; color: white; padding: 6rem 0 2rem; }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 4rem;
+        }
+
+        .footer-logo h2 { font-size: 2rem; margin-bottom: 1.5rem; }
+        .footer-logo p { opacity: 0.7; margin-bottom: 2rem; }
+        
+        .social-icons { display: flex; gap: 1rem; }
+        .social-icons a {
+            width: 45px;
+            height: 45px;
+            background: rgba(255,255,255,0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            text-decoration: none;
+            color: white;
+            transition: 0.3s;
+        }
+
+        .social-icons a:hover { background: var(--olive-green); transform: translateY(-5px); }
+
+        .footer-col h4 { margin-bottom: 2rem; color: var(--olive-light); }
+        .footer-col ul { list-style: none; }
+        .footer-col ul li { margin-bottom: 1rem; }
+        .footer-col ul li a { color: white; opacity: 0.7; text-decoration: none; transition: 0.3s; }
+        .footer-col ul li a:hover { opacity: 1; color: var(--olive-light); }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.05);
+            padding-top: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+
+        .footer-bottom p { opacity: 0.5; font-size: 0.9rem; }
+        .footer-tags { display: flex; gap: 1.5rem; opacity: 0.5; font-size: 0.8rem; }
+
+        /* --- ANIMATIONS --- */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- MOBILE RESPONSIVE --- */
+        @media (max-width: 1100px) {
+            .nav-links { display: none; }
+            .menu-toggle { display: flex; }
+            .hero-text-box { padding: 2.5rem; }
+            .hero-text-box h1 { font-size: 3rem; }
+            .subs-container { grid-template-columns: repeat(2, 1fr); }
+            .about-grid, .careers-grid, .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+            .glass-grid { grid-template-columns: repeat(2, 1fr); }
+            .footer-grid { grid-template-columns: 1fr 1fr; }
+        }
+
+        @media (max-width: 768px) {
+            .hero-text-box h1 { font-size: 2.2rem; }
+            .hero-stats { grid-template-columns: 1fr; }
+            .glass-grid { grid-template-columns: 1fr; }
+            .subs-container { grid-template-columns: 1fr; }
+            .about-image-wrapper img, .hr-image-wrapper img { height: 400px; }
+            .experience-badge { padding: 1.5rem; bottom: -20px; right: 0; }
+            .experience-badge h2 { font-size: 2rem; }
+            .values-grid, .form-row { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr; }
+            .logo-text { font-size: 1.1rem; }
+            .nav-container { padding: 0 1rem; }
+        }
+
+        /* Mobile Menu Active State */
+        .nav-links.mobile-active {
+            display: flex;
+            flex-direction: column;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            background: white;
+            padding: 2rem;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
         }
     </style>
 </head>
 <body>
 
-    <!-- Navigation (Untouched as requested) -->
+    <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
-            <div class="logo">
+            <a href="#home" class="logo">
                 <img src="TECTHTON.png" alt="Techton Group Logo">
                 <div class="logo-text">
-                    <span class="brand-name">Techton Group</span>
-                    <span class="brand-sub">International Limited</span>
+                    Techton Group
+                    <span>International Limited</span>
                 </div>
+            </a>
+
+            <div class="menu-toggle" id="mobile-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
             </div>
-            <div class="menu-toggle" id="mobile-menu">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </div>
+
             <ul class="nav-links">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#about">About</a></li>
                 <li class="dropdown">
                     <a href="#subsidiaries">Subsidiaries ▼</a>
                     <div class="dropdown-content">
-                        <a href="#justbuy">JustBuy <span class="subsidiary">Real Estate</span></a>
-                        <a href="#artkeepers">ArtKeepers <span class="subsidiary">Art & Light</span></a>
-                        <a href="#jinoish">Jinoish <span class="subsidiary">Global Trade</span></a>
+                        <a href="#techton">
+                            Techton Group
+                            <span class="subsidiary">Construction & Engineering</span>
+                        </a>
+                        <a href="#justbuy">
+                            JustBuy
+                            <span class="subsidiary">Real Estate & Properties</span>
+                        </a>
+                        <a href="#artkeepers">
+                            ArtKeepers Lamp Ltd
+                            <span class="subsidiary">Sculptured Lamps & Art</span>
+                        </a>
+                        <a href="#jinoish">
+                            Jinoish International Ltd
+                            <span class="subsidiary">Global Trading</span>
+                        </a>
                     </div>
                 </li>
                 <li><a href="#services">Services</a></li>
@@ -358,126 +690,393 @@
     <!-- Hero Section -->
     <section class="hero" id="home">
         <div class="hero-content">
-            <div class="hero-text animate-on-scroll">
-                <h1><span>Building Africa's Future</span>Professional Excellence in Every Square Meter</h1>
-                <p>Techton Group International Limited delivers world-class infrastructure and innovative solutions. We build structures that stand the test of time while empowering the African continent.</p>
+            <div class="hero-text-box">
+                <h1><span>Building Africa's Future Today</span>Quality Engineering & Sustainable Development</h1>
+                <p>Techton Group International Limited is a forward-thinking construction conglomerate with subsidiaries spanning real estate, artisan lighting, and international trade. We don't just build structures—we build careers, communities, and a legacy of excellence.</p>
+                
                 <div class="hero-buttons">
-                    <a href="#contact" class="btn-primary">Start Your Project →</a>
+                    <a href="#contact" class="btn-main">Start Your Project →</a>
+                    <a href="#about" class="btn-ghost">Explore Our Group</a>
                 </div>
+
                 <div class="hero-stats">
-                    <div class="stat-card">
-                        <span class="stat-number">15+</span>
-                        <span class="stat-label">Years of Trust</span>
+                    <div class="stat-item">
+                        <h3>15+</h3>
+                        <p>Years Experience</p>
                     </div>
-                    <div class="stat-card">
-                        <span class="stat-number">500+</span>
-                        <span class="stat-label">Projects</span>
+                    <div class="stat-item">
+                        <h3>500+</h3>
+                        <p>Projects Completed</p>
                     </div>
-                    <div class="stat-card">
-                        <span class="stat-number">100%</span>
-                        <span class="stat-label">African Pride</span>
+                    <div class="stat-item">
+                        <h3>4</h3>
+                        <p>Group Companies</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- Subsidiaries Strip -->
+    <div class="subs-strip">
+        <div class="subs-container">
+            <a href="#techton" class="sub-card">
+                <span class="sub-icon">🏗️</span>
+                <div class="sub-info">
+                    <h4>Techton Group</h4>
+                    <p>Construction & Engineering</p>
+                </div>
+            </a>
+            <a href="#justbuy" class="sub-card">
+                <span class="sub-icon">🏘️</span>
+                <div class="sub-info">
+                    <h4>JustBuy</h4>
+                    <p>Real Estate & Properties</p>
+                </div>
+            </a>
+            <a href="#artkeepers" class="sub-card">
+                <span class="sub-icon">💡</span>
+                <div class="sub-info">
+                    <h4>ArtKeepers Lamp</h4>
+                    <p>Sculptured Lamps & Art</p>
+                </div>
+            </a>
+            <a href="#jinoish" class="sub-card">
+                <span class="sub-icon">🌍</span>
+                <div class="sub-info">
+                    <h4>Jinoish International</h4>
+                    <p>Global Trading</p>
+                </div>
+            </a>
+        </div>
+    </div>
 
     <!-- About Section -->
-    <section class="about-section" id="about">
+    <section class="about" id="about">
         <div class="container">
             <div class="about-grid">
-                <div class="about-image animate-on-scroll">
-                    <!-- Image of African Engineer checking plans -->
-                    <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&q=80&w=1000" alt="African Engineer at Site">
+                <div class="about-image-wrapper reveal">
+                    <img src="https://images.unsplash.com/photo-1541888946425-d81bb19480c5?auto=format&fit=crop&q=80&w=1000" alt="African construction workers">
                     <div class="experience-badge">
-                        <span style="font-size: 2.5rem; font-weight: 700; display: block;">15+</span>
-                        <span>Years of Excellence</span>
+                        <h2>15+</h2>
+                        <p>Years of<br>Excellence</p>
                     </div>
                 </div>
-                <div class="about-content animate-on-scroll">
-                    <span class="section-tag">About Our Group</span>
-                    <h2 class="section-title">Engineering with Integrity</h2>
-                    <p style="margin: 1.5rem 0; font-size: 1.1rem; color: #555;">At Techton Group, our foundation is built on the expertise of our people. We recognize that our workforce is our greatest asset. Our multi-disciplinary team brings localized knowledge combined with international standards to every project we touch.</p>
-                    <p style="margin-bottom: 2rem; color: #666;">From the initial blueprint to the final brick, we ensure safety, precision, and sustainability are at the heart of our operations.</p>
-                    <a href="#services" class="btn-primary" style="background: var(--olive-green);">Our Services</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Winning Team / Careers Section -->
-    <section class="hr-section" id="careers">
-        <div class="container">
-            <div class="hr-grid">
-                <div class="hr-content animate-on-scroll">
-                    <span class="section-tag" style="color: var(--olive-light);">Careers at Techton</span>
-                    <h2 class="section-title" style="color: white; margin-bottom: 2rem;">Join Our Winning Team</h2>
-                    <p style="font-size: 1.2rem; opacity: 0.9; margin-bottom: 2rem;">We are looking for visionaries, engineers, and builders who want to shape the skyline of Africa. We provide a culture of safety, continuous learning, and professional growth.</p>
+                <div class="about-content reveal">
+                    <span style="color: var(--olive-green); font-weight: 700; text-transform: uppercase; letter-spacing: 2px;">About Our Group</span>
+                    <h2 style="font-size: 3rem; color: var(--navy-blue); margin: 1rem 0;">Building Excellence, Empowering People</h2>
+                    <p style="font-size: 1.1rem; color: var(--gray); margin-bottom: 2rem;">At TECHTON, our strength lies not only in the structures we build but in the people who make them possible. Our People Are Our Foundation.</p>
                     
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
-                        <div style="background: rgba(255,255,255,0.1); padding: 1.5rem; border-radius: 15px;">
-                            <h4 style="color: var(--olive-light); margin-bottom: 0.5rem;">Safety Culture</h4>
-                            <p style="font-size: 0.9rem;">World-class safety protocols for every team member.</p>
+                    <p style="color: var(--gray); margin-bottom: 1.5rem;">As a forward-thinking construction company, we recognize that our workforce is the foundation of our success. Our Human Resources team plays a critical role in attracting, developing, and retaining skilled professionals who share our commitment to excellence, safety, and innovation.</p>
+                    
+                    <p style="color: var(--gray);">From engineers and project managers to site workers and support staff, we invest in continuous training, career development, and employee well-being.</p>
+                    
+                    <div class="values-grid">
+                        <div class="value-box">
+                            <span>🛡️</span>
+                            <div>
+                                <h4>Safety First</h4>
+                                <p>Strict compliance with standards</p>
+                            </div>
                         </div>
-                        <div style="background: rgba(255,255,255,0.1); padding: 1.5rem; border-radius: 15px;">
-                            <h4 style="color: var(--olive-light); margin-bottom: 0.5rem;">Innovation</h4>
-                            <p style="font-size: 0.9rem;">Access to the latest engineering tech and tools.</p>
+                        <div class="value-box">
+                            <span>🤝</span>
+                            <div>
+                                <h4>Integrity</h4>
+                                <p>Built on trust and transparency</p>
+                            </div>
+                        </div>
+                        <div class="value-box">
+                            <span>🌟</span>
+                            <div>
+                                <h4>Innovation</h4>
+                                <p>Modern solutions for Africa</p>
+                            </div>
+                        </div>
+                        <div class="value-box">
+                            <span>🎯</span>
+                            <div>
+                                <h4>Excellence</h4>
+                                <p>Quality in every detail</p>
+                            </div>
                         </div>
                     </div>
-                    <br><br>
-                    <a href="#contact" class="btn-primary">View Openings →</a>
-                </div>
-                <div class="hr-image animate-on-scroll">
-                    <!-- Confident African Engineering Professional -->
-                    <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&q=80&w=1000" alt="Techton Career Professionals">
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer (Simplified Modern) -->
-    <footer style="background: #0a1421; color: white; padding: 4rem 0 2rem;">
+    <!-- The Techton Advantage (Glass Boxes) -->
+    <section class="advantages" id="services">
         <div class="container">
-            <div style="text-align: center; margin-bottom: 3rem;">
-                <h2 style="font-family: 'Playfair Display'; font-size: 2rem;">Techton Group International</h2>
-                <p style="opacity: 0.6; margin-top: 1rem;">4B Adewunmi Crescent, New Oko Oba GRA, Lagos, Nigeria</p>
+            <div style="text-align: center; max-width: 800px; margin: 0 auto;" class="reveal">
+                <span style="color: var(--olive-light); font-weight: 700; text-transform: uppercase; letter-spacing: 2px;">Why Techton Group</span>
+                <h2 style="font-size: 3.5rem; margin: 1rem 0;">The Techton Advantage</h2>
+                <p style="font-size: 1.1rem; opacity: 0.8;">Four companies, one commitment to excellence across construction, real estate, and artisan crafts.</p>
             </div>
-            <div style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 2rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
-                <p style="font-size: 0.9rem; opacity: 0.7;">&copy; 2025 Techton Group International Limited. All rights reserved.</p>
-                <div style="display: flex; gap: 2rem; font-size: 0.9rem; opacity: 0.7;">
+
+            <div class="glass-grid">
+                <div class="glass-box reveal">
+                    <span class="icon">🏗️</span>
+                    <h3>Construction Excellence</h3>
+                    <p>Techton Group delivers world-class construction projects with cutting-edge technology and skilled African workforce. From residential to commercial, we build to last.</p>
+                </div>
+                <div class="glass-box reveal">
+                    <span class="icon">🏡</span>
+                    <h3>Property Solutions</h3>
+                    <p>Through JustBuy, we offer premium houses and landed properties across Nigeria. Find your dream home or investment property with our expert real estate team.</p>
+                </div>
+                <div class="glass-box reveal">
+                    <span class="icon">💡</span>
+                    <h3>Artisan Lighting</h3>
+                    <p>ArtKeepers Lamp Ltd creates unique sculptured lamps that blend African artistry with modern design. Each piece is handcrafted and available for direct purchase.</p>
+                </div>
+                <div class="glass-box reveal">
+                    <span class="icon">🌍</span>
+                    <h3>Global Reach</h3>
+                    <p>Jinoish International Ltd connects African markets with global opportunities, facilitating trade and commerce across borders with reliability.</p>
+                </div>
+                <div class="glass-box reveal">
+                    <span class="icon">👷</span>
+                    <h3>Skilled Workforce</h3>
+                    <p>We employ and train the best African engineering talent. Our diverse team brings creativity and expertise to every project we undertake.</p>
+                </div>
+                <div class="glass-box reveal">
+                    <span class="icon">♻️</span>
+                    <h3>Sustainable Building</h3>
+                    <p>Committed to green building practices and sustainable development. We build for today while preserving resources for future generations.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Careers Section -->
+    <section class="careers" id="careers">
+        <div class="container">
+            <div class="careers-grid">
+                <div class="career-content reveal">
+                    <span style="color: var(--olive-green); font-weight: 700; text-transform: uppercase; letter-spacing: 2px;">Careers</span>
+                    <h2 style="font-size: 3rem; color: var(--navy-blue); margin: 1rem 0;">Join Our Winning Team</h2>
+                    <p style="color: var(--gray); font-size: 1.1rem;">We are dedicated to fostering a workplace culture built on integrity, teamwork, and respect. We believe that a diverse workforce drives creativity and strengthens our ability to meet the needs of our clients.</p>
+                    
+                    <div class="career-list">
+                        <div class="career-item">
+                            <span>📋</span>
+                            <div>
+                                <h4>Professional Screening</h4>
+                                <p>Structured recruitment and onboarding process</p>
+                            </div>
+                        </div>
+                        <div class="career-item">
+                            <span>📊</span>
+                            <div>
+                                <h4>Site Coordination</h4>
+                                <p>Management & workforce connection excellence</p>
+                            </div>
+                        </div>
+                        <div class="career-item">
+                            <span>📈</span>
+                            <div>
+                                <h4>Career Growth</h4>
+                                <p>Continuous training and development programs</p>
+                            </div>
+                        </div>
+                        <div class="career-item">
+                            <span>🛡️</span>
+                            <div>
+                                <h4>Safety Culture</h4>
+                                <p>Ongoing safety education and compliance</p>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <a href="#contact" class="btn-main">View Open Positions →</a>
+                </div>
+                <div class="hr-image-wrapper reveal">
+                    <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&q=80&w=1000" alt="Techton Winning Team">
+                    <div class="hr-badge">
+                        <span style="font-size: 2rem;">👷🏾‍♀️</span>
+                        <p><strong>Equal Opportunity</strong><br>Employer</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div style="text-align: center; margin-bottom: 5rem;" class="reveal">
+                <h2 style="font-size: 3.5rem; color: var(--navy-blue);">Let's Build Together</h2>
+                <p style="color: var(--gray); font-size: 1.1rem;">Ready to start your project? Contact us today for consultations or career opportunities.</p>
+            </div>
+
+            <div class="contact-grid">
+                <div class="contact-card reveal">
+                    <h3 style="margin-bottom: 2rem; color: var(--navy-blue);">Contact Information</h3>
+                    
+                    <div class="contact-method">
+                        <div class="method-icon">📍</div>
+                        <div>
+                            <h4>Head Office</h4>
+                            <p>4B, Adewunmi Crescent<br>New Oko Oba GRA, Agege<br>Lagos, Nigeria</p>
+                        </div>
+                    </div>
+                    <div class="contact-method">
+                        <div class="method-icon">📞</div>
+                        <div>
+                            <h4>Phone</h4>
+                            <p>+234 703 537 5443</p>
+                        </div>
+                    </div>
+                    <div class="contact-method">
+                        <div class="method-icon">✉️</div>
+                        <div>
+                            <h4>Email</h4>
+                            <p>info@techtongroup.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-method">
+                        <div class="method-icon">🕐</div>
+                        <div>
+                            <h4>Working Hours</h4>
+                            <p>Mon - Fri: 8:00 AM - 5:00 PM</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact-form reveal">
+                    <form>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>First Name</label>
+                                <input type="text" placeholder="John" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Last Name</label>
+                                <input type="text" placeholder="Doe" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Email Address</label>
+                                <input type="email" placeholder="john@example.com" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Phone Number</label>
+                                <input type="tel" placeholder="+234 000 000 0000">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>I'm Interested In</label>
+                            <select>
+                                <option>Select a service...</option>
+                                <option>Construction Services</option>
+                                <option>Real Estate (JustBuy)</option>
+                                <option>Sculptured Lamps (ArtKeepers)</option>
+                                <option>Global Trading (Jinoish)</option>
+                                <option>Careers</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Your Message</label>
+                            <textarea rows="5" placeholder="Tell us about your project..."></textarea>
+                        </div>
+                        <button type="submit" class="btn-submit">Send Message →</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-logo">
+                    <div class="logo" style="margin-bottom: 2rem;">
+                        <div style="background: white; color: var(--navy-blue); width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; font-size: 2rem; font-family: 'Playfair Display'; border-radius: 10px;">T</div>
+                        <div class="logo-text" style="color: white;">
+                            Techton Group
+                            <span style="color: var(--olive-light);">International Limited</span>
+                        </div>
+                    </div>
+                    <p>Building structures, careers, communities, and a legacy of excellence across Africa. Our diverse group of companies delivers quality in every sector.</p>
+                    <div class="social-icons">
+                        <a href="#">📘</a>
+                        <a href="#">🐦</a>
+                        <a href="#">📸</a>
+                        <a href="#">💼</a>
+                    </div>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#careers">Careers</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Subsidiaries</h4>
+                    <ul>
+                        <li><a href="#">Techton Construction</a></li>
+                        <li><a href="#">JustBuy Properties</a></li>
+                        <li><a href="#">ArtKeepers Lamp</a></li>
+                        <li><a href="#">Jinoish International</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Contact Us</h4>
+                    <ul>
+                        <li>📍 4B Adewunmi Crescent, Agege</li>
+                        <li>📞 +234 703 537 5443</li>
+                        <li>✉️ info@techtongroup.com</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 Techton Group International Limited. All rights reserved.</p>
+                <div class="footer-tags">
+                    <span>Techton Group</span>
                     <span>JustBuy</span>
-                    <span>ArtKeepers</span>
-                    <span>Jinoish</span>
+                    <span>ArtKeepers Lamp Ltd</span>
+                    <span>Jinoish International Ltd</span>
                 </div>
             </div>
         </div>
     </footer>
 
     <script>
-        // Keeping your existing JS logic
-        const menuToggle = document.getElementById('mobile-menu');
+        // Mobile Toggle Logic
+        const mobileToggle = document.getElementById('mobile-toggle');
         const navLinks = document.querySelector('.nav-links');
 
-        menuToggle.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
+        mobileToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('mobile-active');
         });
 
-        // Scroll Animation logic
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
+        // Scroll Reveal Animation Logic
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 150;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
                 }
-            });
-        }, { threshold: 0.1 });
+            }
+        }
 
-        document.querySelectorAll('.animate-on-scroll').forEach((el) => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(30px)';
-            el.style.transition = 'all 0.8s ease-out';
-            observer.observe(el);
-        });
+        window.addEventListener("scroll", reveal);
+        // Initial check
+        reveal();
     </script>
 </body>
 </html>
