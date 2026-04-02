@@ -37,12 +37,16 @@
     </script>
     <style>
       .glass-card {
-        background: rgba(255, 255, 255, 0.7);
-        backdrop-filter: blur(12px);
-        border: 1px solid rgba(255, 255, 255, 0.3);
+        background: rgba(0, 0, 0, 0.7);
+        backdrop-filter: blur(15px);
+        -webkit-backdrop-filter: blur(15px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
       }
-      .mobile-menu-open {
-        overflow: hidden;
+      .mobile-menu-active {
+        transform: translateX(0) !important;
+      }
+      .rotate-180 {
+        transform: rotate(180deg);
       }
     </style>
 </head>
@@ -50,208 +54,284 @@
 <body class="bg-surface font-body text-slate-900 overflow-x-hidden">
 
 <!-- Navigation -->
-<nav class="fixed top-0 w-full bg-white/95 backdrop-blur-md shadow-sm z-50">
-    <div class="flex justify-between items-center px-6 py-4 max-w-7xl mx-auto">
+<nav class="fixed top-0 w-full bg-white z-[100] shadow-md">
+    <div class="flex justify-between items-center px-6 py-3 max-w-7xl mx-auto">
         <a href="index.html" class="flex items-center gap-2">
-            <img src="TECTHTON.png" alt="Logo" class="h-10 w-auto">
-            <div class="font-headline font-bold text-navy leading-none">
+            <img src="TECTHTON.png" alt="Logo" class="h-12 w-auto">
+            <div class="hidden sm:block font-headline font-bold text-navy leading-none">
                 Techton Group <br>
                 <span class="text-[10px] font-body uppercase tracking-widest text-primary">International Limited</span>
             </div>
         </a>
 
-        <!-- Desktop Menu -->
+        <!-- Desktop Links -->
         <div class="hidden md:flex items-center space-x-8">
-            <a class="text-sm font-semibold hover:text-primary transition-colors" href="index.html">Home</a>
-            <a class="text-sm font-bold text-primary border-b-2 border-primary" href="about.html">About</a>
-            <a class="text-sm font-semibold hover:text-primary transition-colors" href="position.html">Careers</a>
-            <a href="https://wa.me/2347035375443" class="bg-primary text-white px-6 py-2 rounded-full text-xs font-bold uppercase tracking-wider hover:bg-opacity-90 transition-all">
-                Start Project
-            </a>
+            <a href="index.html" class="text-sm font-semibold hover:text-primary transition-colors">Home</a>
+            <div class="relative group">
+                <button class="text-sm font-semibold flex items-center gap-1 group-hover:text-primary">
+                    Subsidiaries <span class="material-symbols-outlined text-sm">expand_more</span>
+                </button>
+                <div class="absolute top-full left-0 w-64 bg-white shadow-xl rounded-xl py-4 hidden group-hover:block border-t-2 border-primary">
+                    <a href="#" class="block px-6 py-2 text-sm hover:bg-slate-50">Techton Construction & Engineering</a>
+                    <a href="#" class="block px-6 py-2 text-sm hover:bg-slate-50">JustBuy Real Estate & Properties</a>
+                    <a href="#" class="block px-6 py-2 text-sm hover:bg-slate-50">ArtKeepers Sculptured Lamps</a>
+                    <a href="#" class="block px-6 py-2 text-sm hover:bg-slate-50">Jinoish International Trading</a>
+                </div>
+            </div>
+            <a href="about.html" class="text-sm font-bold text-primary">About</a>
+            <a href="position.html" class="text-sm font-semibold hover:text-primary">Careers</a>
+            <a href="https://wa.me/2347035375443" class="bg-secondary text-white px-6 py-2 rounded-full text-xs font-bold uppercase tracking-widest hover:bg-opacity-90">Start Project</a>
         </div>
 
         <!-- Mobile Toggle -->
-        <button id="menu-open" class="md:hidden text-navy">
+        <button id="menu-open" class="md:hidden text-navy p-2">
             <span class="material-symbols-outlined text-3xl">menu</span>
         </button>
     </div>
 
-    <!-- Mobile Menu Overlay -->
-    <div id="mobile-overlay" class="fixed inset-0 bg-navy/95 z-[60] flex flex-col items-center justify-center space-y-8 translate-x-full transition-transform duration-300">
-        <button id="menu-close" class="absolute top-6 right-6 text-white">
-            <span class="material-symbols-outlined text-4xl">close</span>
-        </button>
-        <a class="text-white text-2xl font-headline" href="index.html">Home</a>
-        <a class="text-primary text-2xl font-headline font-bold" href="about.html">About Us</a>
-        <a class="text-white text-2xl font-headline" href="position.html">Careers</a>
-        <a href="https://wa.me/2347035375443" class="bg-secondary text-white px-8 py-3 rounded-full font-bold uppercase">
-            Start Project
-        </a>
+    <!-- Professional Mobile Menu -->
+    <div id="mobile-overlay" class="fixed inset-0 bg-white z-[200] translate-x-full transition-transform duration-500 ease-in-out md:hidden flex flex-col">
+        <div class="flex justify-between items-center px-6 py-4 border-b">
+            <img src="TECTHTON.png" class="h-10 w-auto">
+            <button id="menu-close" class="text-navy">
+                <span class="material-symbols-outlined text-4xl">close</span>
+            </button>
+        </div>
+        
+        <div class="flex-1 overflow-y-auto px-8 py-10 space-y-6">
+            <a class="block text-2xl font-headline font-bold text-navy" href="index.html">Home</a>
+            
+            <!-- Subsidiaries Mobile Accordion -->
+            <div>
+                <button id="sub-accordion-toggle" class="flex justify-between items-center w-full text-2xl font-headline font-bold text-navy">
+                    Subsidiaries <span class="material-symbols-outlined transition-transform" id="sub-arrow">expand_more</span>
+                </button>
+                <div id="sub-menu" class="hidden mt-4 space-y-4 pl-4 border-l-2 border-primary/20">
+                    <a href="#" class="block text-base text-slate-600">Techton Construction & Engineering</a>
+                    <a href="#" class="block text-base text-slate-600">JustBuy Real Estate & Properties</a>
+                    <a href="#" class="block text-base text-slate-600">ArtKeepers Sculptured Lamps</a>
+                    <a href="#" class="block text-base text-slate-600">Jinoish International Trading</a>
+                </div>
+            </div>
+
+            <a class="block text-2xl font-headline font-bold text-primary" href="about.html">About Us</a>
+            <a class="block text-2xl font-headline font-bold text-navy" href="position.html">Careers</a>
+            
+            <div class="pt-10">
+                <a href="https://wa.me/2347035375443" class="block w-full bg-secondary text-white text-center py-4 rounded-xl font-bold uppercase tracking-widest">
+                    Start Your Project
+                </a>
+            </div>
+        </div>
     </div>
 </nav>
 
-<main class="mt-20">
-    <!-- Hero Section -->
-    <section class="relative py-16 px-6 lg:px-16 bg-white overflow-hidden">
-        <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div class="z-10 space-y-6">
-                <h1 class="font-headline text-4xl lg:text-6xl font-black text-navy leading-tight">
+<main>
+    <!-- New Hero Section: Homepage Style -->
+    <section class="relative h-screen min-h-[600px] flex items-center justify-center">
+        <!-- Background Full Image -->
+        <div class="absolute inset-0 z-0">
+            <img src="hero.png" class="w-full h-full object-cover" alt="About Us Hero">
+            <div class="absolute inset-0 bg-black/40"></div>
+        </div>
+
+        <!-- Glass Overlay Content -->
+        <div class="relative z-10 max-w-4xl mx-auto px-6">
+            <div class="glass-card p-8 md:p-16 rounded-[40px] text-center text-white animate-fade-in">
+                <span class="block text-sm uppercase tracking-[0.3em] font-body mb-4 text-primary-fixed">About Techton Group</span>
+                <h1 class="font-headline text-4xl md:text-7xl font-black leading-tight mb-6">
                     Our People are Our Foundation
                 </h1>
-                <div class="bg-primary p-6 lg:p-8 text-white rounded-2xl shadow-xl">
-                    <p class="text-lg leading-relaxed italic">
-                        "At TECHTON, our strength lies not only in the structures we build but in the people who make them possible. We build careers, communities, and a legacy of excellence."
-                    </p>
-                </div>
-            </div>
-            <div class="h-[400px] lg:h-[550px] rounded-3xl overflow-hidden shadow-2xl">
-                <img alt="African engineering team" class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&q=80&w=1000"/>
+                <p class="text-lg md:text-xl font-light opacity-90 leading-relaxed max-w-2xl mx-auto">
+                    At TECHTON, our strength lies not only in the structures we build but in the people who make them possible.
+                </p>
             </div>
         </div>
     </section>
 
-    <!-- Main About Content (Your Text) -->
-    <section class="py-20 bg-slate-50">
-        <div class="max-w-4xl mx-auto px-6 text-center lg:text-left">
-            <h2 class="font-headline text-3xl lg:text-4xl font-bold text-primary mb-8">Building Excellence, Empowering People</h2>
-            <div class="space-y-6 text-slate-700 leading-relaxed text-base lg:text-lg">
+    <!-- Main About Content Section -->
+    <section class="py-20 bg-white">
+        <div class="max-w-4xl mx-auto px-6 text-center md:text-left">
+            <div class="inline-block px-4 py-1 bg-primary/10 text-primary font-bold text-xs uppercase rounded-full mb-4">The Legacy</div>
+            <h2 class="font-headline text-3xl md:text-5xl font-bold text-navy mb-8 leading-tight">Building Excellence, Empowering People</h2>
+            
+            <div class="space-y-6 text-slate-700 leading-relaxed text-base md:text-lg">
                 <p>At TECHTON, our strength lies not only in the structures we build but in the people who make them possible. As a forward-thinking construction company, we recognize that our workforce is the foundation of our success. Our Human Resources team plays a critical role in attracting, developing, and retaining skilled professionals who share our commitment to excellence, safety, and innovation.</p>
+                
                 <p>We are dedicated to fostering a workplace culture built on integrity, teamwork, and respect. From engineers and project managers to site workers and support staff, we invest in continuous training, career development, and employee well-being. Our goal is to ensure that every team member is equipped, empowered, and motivated to deliver high-quality results on every project.</p>
+                
                 <p>Safety is at the core of everything we do. We maintain strict compliance with industry standards and provide ongoing safety education to ensure a secure working environment for all employees and partners. Our HR policies are designed to promote fairness, diversity, and inclusion, creating equal opportunities for growth and advancement. We believe that a diverse workforce drives creativity and strengthens our ability to meet the evolving needs of our clients. At Techton, we don’t just build structures—we build careers, communities, and a legacy of excellence.</p>
             </div>
         </div>
     </section>
 
-    <!-- Ecosystem Section -->
-    <section class="py-20 px-6">
-        <div class="max-w-7xl mx-auto">
-            <div class="mb-12 text-center">
-                <h2 class="font-headline text-3xl lg:text-5xl font-bold text-navy">The Techton Ecosystem</h2>
-                <p class="mt-4 text-slate-500">A synergy of industry leaders unified under the Techton Group banner.</p>
+    <!-- Ecosystem Section with Images -->
+    <section class="py-20 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="font-headline text-3xl md:text-5xl font-bold text-navy">The Techton Ecosystem</h2>
+                <p class="mt-4 text-slate-500 max-w-2xl mx-auto">Strategic synergy unified under the Techton Group banner, delivering excellence across logistics, real estate, and trade.</p>
             </div>
+            
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <!-- JustBuy -->
-                <div class="glass-card p-8 rounded-3xl text-center hover:shadow-lg transition-all">
-                    <span class="material-symbols-outlined text-5xl text-primary mb-4">shopping_cart</span>
-                    <h3 class="font-headline text-2xl font-bold mb-2">JustBuy</h3>
-                    <p class="text-sm text-slate-600">Techton's retail and supply chain powerhouse, streamlining procurement through digital innovation and robust logistics.</p>
+                <div class="bg-white p-8 rounded-3xl shadow-sm border border-slate-100 hover:shadow-xl transition-all group">
+                    <div class="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-primary group-hover:text-white transition-colors">
+                        <span class="material-symbols-outlined text-4xl">shopping_cart</span>
+                    </div>
+                    <h3 class="font-headline text-2xl font-bold text-navy mb-4">JustBuy</h3>
+                    <p class="text-slate-600 leading-relaxed">Techton's retail and supply chain powerhouse, streamlining procurement through innovative digital platforms and robust logistics networks.</p>
                 </div>
+
                 <!-- ArtKeepers -->
-                <div class="glass-card p-8 rounded-3xl text-center hover:shadow-lg transition-all">
-                    <span class="material-symbols-outlined text-5xl text-secondary mb-4">lightbulb</span>
-                    <h3 class="font-headline text-2xl font-bold mb-2">Art Keepers Lamp Ltd</h3>
-                    <p class="text-sm text-slate-600">Defining luxury in lighting and interior design, merging African architectural aesthetics with high-performance engineering.</p>
+                <div class="bg-white p-8 rounded-3xl shadow-sm border border-slate-100 hover:shadow-xl transition-all group">
+                    <div class="w-16 h-16 bg-secondary/10 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-secondary group-hover:text-white transition-colors">
+                        <span class="material-symbols-outlined text-4xl">lightbulb</span>
+                    </div>
+                    <h3 class="font-headline text-2xl font-bold text-navy mb-4">Art Keepers Lamp Ltd</h3>
+                    <p class="text-slate-600 leading-relaxed">Defining luxury in lighting and interior design, merging architectural aesthetics with high-performance engineering.</p>
                 </div>
+
                 <!-- Jinoish -->
-                <div class="glass-card p-8 rounded-3xl text-center hover:shadow-lg transition-all">
-                    <span class="material-symbols-outlined text-5xl text-navy mb-4">public</span>
-                    <h3 class="font-headline text-2xl font-bold mb-2">Jinoish International Ltd</h3>
-                    <p class="text-sm text-slate-600">A global logistics enterprise connecting African markets with the global industrial landscape.</p>
+                <div class="bg-white p-8 rounded-3xl shadow-sm border border-slate-100 hover:shadow-xl transition-all group">
+                    <div class="w-16 h-16 bg-navy/10 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-navy group-hover:text-white transition-colors">
+                        <span class="material-symbols-outlined text-4xl">public</span>
+                    </div>
+                    <h3 class="font-headline text-2xl font-bold text-navy mb-4">Jinoish International Ltd</h3>
+                    <p class="text-slate-600 leading-relaxed">A global logistics and international trading enterprise connecting African markets with the global industrial landscape.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Workforce Section -->
-    <section class="py-20 bg-navy text-white">
-        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <div class="space-y-6">
-                <div class="inline-block px-4 py-1 bg-primary text-white font-bold text-xs uppercase rounded">Human Capital</div>
-                <h2 class="font-headline text-4xl font-bold">Workforce Strength</h2>
-                <p class="opacity-80 leading-relaxed">
-                    From engineers and project managers to site workers, our talent pool is our greatest asset. We invest heavily in professional development, ensuring our teams stay at the forefront of global construction trends.
-                </p>
-                <div class="grid grid-cols-2 gap-8 pt-6">
-                    <div class="border-l-4 border-primary pl-4">
-                        <div class="text-4xl font-bold">500+</div>
-                        <div class="text-xs uppercase opacity-60">Active Staff</div>
-                    </div>
-                    <div class="border-l-4 border-primary pl-4">
-                        <div class="text-4xl font-bold">15+</div>
-                        <div class="text-xs uppercase opacity-60">Years Excellence</div>
+    <!-- Workforce & Safety Section -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center mb-24">
+                <div class="order-2 md:order-1">
+                    <img src="ele.png" class="w-full h-auto rounded-[40px] shadow-2xl" alt="African Workforce">
+                </div>
+                <div class="order-1 md:order-2 space-y-6">
+                    <h2 class="font-headline text-4xl font-bold text-navy leading-tight">Workforce Strength & Safety</h2>
+                    <p class="text-lg text-slate-600 leading-relaxed">Safety is at the core of everything we do. We maintain strict compliance with industry standards and provide ongoing safety education to ensure a secure working environment for all employees and partners.</p>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="p-6 bg-slate-50 rounded-2xl">
+                            <div class="text-3xl font-bold text-primary">500+</div>
+                            <p class="text-xs uppercase tracking-widest text-slate-400">Active Staff</p>
+                        </div>
+                        <div class="p-6 bg-slate-50 rounded-2xl">
+                            <div class="text-3xl font-bold text-primary">Zero</div>
+                            <p class="text-xs uppercase tracking-widest text-slate-400">Compromise Safety</p>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="rounded-3xl overflow-hidden h-[400px]">
-                <img alt="African worker" class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&q=80&w=1000"/>
             </div>
         </div>
     </section>
 
-    <!-- Final CTA -->
-    <section class="py-24 bg-primary text-white text-center px-6">
-        <h2 class="font-headline text-3xl lg:text-5xl font-bold mb-8">Ready to Build the Future?</h2>
-        <div class="flex flex-col sm:flex-row justify-center gap-4">
-            <a href="https://wa.me/2347035375443" class="bg-secondary text-white px-10 py-4 rounded-full font-bold uppercase hover:scale-105 transition-all">
-                Work with us
-            </a>
-            <a href="https://wa.me/2347035375443" class="border border-white text-white px-10 py-4 rounded-full font-bold uppercase hover:bg-white/10 transition-all">
-                Contact Headquarters
-            </a>
+    <!-- Join Our Team -->
+    <section class="py-20 bg-navy text-white overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <div class="space-y-8">
+                <h2 class="font-headline text-4xl md:text-6xl font-bold">Join Our Winning Team</h2>
+                <p class="text-lg opacity-80 leading-relaxed">We foster a workplace culture built on integrity, teamwork, and respect. Ready to build the future with us?</p>
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a href="position.html" class="bg-primary px-10 py-4 rounded-xl font-bold uppercase tracking-widest text-center hover:bg-opacity-90 transition-all">
+                        View Open Positions
+                    </a>
+                </div>
+            </div>
+            <div class="relative">
+                <img src="eng.png" class="w-full h-auto rounded-[40px]" alt="Engineering Team">
+                <div class="absolute bottom-6 left-6 bg-white text-navy p-6 rounded-3xl shadow-2xl hidden md:block">
+                    <p class="text-xs uppercase tracking-widest font-bold mb-1">Equal Opportunity</p>
+                    <p class="text-lg font-headline font-bold">Inclusive Growth Employer</p>
+                </div>
+            </div>
         </div>
     </section>
 </main>
 
-<!-- Footer -->
-<footer class="bg-slate-900 text-white pt-16 pb-8">
-    <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-12">
-        <div class="space-y-4">
-            <div class="font-headline font-bold text-2xl">Techton Group</div>
-            <p class="text-sm opacity-60">Leading Africa in integrated infrastructure, real estate, and sustainable logistics solutions.</p>
+<!-- Professional Footer -->
+<footer class="bg-slate-900 text-white pt-20 pb-10">
+    <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-12 border-b border-white/10 pb-16">
+        <div class="space-y-6">
+            <div class="flex items-center gap-2">
+                <img src="TECTHTON.png" class="h-10 w-auto bg-white rounded-lg p-1">
+                <span class="text-xl font-headline font-bold">Techton Group</span>
+            </div>
+            <p class="text-sm opacity-60 leading-relaxed">Leading Africa in integrated infrastructure, real estate, and sustainable logistics solutions. Professionalism in every detail.</p>
         </div>
-        <div class="space-y-4">
-            <h4 class="font-bold text-primary uppercase text-xs tracking-widest">Company</h4>
-            <nav class="flex flex-col space-y-2 text-sm opacity-70">
-                <a href="about.html" class="hover:text-primary">About Us</a>
-                <a href="position.html" class="hover:text-primary">Careers</a>
-                <a href="#" class="hover:text-primary">Policies</a>
-            </nav>
+        
+        <div>
+            <h4 class="font-bold text-primary uppercase text-xs tracking-widest mb-6">Divisions</h4>
+            <ul class="space-y-4 text-sm opacity-70">
+                <li><a href="#" class="hover:text-primary transition-colors">Techton Construction</a></li>
+                <li><a href="#" class="hover:text-primary transition-colors">JustBuy Real Estate</a></li>
+                <li><a href="#" class="hover:text-primary transition-colors">ArtKeepers Lamp</a></li>
+                <li><a href="#" class="hover:text-primary transition-colors">Jinoish Trading</a></li>
+            </ul>
         </div>
-        <div class="space-y-4">
-            <h4 class="font-bold text-primary uppercase text-xs tracking-widest">Contact</h4>
-            <p class="text-sm opacity-70">4B Adewunmi Crescent, Agege, Lagos.</p>
-            <p class="text-sm opacity-70">+234 703 537 5443</p>
+
+        <div>
+            <h4 class="font-bold text-primary uppercase text-xs tracking-widest mb-6">Corporate</h4>
+            <ul class="space-y-4 text-sm opacity-70">
+                <li><a href="about.html" class="hover:text-primary transition-colors">About Techton</a></li>
+                <li><a href="position.html" class="hover:text-primary transition-colors">Careers</a></li>
+                <li><a href="javascript:void(0)" onclick="alert('Policy Document: Techton Group maintains a zero-tolerance policy on project delays and safety violations.')" class="hover:text-primary transition-colors">Company Policies</a></li>
+                <li><a href="#contact" class="hover:text-primary transition-colors">Contact HQ</a></li>
+            </ul>
         </div>
-        <div class="space-y-4">
-            <h4 class="font-bold text-primary uppercase text-xs tracking-widest">Stay Connected</h4>
-            <p class="text-xs opacity-60">Subscribe for our latest engineering insights.</p>
-            <form class="flex">
-                <input class="bg-white/10 border-none rounded-l-lg px-4 py-2 w-full text-sm" placeholder="Email" type="email">
-                <button class="bg-primary px-4 rounded-r-lg">
-                    <span class="material-symbols-outlined text-sm">send</span>
-                </button>
-            </form>
+
+        <div>
+            <h4 class="font-bold text-primary uppercase text-xs tracking-widest mb-6">Contact Details</h4>
+            <div class="space-y-4 text-sm opacity-70">
+                <p class="flex items-start gap-3">
+                    <span class="material-symbols-outlined text-primary">location_on</span>
+                    4B Adewunmi Crescent, New Oko Oba GRA, Agege, Lagos.
+                </p>
+                <p class="flex items-center gap-3">
+                    <span class="material-symbols-outlined text-primary">call</span>
+                    +234 703 537 5443
+                </p>
+            </div>
         </div>
     </div>
-    <div class="mt-16 pt-8 border-t border-white/10 text-center">
+    
+    <div class="max-w-7xl mx-auto px-6 mt-10 flex flex-col md:row justify-between items-center gap-4">
         <p class="text-[10px] uppercase tracking-[0.2em] opacity-40">
-            © 2024 Techton Group International. | <a href="https://wa.me/2349032473005" class="underline">Get a website</a>
+            © 2024 Techton Group International. All rights reserved.
+        </p>
+        <p class="text-[10px] uppercase tracking-[0.2em] opacity-40">
+            Design by Techton Tech | <a href="https://wa.me/2349032473005" class="underline hover:text-white">Get a website</a>
         </p>
     </div>
 </footer>
 
 <script>
-    // Mobile Menu Toggle Logic
+    // Mobile Menu Toggle
     const menuOpen = document.getElementById('menu-open');
     const menuClose = document.getElementById('menu-close');
     const overlay = document.getElementById('mobile-overlay');
 
     menuOpen.addEventListener('click', () => {
-        overlay.classList.remove('translate-x-full');
-        document.body.classList.add('mobile-menu-open');
+        overlay.classList.add('mobile-menu-active');
+        document.body.style.overflow = 'hidden';
     });
 
     menuClose.addEventListener('click', () => {
-        overlay.classList.add('translate-x-full');
-        document.body.classList.remove('mobile-menu-open');
+        overlay.classList.remove('mobile-menu-active');
+        document.body.style.overflow = 'auto';
     });
 
-    // Close menu when clicking a link
-    document.querySelectorAll('#mobile-overlay a').forEach(link => {
-        link.addEventListener('click', () => {
-            overlay.classList.add('translate-x-full');
-            document.body.classList.remove('mobile-menu-open');
-        });
+    // Mobile Subsidiaries Accordion
+    const accordionToggle = document.getElementById('sub-accordion-toggle');
+    const subMenu = document.getElementById('sub-menu');
+    const subArrow = document.getElementById('sub-arrow');
+
+    accordionToggle.addEventListener('click', () => {
+        subMenu.classList.toggle('hidden');
+        subArrow.classList.toggle('rotate-180');
     });
 </script>
 
