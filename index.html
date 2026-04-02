@@ -131,6 +131,36 @@
             transition: 0.3s;
         }
 
+            .sub-box {
+    background: white;
+    padding: 2.5rem 1.5rem 1.5rem;
+    border-radius: 20px;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+}
+
+/* Circle logo */
+.sub-logo {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: -60px auto 1rem; /* pulls it up */
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    border: 3px solid var(--olive-light);
+}
+
+/* Logo image */
+.sub-logo img {
+    width: 60%;
+    height: 60%;
+    object-fit: contain;
+}
+
         .menu-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(6px, 6px); }
         .menu-toggle.active span:nth-child(2) { opacity: 0; }
         .menu-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(6px, -7px); }
@@ -365,14 +395,43 @@
     </section>
 
     <!-- Subsidiaries -->
-    <section class="subs-section">
-        <div class="subs-container">
-            <div class="sub-box reveal"><h4>Techton Group</h4><p>Construction & Engineering</p></div>
-            <div class="sub-box reveal"><h4>JustBuy</h4><p>Real Estate & Properties</p></div>
-            <div class="sub-box reveal"><h4>ArtKeepers</h4><p>Sculptured Lamp Art</p></div>
-            <div class="sub-box reveal"><h4>Jinoish</h4><p>Global Trading</p></div>
+   <section class="subs-section">
+    <div class="subs-container">
+
+        <div class="sub-box reveal">
+            <div class="sub-logo">
+                <img src="TECTHTON.png" alt="Techton">
+            </div>
+            <h4>Techton Group</h4>
+            <p>Construction & Engineering</p>
         </div>
-    </section>
+
+        <div class="sub-box reveal">
+            <div class="sub-logo">
+                <img src="justbuy.png" alt="JustBuy">
+            </div>
+            <h4>JustBuy</h4>
+            <p>Real Estate & Properties</p>
+        </div>
+
+        <div class="sub-box reveal">
+            <div class="sub-logo">
+                <img src="artkeeper.jpeg" alt="ArtKeepers">
+            </div>
+            <h4>ArtKeepers</h4>
+            <p>Sculptured Lamp Art</p>
+        </div>
+
+        <div class="sub-box reveal">
+            <div class="sub-logo">
+                <img src="jinoish.png" alt="Jinoish">
+            </div>
+            <h4>Jinoish</h4>
+            <p>Global Trading</p>
+        </div>
+
+    </div>
+</section>
 
     <!-- About Section ("Building Excellence") -->
     <section class="about" id="about">
