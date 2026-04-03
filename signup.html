@@ -23,13 +23,13 @@
         tailwind.config = {
           theme: {
             extend: {
-              "colors": {
-                "primary": "#3e5219", // Techton Olive
-                "secondary": "#8B0000", // Ox Red
+              colors: {
+                "primary": "#3e5219", 
+                "secondary": "#8B0000", 
                 "navy": "#1B365D",
                 "surface": "#f9f9fb",
               },
-              "fontFamily": {
+              fontFamily: {
                 "headline": ["Manrope", "sans-serif"],
                 "body": ["Inter", "sans-serif"],
               }
@@ -38,67 +38,50 @@
         }
     </script>
     <style>
-        /* Fluid Typography and Layout Fixes */
         :root {
             --h1-clamp: clamp(1.875rem, 5vw, 4rem);
             --h2-clamp: clamp(1.5rem, 3vw, 2.5rem);
         }
-
         .fluid-h1 { font-size: var(--h1-clamp); line-height: 1.1; }
         .fluid-h2 { font-size: var(--h2-clamp); line-height: 1.2; }
-
-        .material-symbols-outlined { vertical-align: middle; }
-        
         .monolith-overlay {
             background: linear-gradient(135deg, rgba(27, 54, 93, 0.96) 0%, rgba(62, 82, 25, 0.85) 100%);
         }
-
         .ghost-border-input {
-            border: none;
-            border-bottom: 1px solid rgba(197, 200, 184, 0.4);
-            transition: all 0.3s ease-out;
-            background: transparent !important;
-            padding-left: 0 !important;
+            border: none; border-bottom: 1px solid rgba(197, 200, 184, 0.4);
+            transition: all 0.3s ease-out; background: transparent !important; padding-left: 0 !important;
         }
+        .ghost-border-input:focus { border-bottom: 2px solid #3e5219; box-shadow: none; outline: none; }
 
-        .ghost-border-input:focus {
-            border-bottom: 2px solid #3e5219;
-            box-shadow: none;
-            outline: none;
+        /* Modal Custom Styles */
+        .modal-overlay {
+            display: none; position: fixed; inset: 0; z-index: 500;
+            background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(8px);
+            align-items: center; justify-content: center; padding: 20px;
         }
-
-        /* Prevent image stretching */
-        .img-hero-fix {
-            height: 100%;
-            width: 100%;
-            object-fit: cover;
-        }
-
-        /* Mobile specific bottom padding for the form */
-        @media (max-width: 768px) {
-            .branding-height { min-height: 350px; }
-        }
+        .modal-active { display: flex; }
+        .custom-scroll::-webkit-scrollbar { width: 6px; }
+        .custom-scroll::-webkit-scrollbar-thumb { background: #3e5219; border-radius: 10px; }
     </style>
 </head>
 
 <body class="bg-surface font-body text-slate-900 antialiased overflow-x-hidden">
 
 <main class="min-h-screen flex flex-col md:flex-row">
-    <!-- Left Side: Visual Branding (Laptop: Side / Mobile: Top) -->
-    <section class="relative w-full md:w-[40%] branding-height md:min-h-screen flex items-end p-6 md:p-16 overflow-hidden">
+    <!-- Left Side: Branding -->
+    <section class="relative w-full md:w-[40%] min-h-[350px] md:min-h-screen flex items-end p-6 md:p-16 overflow-hidden">
         <div class="absolute inset-0 z-0">
-            <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=2000" class="img-hero-fix" alt="Modern Architecture">
+            <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=2000" class="w-full h-full object-cover" alt="Modern Architecture">
             <div class="absolute inset-0 monolith-overlay backdrop-blur-[2px]"></div>
         </div>
         <div class="relative z-10 w-full">
-            <!-- Brand Identity -->
             <div class="bg-white p-3 rounded-2xl inline-block mb-6 md:mb-8 shadow-2xl">
                 <img src="TECTHTON.png" class="h-8 md:h-10 w-auto" alt="Techton Logo">
             </div>
             <h1 class="text-white font-headline font-black fluid-h1 mb-4 md:mb-6 tracking-tighter">
                 Access the Future <br class="hidden md:block"> of Infrastructure.
             </h1>
-            <p class="text-white/80 text-sm md:text-lg mb-8 md:mb-10 font-medium max-w-md">
+            <p class="text-white/80 text-sm md:text-lg mb-8 md:mb-10 font-medium max-w-md leading-relaxed">
                 Join the ecosystem of Techton Group International and manage your global assets seamlessly.
             </p>
             <div class="flex items-center gap-4 text-white/60 font-bold uppercase tracking-widest text-[10px] md:text-xs">
@@ -108,7 +91,7 @@
         </div>
     </section>
 
-    <!-- Right Side: Registration Form (Laptop: Main / Mobile: Scrolling) -->
+    <!-- Right Side: Registration Form -->
     <section class="w-full md:w-[60%] bg-white flex flex-col justify-center items-center py-12 px-6 md:p-24 lg:p-32">
         <div class="w-full max-w-md">
             <div class="mb-10 text-center md:text-left">
@@ -117,19 +100,16 @@
             </div>
 
             <form id="signupForm" class="space-y-6 md:space-y-8">
-                <!-- Full Name Field -->
                 <div class="space-y-1">
                     <label class="block text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">Full Legal Name</label>
                     <input type="text" id="fullname" required class="w-full py-3 md:py-4 ghost-border-input text-navy font-bold placeholder-slate-300 text-base md:text-lg" placeholder="John Doe">
                 </div>
 
-                <!-- Email Address Field -->
                 <div class="space-y-1">
                     <label class="block text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">Email Address</label>
                     <input type="email" id="email" required class="w-full py-3 md:py-4 ghost-border-input text-navy font-bold placeholder-slate-300 text-base md:text-lg" placeholder="name@company.com">
                 </div>
 
-                <!-- Password Field -->
                 <div class="space-y-1">
                     <label class="block text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">Secure Password</label>
                     <div class="relative">
@@ -145,12 +125,11 @@
                     <input type="checkbox" required class="mt-1 w-5 h-5 rounded border-slate-300 text-primary focus:ring-primary">
                     <label class="text-xs md:text-sm text-slate-500 leading-relaxed">
                         I acknowledge the 
-                        <span class="text-primary font-bold cursor-pointer hover:underline">Terms of Service</span> and 
-                        <span class="text-primary font-bold cursor-pointer hover:underline">Privacy Policy</span>.
+                        <span onclick="openModal('termsModal')" class="text-primary font-bold cursor-pointer hover:underline">Terms of Service</span> and 
+                        <span onclick="openModal('privacyModal')" class="text-primary font-bold cursor-pointer hover:underline">Privacy Policy</span>.
                     </label>
                 </div>
 
-                <!-- Submit Button -->
                 <button type="submit" id="submitBtn" class="w-full bg-primary text-white font-headline font-black py-4 md:py-5 rounded-2xl shadow-xl hover:bg-navy hover:scale-[1.01] transition-all uppercase tracking-widest text-xs md:text-sm active:scale-95">
                     Register Account
                 </button>
@@ -166,106 +145,156 @@
     </section>
 </main>
 
-<!-- Corporate Footer (Fully Responsive Grid) -->
+<!-- TERMS OF SERVICE MODAL -->
+<div id="termsModal" class="modal-overlay">
+    <div class="bg-white w-full max-w-2xl rounded-3xl overflow-hidden shadow-2xl relative animate-in fade-in zoom-in duration-300">
+        <div class="p-6 md:p-8 border-b flex justify-between items-center bg-slate-50">
+            <h3 class="font-headline font-black text-navy text-xl">Terms of Service</h3>
+            <button onclick="closeModal('termsModal')" class="text-slate-400 hover:text-secondary">
+                <span class="material-symbols-outlined text-3xl">close</span>
+            </button>
+        </div>
+        <div class="p-6 md:p-8 max-h-[60vh] overflow-y-auto custom-scroll space-y-6 text-sm leading-relaxed text-slate-600">
+            <section>
+                <h4 class="font-bold text-navy mb-2 uppercase tracking-widest text-xs">1. Acceptance of Terms</h4>
+                <p>By creating an account with Techton Group International Limited, you agree to be bound by these legal terms. These terms govern your use of our corporate ecosystem, subsidiaries, and digital platforms.</p>
+            </section>
+            <section>
+                <h4 class="font-bold text-navy mb-2 uppercase tracking-widest text-xs">2. User Conduct</h4>
+                <p>Users must provide accurate legal information. Any fraudulent activity, including misrepresentation of identity or unauthorized access to structural engineering data, will result in immediate termination and legal action under Nigerian law.</p>
+            </section>
+            <section>
+                <h4 class="font-bold text-navy mb-2 uppercase tracking-widest text-xs">3. Intellectual Property</h4>
+                <p>All blueprints, project designs, and corporate content displayed within the dashboard are the exclusive property of Techton Group. Reproduction without written consent is strictly prohibited.</p>
+            </section>
+            <section>
+                <h4 class="font-bold text-navy mb-2 uppercase tracking-widest text-xs">4. Limitation of Liability</h4>
+                <p>Techton Group is not liable for indirect damages arising from project delays beyond our reasonable control or local economic fluctuations affecting real estate values.</p>
+            </section>
+        </div>
+        <div class="p-6 border-t bg-slate-50 text-center">
+            <button onclick="closeModal('termsModal')" class="bg-navy text-white px-8 py-3 rounded-xl font-bold uppercase text-xs">I Understand</button>
+        </div>
+    </div>
+</div>
+
+<!-- PRIVACY POLICY MODAL -->
+<div id="privacyModal" class="modal-overlay">
+    <div class="bg-white w-full max-w-2xl rounded-3xl overflow-hidden shadow-2xl relative animate-in fade-in zoom-in duration-300">
+        <div class="p-6 md:p-8 border-b flex justify-between items-center bg-slate-50">
+            <h3 class="font-headline font-black text-navy text-xl">Privacy Policy</h3>
+            <button onclick="closeModal('privacyModal')" class="text-slate-400 hover:text-secondary">
+                <span class="material-symbols-outlined text-3xl">close</span>
+            </button>
+        </div>
+        <div class="p-6 md:p-8 max-h-[60vh] overflow-y-auto custom-scroll space-y-6 text-sm leading-relaxed text-slate-600">
+            <section>
+                <h4 class="font-bold text-navy mb-2 uppercase tracking-widest text-xs">1. Information Collection</h4>
+                <p>We collect personal data such as your full legal name, email address, and professional contact details to facilitate secure communication and project management.</p>
+            </section>
+            <section>
+                <h4 class="font-bold text-navy mb-2 uppercase tracking-widest text-xs">2. Data Usage</h4>
+                <p>Your information is used to authenticate access to the Techton Ecosystem, process real estate inquiries via JustBuy, and provide updates on global trade operations.</p>
+            </section>
+            <section>
+                <h4 class="font-bold text-navy mb-2 uppercase tracking-widest text-xs">3. Data Security</h4>
+                <p>We employ high-grade Supabase encryption and SSL protocols to protect your credentials. We do not sell user data to third-party marketing firms.</p>
+            </section>
+            <section>
+                <h4 class="font-bold text-navy mb-2 uppercase tracking-widest text-xs">4. Your Rights</h4>
+                <p>You have the right to request a summary of the data we hold or request account deletion at any time by contacting our IT Compliance department in Lagos.</p>
+            </section>
+        </div>
+        <div class="p-6 border-t bg-slate-50 text-center">
+            <button onclick="closeModal('privacyModal')" class="bg-primary text-white px-8 py-3 rounded-xl font-bold uppercase text-xs">Close Policy</button>
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
 <footer class="bg-navy text-white pt-20 pb-10">
     <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 border-b border-white/10 pb-16">
         <div class="space-y-6">
             <div class="bg-white p-2 rounded-xl inline-block">
                 <img src="TECTHTON.png" class="h-8 w-auto" alt="Logo">
             </div>
-            <p class="text-slate-400 text-xs md:text-sm leading-relaxed max-w-xs">
-                Techton Group International Limited: Building excellence across Africa through integrated engineering and global trade.
+            <p class="text-slate-400 text-xs leading-relaxed max-w-xs">
+                Techton Group International Limited: Building excellence across Africa.
             </p>
         </div>
-        
         <div>
             <h4 class="font-bold text-primary mb-6 uppercase text-[10px] tracking-widest">Subsidiaries</h4>
-            <ul class="space-y-3 text-slate-400 text-xs md:text-sm">
-                <li><a href="#" class="hover:text-primary transition-colors">Techton Construction</a></li>
-                <li><a href="justbuy.html" class="hover:text-primary transition-colors">JustBuy Real Estate</a></li>
-                <li><a href="#" class="hover:text-primary transition-colors">ArtKeepers Lamp Ltd</a></li>
-                <li><a href="#" class="hover:text-primary transition-colors">Jinoish International</a></li>
+            <ul class="space-y-3 text-slate-400 text-xs">
+                <li><a href="#" class="hover:text-primary">Techton Construction</a></li>
+                <li><a href="justbuy.html" class="hover:text-primary">JustBuy Real Estate</a></li>
+                <li><a href="#" class="hover:text-primary">Jinoish International</a></li>
             </ul>
         </div>
-
         <div>
-            <h4 class="font-bold text-primary mb-6 uppercase text-[10px] tracking-widest">Navigation</h4>
-            <ul class="space-y-3 text-slate-400 text-xs md:text-sm">
-                <li><a href="index.html" class="hover:text-primary transition-colors">Home</a></li>
-                <li><a href="about.html" class="hover:text-primary transition-colors">About Us</a></li>
-                <li><a href="position.html" class="hover:text-primary transition-colors">Careers</a></li>
-                <li><a href="login.html" class="hover:text-primary font-bold">Admin Login</a></li>
+            <h4 class="font-bold text-primary mb-6 uppercase text-[10px] tracking-widest">Company</h4>
+            <ul class="space-y-3 text-slate-400 text-xs">
+                <li><a href="index.html" class="hover:text-white">Home</a></li>
+                <li><a href="about.html" class="hover:text-white">About Us</a></li>
+                <li><a href="position.html" class="hover:text-white">Careers</a></li>
             </ul>
         </div>
-
         <div>
-            <h4 class="font-bold text-primary mb-6 uppercase text-[10px] tracking-widest">Contact Info</h4>
-            <p class="text-slate-400 text-xs md:text-sm leading-relaxed mb-4">
-                4B Adewunmi Crescent, <br>
-                Agege, Lagos, Nigeria.
-            </p>
-            <p class="text-white font-black text-lg md:text-xl tracking-tighter">+234 703 537 5443</p>
+            <h4 class="font-bold text-primary mb-6 uppercase text-[10px] tracking-widest">HQ Lagos</h4>
+            <p class="text-slate-400 text-xs mb-4">4B Adewunmi Crescent, New Oko Oba GRA, Lagos, Nigeria.</p>
+            <p class="text-white font-black text-lg">+234 703 537 5443</p>
         </div>
     </div>
-    
     <div class="max-w-7xl mx-auto px-6 mt-10 text-center">
-        <p class="text-[10px] uppercase tracking-[0.2em] opacity-40 font-bold">
-            © 2026 Techton Group International Limited. | <a href="https://wa.me/2349032473005" class="underline underline-offset-8 decoration-primary hover:text-white transition-all">Web-Architect</a>
-        </p>
+        <p class="text-[10px] uppercase tracking-[0.2em] opacity-40 font-bold">© 2026 Techton Group International Limited. | <a href="https://wa.me/2349032473005" class="underline underline-offset-8 decoration-primary hover:text-white">Get a website</a></p>
     </div>
 </footer>
 
 <script>
-    // --- SUPABASE AUTH CONFIG ---
+    // --- SUPABASE CONFIG ---
     const SUPABASE_URL = 'https://pnwbputtcsxnkldodfyd.supabase.co';
     const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBud2JwdXR0Y3N4bmtsZG9kZnlkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzUxNTA5OTQsImV4cCI6MjA5MDcyNjk5NH0.OtLQIT89SKyIvZwnm-3bjGK1Js46gipRNoETzBS4stA';
     const _supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
-    const signupForm = document.getElementById('signupForm');
-    const submitBtn = document.getElementById('submitBtn');
-
-    signupForm.onsubmit = async (e) => {
+    // Signup Function
+    document.getElementById('signupForm').onsubmit = async (e) => {
         e.preventDefault();
-        
         const fullName = document.getElementById('fullname').value;
         const email = document.getElementById('email').value;
         const password = document.getElementById('password').value;
+        const btn = document.getElementById('submitBtn');
 
-        submitBtn.innerText = "Registering Securely...";
-        submitBtn.disabled = true;
+        btn.innerText = "Processing..."; btn.disabled = true;
 
         try {
-            const { data, error } = await _supabase.auth.signUp({
-                email: email,
-                password: password,
-                options: {
-                    data: {
-                        full_name: fullName,
-                    }
-                }
+            const { error } = await _supabase.auth.signUp({
+                email: email, password: password,
+                options: { data: { full_name: fullName } }
             });
-
             if (error) throw error;
-
-            alert("Account created successfully! Redirecting to Login...");
-            window.location.href = "login.html";
-
+            alert("Success! Redirecting..."); window.location.href = "login.html";
         } catch (err) {
-            alert("Registration Error: " + err.message);
-            submitBtn.innerText = "Register Account";
-            submitBtn.disabled = false;
+            alert("Error: " + err.message); btn.innerText = "Register Account"; btn.disabled = false;
         }
     };
 
+    // Modal Logic
+    function openModal(id) { 
+        document.getElementById(id).classList.add('modal-active');
+        document.body.style.overflow = 'hidden'; 
+    }
+    function closeModal(id) { 
+        document.getElementById(id).classList.remove('modal-active');
+        document.body.style.overflow = 'auto'; 
+    }
+
+    // Password Toggle
     function togglePass() {
         const p = document.getElementById('password');
         const icon = document.getElementById('passIcon');
         if (p.type === "password") {
-            p.type = "text";
-            icon.innerText = "visibility_off";
+            p.type = "text"; icon.innerText = "visibility_off";
         } else {
-            p.type = "password";
-            icon.innerText = "visibility";
+            p.type = "password"; icon.innerText = "visibility";
         }
     }
 </script>
