@@ -7,6 +7,7 @@
     <title>JustBuy Real Estate | Techton Group International</title>
     <link rel="icon" type="image/png" href="justbuy.png">
 
+    <!-- SDKs -->
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     
@@ -32,7 +33,7 @@
         .modal-overlay { display: none; position: fixed; inset: 0; z-index: 1000; background: rgba(0,0,0,0.95); overflow-y: auto; }
         .modal-active { display: block; }
         .mobile-menu-active { transform: translateX(0) !important; }
-        .custom-scroll::-webkit-scrollbar { width: 4px; }
+        .custom-scroll::-webkit-scrollbar { width: 5px; }
         .custom-scroll::-webkit-scrollbar-thumb { background: #3e5219; border-radius: 10px; }
         .category-tab.active { background: #3e5219; color: white; border-color: #3e5219; }
     </style>
@@ -40,15 +41,14 @@
 
 <body class="bg-surface font-body text-slate-900 overflow-x-hidden">
 
-<!-- Currency & Utility Bar -->
-<div class="bg-navy text-white py-2 px-6 text-xs flex justify-between items-center z-[110] relative">
+<!-- Currency Bar -->
+<div class="bg-navy text-white py-2 px-6 text-[10px] md:text-xs flex justify-between items-center z-[110] relative font-bold uppercase tracking-widest">
     <div class="flex gap-4">
-        <span>📍 Lagos, Nigeria</span>
-        <span class="hidden md:inline">📞 +234 703 537 5443</span>
+        <span>📍 Techton HQ: Lagos</span>
     </div>
-    <div class="flex items-center gap-2">
-        <label for="currency-select" class="font-bold">CURRENCY:</label>
-        <select id="currency-select" onchange="updateCurrencyDisplay()" class="bg-navy border border-white/20 rounded px-2 py-0.5 outline-none cursor-pointer">
+    <div class="flex items-center gap-3">
+        <span>Currency:</span>
+        <select id="currency-select" onchange="updateCurrencyDisplay()" class="bg-navy border border-white/30 rounded px-2 py-1 outline-none text-white focus:border-primary">
             <option value="NGN">NGN (₦)</option>
             <option value="USD">USD ($)</option>
             <option value="GBP">GBP (£)</option>
@@ -72,8 +72,10 @@
             <a href="about.html" class="hover:text-primary">About Us</a>
             <a href="position.html" class="hover:text-primary">Careers</a>
             <a href="#news" class="hover:text-primary">Market News</a>
-            <a href="login.html" class="text-primary pl-4 border-l">Login</a>
-            <a href="signup.html" class="bg-primary text-white px-5 py-2 rounded-lg shadow-lg">Sign Up</a>
+            <div class="flex items-center gap-4 pl-4 border-l">
+                <a href="login.html" class="text-primary">Login</a>
+                <a href="signup.html" class="bg-primary text-white px-5 py-2 rounded-lg shadow-xl">Sign Up</a>
+            </div>
         </div>
 
         <button id="menu-open" class="md:hidden text-primary p-2">
@@ -91,74 +93,49 @@
             <a class="block" href="index.html">Home</a>
             <a class="block" href="about.html">About Us</a>
             <a class="block" href="position.html">Careers</a>
-            <a class="block" href="#news">Market News</a>
-            <div class="grid grid-cols-2 gap-4 pt-10">
-                <a href="login.html" class="text-center py-4 border border-primary rounded-xl text-lg">Login</a>
-                <a href="signup.html" class="text-center py-4 bg-primary text-white rounded-xl text-lg">Sign Up</a>
+            <div class="grid grid-cols-2 gap-4 pt-10 text-center">
+                <a href="login.html" class="py-4 border border-primary rounded-xl">Login</a>
+                <a href="signup.html" class="py-4 bg-primary text-white rounded-xl">Sign Up</a>
             </div>
         </div>
     </div>
 </nav>
 
 <!-- Hero Section -->
-<section class="relative h-[70vh] flex items-center justify-center text-white px-6">
+<section class="relative h-[70vh] flex items-center justify-center text-white text-center px-6">
     <div class="absolute inset-0 z-0">
-        <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=2000" class="w-full h-full object-cover">
-        <div class="absolute inset-0 bg-navy/50"></div>
+        <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=2000" class="w-full h-full object-cover">
+        <div class="absolute inset-0 bg-navy/60 backdrop-blur-[1px]"></div>
     </div>
-    <div class="relative z-10 max-w-4xl text-center">
-        <h1 class="font-headline text-5xl md:text-7xl font-black mb-6 leading-tight">Africa's Gateway to <span class="text-primary-fixed italic">Premium Living.</span></h1>
-        <p class="text-lg md:text-xl opacity-90 mb-10 max-w-2xl mx-auto">From high-rise apartments to sprawling mansions, Techton Group engineering ensures every home is a masterpiece.</p>
+    <div class="relative z-10 max-w-4xl">
+        <h1 class="font-headline text-5xl md:text-7xl font-black mb-6 leading-tight uppercase">Invest in <span class="text-primary-fixed">Permanent</span> Excellence.</h1>
+        <p class="text-lg md:text-xl opacity-90 mb-10 max-w-2xl mx-auto">Luxury duplexes, block of flats, and sprawling mansions verified by Techton Group engineers.</p>
         <div class="flex flex-col sm:flex-row justify-center gap-4">
-            <a href="#store" class="px-10 py-4 bg-secondary rounded-xl font-bold shadow-2xl hover:scale-105 transition-all">Explore Store</a>
-            <a href="https://wa.me/2347035375443" class="px-10 py-4 bg-white/10 backdrop-blur-md border border-white/30 rounded-xl font-bold hover:bg-white/20 transition-all">Talk to an Agent</a>
+            <a href="#store" class="px-10 py-5 bg-secondary rounded-2xl font-bold shadow-2xl">Browse Store</a>
+            <a href="https://wa.me/2347035375443" class="px-10 py-5 bg-white/10 backdrop-blur-md border rounded-2xl font-bold">Consult an Expert</a>
         </div>
     </div>
 </section>
 
-<!-- About JustBuy -->
-<section class="py-24 bg-white">
-    <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-        <div class="space-y-6">
-            <span class="text-primary font-bold uppercase tracking-widest text-sm">Techton Strategic Partner</span>
-            <h2 class="font-headline text-4xl font-extrabold text-navy leading-tight">JustBuy: Where Engineering Meets Real Estate</h2>
-            <p class="text-slate-600 leading-relaxed text-lg">JustBuy Real Estate & Properties is more than a brokerage. As a key arm of the <strong>Techton Group International</strong>, we utilize structural data and civil engineering insights to verify the worth and safety of every asset in our portfolio.</p>
-            <div class="p-6 bg-slate-50 rounded-[30px] border-l-8 border-primary">
-                <p class="italic text-slate-700">"Our mission is to eliminate the uncertainty in African real estate by providing structural transparency and financial security for every buyer."</p>
-            </div>
-            <ul class="space-y-3 pt-4">
-                <li class="flex items-center gap-3 font-bold"><span class="material-symbols-outlined text-primary">verified</span> Verified Land Documents</li>
-                <li class="flex items-center gap-3 font-bold"><span class="material-symbols-outlined text-primary">verified</span> Structural Integrity Reports</li>
-                <li class="flex items-center gap-3 font-bold"><span class="material-symbols-outlined text-primary">verified</span> Global Valuation Standards</li>
-            </ul>
-        </div>
-        <div class="grid grid-cols-2 gap-4">
-            <img src="https://images.unsplash.com/photo-1582408921715-18e7806365c1?auto=format&fit=crop&q=80&w=800" class="rounded-3xl shadow-xl mt-12">
-            <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=800" class="rounded-3xl shadow-xl">
-        </div>
-    </div>
-</section>
-
-<!-- Category Store -->
+<!-- Category Filter Store -->
 <section class="py-24 bg-slate-50" id="store">
     <div class="max-w-7xl mx-auto px-6">
         <div class="text-center mb-12">
-            <h2 class="font-headline text-4xl font-black text-navy">Find Your Property</h2>
-            <!-- Category Tabs -->
-            <div class="flex flex-wrap justify-center gap-2 mt-8" id="category-tabs">
-                <button onclick="filterProperties('All')" class="category-tab active px-6 py-2 rounded-full border border-slate-200 text-sm font-bold transition-all">All</button>
-                <button onclick="filterProperties('Duplex')" class="category-tab px-6 py-2 rounded-full border border-slate-200 text-sm font-bold transition-all">Duplex</button>
-                <button onclick="filterProperties('Apartment')" class="category-tab px-6 py-2 rounded-full border border-slate-200 text-sm font-bold transition-all">Apartment</button>
-                <button onclick="filterProperties('Block of Flats')" class="category-tab px-6 py-2 rounded-full border border-slate-200 text-sm font-bold transition-all">Block of Flats</button>
-                <button onclick="filterProperties('Bungalow')" class="category-tab px-6 py-2 rounded-full border border-slate-200 text-sm font-bold transition-all">Bungalow</button>
-                <button onclick="filterProperties('Mansion')" class="category-tab px-6 py-2 rounded-full border border-slate-200 text-sm font-bold transition-all">Mansion</button>
-                <button onclick="filterProperties('Landed Property')" class="category-tab px-6 py-2 rounded-full border border-slate-200 text-sm font-bold transition-all">Landed Property</button>
+            <h2 class="font-headline text-4xl font-black text-navy uppercase">Property Portfolio</h2>
+            <div class="flex flex-wrap justify-center gap-2 mt-10" id="category-tabs">
+                <button onclick="filterProperties('All')" class="category-tab active px-5 py-2 rounded-full border border-slate-200 text-xs font-bold uppercase transition-all">All</button>
+                <button onclick="filterProperties('Duplex')" class="category-tab px-5 py-2 rounded-full border border-slate-200 text-xs font-bold uppercase transition-all">Duplex</button>
+                <button onclick="filterProperties('Apartment')" class="category-tab px-5 py-2 rounded-full border border-slate-200 text-xs font-bold uppercase transition-all">Apartment</button>
+                <button onclick="filterProperties('Block of Flats')" class="category-tab px-5 py-2 rounded-full border border-slate-200 text-xs font-bold uppercase transition-all">Block of Flats</button>
+                <button onclick="filterProperties('Bungalow')" class="category-tab px-5 py-2 rounded-full border border-slate-200 text-xs font-bold uppercase transition-all">Bungalow</button>
+                <button onclick="filterProperties('Mansion')" class="category-tab px-5 py-2 rounded-full border border-slate-200 text-xs font-bold uppercase transition-all">Mansion</button>
+                <button onclick="filterProperties('Maisonette')" class="category-tab px-5 py-2 rounded-full border border-slate-200 text-xs font-bold uppercase transition-all">Maisonette</button>
+                <button onclick="filterProperties('Landed Property')" class="category-tab px-5 py-2 rounded-full border border-slate-200 text-xs font-bold uppercase transition-all">Landed Property</button>
             </div>
         </div>
 
         <div id="property-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <!-- Dynamic Content -->
-            <p class="col-span-full text-center opacity-40 font-bold py-20">Initializing Store Portfolio...</p>
+            <p class="col-span-full text-center py-20 opacity-30 font-bold uppercase tracking-widest">Refreshing Inventory...</p>
         </div>
     </div>
 </section>
@@ -166,13 +143,13 @@
 <!-- News Section -->
 <section class="py-24 bg-white" id="news">
     <div class="max-w-7xl mx-auto px-6">
-        <div class="flex justify-between items-end mb-12">
+        <div class="flex justify-between items-end mb-16 border-b pb-8">
             <div>
-                <h2 class="font-headline text-4xl font-black text-navy">Real Estate Insights</h2>
-                <p class="text-slate-500 mt-2">Latest updates from the African property market.</p>
+                <h2 class="font-headline text-4xl font-black text-navy uppercase">Market News</h2>
+                <p class="text-slate-500 mt-2">Latest from the Techton Group newsroom.</p>
             </div>
             <div class="hidden md:block">
-                <button onclick="handleNewsAdmin()" class="text-[10px] opacity-10 hover:opacity-100 uppercase tracking-[0.3em] font-bold">Manage News</button>
+                <button onclick="handleNewsAdmin()" class="text-[10px] opacity-10 hover:opacity-100 uppercase tracking-widest font-black transition-all">Admin: News</button>
             </div>
         </div>
         <div id="news-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
@@ -181,62 +158,62 @@
     </div>
 </section>
 
-<!-- FOOTER -->
-<footer class="bg-navy text-white pt-24 pb-10">
-    <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-16 border-b border-white/10 pb-16">
-        <div class="space-y-6">
-            <img src="justbuy.png" class="h-12 w-auto bg-white p-1 rounded">
-            <p class="text-slate-400 text-sm leading-relaxed">The real estate monolith. Verified structurally, globally positioned, locally focused.</p>
+<!-- Footer -->
+<footer class="bg-navy text-white pt-24 pb-12">
+    <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-16 border-b border-white/10 pb-20">
+        <div class="space-y-8">
+            <img src="justbuy.png" class="h-12 w-auto bg-white p-1 rounded-xl">
+            <p class="text-slate-400 text-sm leading-relaxed">JustBuy Real Estate: High-end acquisitions arm of Techton Group. Precision valuation, verified architecture.</p>
         </div>
         <div>
-            <h4 class="font-bold text-primary mb-6 uppercase text-xs tracking-widest">Property Categories</h4>
-            <ul class="space-y-3 text-slate-400 text-sm">
-                <li>Maisonettes & Mansions</li>
-                <li>Commercial Block of Flats</li>
-                <li>Acres & Landed Properties</li>
-                <li>Residential Bungalows</li>
+            <h4 class="font-bold text-primary mb-8 uppercase text-xs">Divisions</h4>
+            <ul class="space-y-4 text-slate-400 text-sm font-medium">
+                <li>Commercial Estates</li>
+                <li>Residential Mansions</li>
+                <li>Landed Property</li>
             </ul>
         </div>
         <div>
-            <h4 class="font-bold text-primary mb-6 uppercase text-xs tracking-widest">Information</h4>
-            <ul class="space-y-3 text-slate-400 text-sm">
+            <h4 class="font-bold text-primary mb-8 uppercase text-xs">Navigation</h4>
+            <ul class="space-y-4 text-slate-400 text-sm">
                 <li><a href="about.html" class="hover:text-white">About JustBuy</a></li>
                 <li><a href="position.html" class="hover:text-white">Careers</a></li>
                 <!-- HIDDEN LISTING LINK -->
-                <li><a href="javascript:void(0)" onclick="handleAdminGate()" class="opacity-[0.02] hover:opacity-100 transition-opacity">list houses and propertyes</a></li>
+                <li><a href="javascript:void(0)" onclick="handleAdminGate()" class="opacity-[0.02] hover:opacity-100 transition-all cursor-default">list houses and propertyes</a></li>
             </ul>
         </div>
         <div>
-            <h4 class="font-bold text-primary mb-6 uppercase text-xs tracking-widest">Connect</h4>
-            <p class="text-slate-400 text-sm mb-4">4B Adewunmi Crescent, Agege, Lagos.</p>
-            <p class="text-white font-bold">+234 703 537 5443</p>
+            <h4 class="font-bold text-primary mb-8 uppercase text-xs">HQ Lagos</h4>
+            <p class="text-white font-black text-xl">+234 703 537 5443</p>
         </div>
     </div>
-    <div class="max-w-7xl mx-auto px-6 mt-10 text-center space-y-4">
-        <p class="text-[10px] opacity-40 uppercase tracking-[0.2em]">© 2026 Techton Group | JustBuy Real Estate</p>
-        <p class="text-[10px] opacity-40 uppercase tracking-[0.2em] font-bold">DESIGNED BY <a href="https://wa.me/2349032473005" class="underline">Web-Architect</a></p>
+    <div class="max-w-7xl mx-auto px-6 mt-12 text-center text-[10px] opacity-40 uppercase font-bold tracking-[0.2em]">
+        © 2026 Techton Group | DESIGN BY <a href="https://wa.me/2349032473005" class="underline decoration-primary">Web-Architect</a>
     </div>
 </footer>
 
-<!-- PRODUCT MODAL -->
+<!-- PRODUCT DETAIL MODAL -->
 <div id="productModal" class="modal-overlay">
     <div class="flex justify-center p-4 md:p-10 items-start">
-        <div class="bg-white w-full max-w-6xl rounded-[40px] shadow-2xl relative my-4 overflow-hidden">
-            <button onclick="closeProduct()" class="absolute top-6 right-6 z-[60] bg-white rounded-full p-2 text-navy shadow-xl"><span class="material-symbols-outlined text-3xl">close</span></button>
-            <div class="flex flex-col lg:flex-row h-auto lg:max-h-[90vh]">
-                <div id="modal-images" class="w-full lg:w-3/5 overflow-y-auto custom-scroll p-2 space-y-2 h-[450px] lg:h-auto bg-slate-100"></div>
-                <div class="w-full lg:w-2/5 p-8 md:p-12 overflow-y-auto">
-                    <div id="modal-status" class="bg-secondary text-white text-[10px] font-bold px-4 py-1 rounded-full uppercase inline-block mb-4"></div>
-                    <h2 id="modal-title" class="font-headline text-3xl font-black text-navy leading-tight mb-2"></h2>
-                    <p id="modal-loc" class="text-slate-500 font-medium mb-6"></p>
-                    <div id="modal-price" class="text-4xl font-black text-primary mb-10"></div>
-                    <div class="grid grid-cols-3 gap-4 border-y py-8 mb-10">
-                        <div class="text-center border-r font-bold"><span class="material-symbols-outlined text-primary block">bed</span><span id="modal-beds"></span> Beds</div>
-                        <div class="text-center border-r font-bold"><span class="material-symbols-outlined text-primary block">bathtub</span><span id="modal-baths"></span> Baths</div>
-                        <div class="text-center font-bold"><span class="material-symbols-outlined text-primary block">toilet</span><span id="modal-toilets"></span> Toilets</div>
+        <div class="bg-white w-full max-w-6xl rounded-[40px] shadow-2xl relative my-4 overflow-hidden animate-in zoom-in duration-300">
+            <button onclick="closeProduct()" class="absolute top-6 right-6 z-[60] bg-white rounded-full p-2 text-navy shadow-xl active:scale-95 transition-all"><span class="material-symbols-outlined text-3xl font-black">close</span></button>
+            <div class="flex flex-col lg:flex-row h-auto lg:max-h-[85vh]">
+                <div id="modal-images" class="w-full lg:w-3/5 overflow-y-auto custom-scroll p-4 space-y-4 bg-slate-100 h-[450px] lg:h-auto"></div>
+                <div class="w-full lg:w-2/5 p-8 md:p-12 overflow-y-auto custom-scroll">
+                    <div class="flex justify-between items-start mb-6">
+                        <span id="modal-status" class="bg-secondary text-white text-[10px] font-black px-4 py-1 rounded-full uppercase tracking-widest"></span>
+                        <span id="modal-type" class="text-primary font-black text-xs uppercase tracking-widest"></span>
                     </div>
-                    <p id="modal-desc" class="text-slate-600 leading-relaxed mb-10 text-sm"></p>
-                    <a id="modal-wa-btn" href="#" class="block w-full bg-primary text-white text-center py-5 rounded-2xl font-bold shadow-xl hover:scale-105 transition-all">Make Inquiries on WhatsApp</a>
+                    <h2 id="modal-title" class="font-headline text-3xl font-black text-navy leading-tight mb-2"></h2>
+                    <p id="modal-loc" class="text-slate-500 font-medium mb-8 flex items-center gap-1"></p>
+                    <div id="modal-price" class="text-4xl font-black text-primary mb-12"></div>
+                    <div class="grid grid-cols-3 gap-4 border-y border-slate-100 py-10 mb-12">
+                        <div class="text-center font-bold border-r border-slate-100"><span class="material-symbols-outlined text-primary block mb-1">bed</span><span id="modal-beds"></span><p class="text-[9px] uppercase opacity-40">Beds</p></div>
+                        <div class="text-center font-bold border-r border-slate-100"><span class="material-symbols-outlined text-primary block mb-1">bathtub</span><span id="modal-baths"></span><p class="text-[9px] uppercase opacity-40">Baths</p></div>
+                        <div class="text-center font-bold"><span class="material-symbols-outlined text-primary block mb-1">toilet</span><span id="modal-toilets"></span><p class="text-[9px] uppercase opacity-40">Toilets</p></div>
+                    </div>
+                    <p id="modal-desc" class="text-slate-600 leading-relaxed text-sm mb-12 text-justify"></p>
+                    <a id="modal-wa-btn" href="#" class="block w-full bg-primary text-white text-center py-5 rounded-2xl font-black shadow-xl hover:scale-[1.02] transition-all">Acquire via WhatsApp</a>
                 </div>
             </div>
         </div>
@@ -246,89 +223,66 @@
 <!-- ADMIN MODAL -->
 <div id="adminModal" class="modal-overlay">
     <div class="flex justify-center p-6 min-h-screen items-start">
-        <div class="bg-white w-full max-w-xl rounded-[30px] p-8 relative my-10 shadow-2xl">
-            <button onclick="closeAdmin()"><span class="material-symbols-outlined absolute top-6 right-6">cancel</span></button>
-            <h2 id="admin-title" class="font-headline text-3xl font-black text-navy mb-8">Management Portal</h2>
+        <div class="bg-white w-full max-w-2xl rounded-[40px] p-8 md:p-12 relative my-10 shadow-2xl">
+            <button onclick="closeAdmin()"><span class="material-symbols-outlined absolute top-6 right-6 text-slate-300">cancel</span></button>
+            <h2 id="admin-title" class="font-headline text-3xl font-black text-navy mb-10 tracking-tighter">Management Gateway</h2>
             <div id="admin-content"></div>
         </div>
     </div>
 </div>
 
-<!-- Chatbot -->
-<div class="fixed bottom-6 right-6 z-[1000]">
-    <div id="chat-box" class="hidden w-80 bg-white rounded-[30px] shadow-2xl border mb-4 overflow-hidden">
-        <div class="bg-primary p-5 text-white font-bold flex justify-between items-center">
-            <span>JustBuy Assistant</span>
-            <button onclick="toggleChat()"><span class="material-symbols-outlined">close</span></button>
-        </div>
-        <div class="p-6 h-64 overflow-y-auto text-sm bg-slate-50" id="chat-messages">
-            <div class="bg-white p-3 rounded-2xl rounded-tl-none shadow-sm mb-3">Hi! I'm your JustBuy assistant. Are you looking for a property to rent, buy, or list?</div>
-        </div>
-        <div class="p-4 bg-white border-t space-y-2">
-            <button onclick="chatResponse('buying')" class="w-full text-left text-xs p-3 bg-slate-50 rounded-xl font-bold">Buying a house</button>
-            <button onclick="chatResponse('renting')" class="w-full text-left text-xs p-3 bg-slate-50 rounded-xl font-bold">Renting an apartment</button>
-            <a href="https://wa.me/2347035375443" class="block text-center text-xs p-3 bg-primary text-white rounded-xl font-bold">Chat Live</a>
-        </div>
-    </div>
-    <button onclick="toggleChat()" class="bg-primary text-white w-16 h-16 rounded-full shadow-2xl flex items-center justify-center hover:scale-110 transition-all">
-        <span class="material-symbols-outlined text-3xl">chat_bubble</span>
-    </button>
-</div>
-
 <script>
-    // --- CONFIG ---
+    // --- SUPABASE CONFIG ---
     const _supabase = supabase.createClient('https://pnwbputtcsxnkldodfyd.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBud2JwdXR0Y3N4bmtsZG9kZnlkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzUxNTA5OTQsImV4cCI6MjA5MDcyNjk5NH0.OtLQIT89SKyIvZwnm-3bjGK1Js46gipRNoETzBS4stA');
 
-    let allProperties = [];
-    const EX_RATES = { USD: 0.00065, GBP: 0.00052, NGN: 1 };
-    let currentCurr = 'NGN';
+    let allProps = [];
+    const RATES = { NGN: 1, USD: 0.00063, GBP: 0.00050 };
+    let activeCurr = 'NGN';
 
-    // NAV
+    // UI Controls
     const openMenu = document.getElementById('menu-open');
     const closeMenu = document.getElementById('menu-close');
     const overlay = document.getElementById('mobile-overlay');
     openMenu.onclick = () => overlay.classList.add('mobile-menu-active');
     closeMenu.onclick = () => overlay.classList.remove('mobile-menu-active');
 
-    // CURRENCY
+    // Currency Conversion
     function updateCurrencyDisplay() {
-        currentCurr = document.getElementById('currency-select').value;
-        renderGrid(allProperties);
+        activeCurr = document.getElementById('currency-select').value;
+        renderProperties(allProps);
     }
 
     function formatPrice(naira) {
-        const converted = naira * EX_RATES[currentCurr];
-        const symbol = currentCurr === 'NGN' ? '₦' : currentCurr === 'USD' ? '$' : '£';
-        return symbol + converted.toLocaleString(undefined, {minimumFractionDigits: 0, maximumFractionDigits: 0});
+        const value = naira * RATES[activeCurr];
+        const symbol = activeCurr === 'NGN' ? '₦' : activeCurr === 'USD' ? '$' : '£';
+        return symbol + value.toLocaleString(undefined, {minimumFractionDigits: 0, maximumFractionDigits: 0});
     }
 
-    // PROPERTY DATA
-    async function fetchProperties() {
+    // Property Engine
+    async function getProperties() {
         const { data } = await _supabase.from('justbuy_properties').select('*').order('created_at', { ascending: false });
-        allProperties = data || [];
-        renderGrid(allProperties);
+        allProps = data || [];
+        renderProperties(allProps);
     }
 
-    function renderGrid(data) {
+    function renderProperties(data) {
         const grid = document.getElementById('property-grid');
-        if (data.length === 0) {
-            grid.innerHTML = `<p class="col-span-full text-center py-20 opacity-40 font-bold">No properties found in this category.</p>`;
-            return;
-        }
+        if (data.length === 0) { grid.innerHTML = "<p class='col-span-full text-center py-20 opacity-30'>Inventory Empty.</p>"; return; }
+        
         grid.innerHTML = data.map(p => `
-            <div class="bg-white rounded-[35px] overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 cursor-pointer group" onclick='openProduct(${JSON.stringify(p)})'>
+            <div class="bg-white rounded-[45px] overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-700 cursor-pointer group" onclick='openProductDetail(${JSON.stringify(p)})'>
                 <div class="h-64 overflow-hidden relative">
-                    <img src="${p.image_urls[0]}" class="w-full h-full object-cover group-hover:scale-110 transition-all duration-700">
-                    <div class="absolute top-5 left-5 bg-white/90 backdrop-blur-sm text-navy text-[9px] font-black px-4 py-1.5 rounded-full uppercase shadow-lg border border-primary/20">${p.property_type}</div>
-                    <div class="absolute bottom-5 right-5 bg-secondary text-white text-[8px] font-black px-3 py-1 rounded-md uppercase">${p.status}</div>
+                    <img src="${p.image_urls[0]}" class="w-full h-full object-cover group-hover:scale-110 transition-all duration-1000">
+                    <div class="absolute top-5 left-5 bg-white/95 text-navy text-[9px] font-black px-4 py-2 rounded-full uppercase shadow-lg">${p.property_type}</div>
+                    <div class="absolute bottom-5 right-5 bg-secondary text-white text-[8px] font-black px-3 py-1 rounded-md uppercase tracking-widest">${p.status}</div>
                 </div>
                 <div class="p-8">
-                    <h3 class="font-headline font-extrabold text-2xl text-navy mb-1 group-hover:text-primary transition-colors">${p.title}</h3>
-                    <p class="text-slate-400 text-xs mb-6 flex items-center gap-1"><span class="material-symbols-outlined text-sm">location_on</span> ${p.location}</p>
+                    <h3 class="font-headline font-black text-2xl text-navy mb-1 group-hover:text-primary transition-colors">${p.title}</h3>
+                    <p class="text-slate-400 text-xs mb-6 flex items-center gap-1 font-bold uppercase tracking-widest"><span class="material-symbols-outlined text-sm">location_on</span> ${p.location}</p>
                     <div class="flex justify-between items-center pt-6 border-t border-slate-50">
-                        <span class="text-primary font-black text-2xl">${formatPrice(p.price_ngn)}</span>
-                        <div class="flex gap-4 text-slate-400 text-[10px] font-bold">
-                            <span>${p.beds} BED</span><span>${p.baths} BATH</span>
+                        <span class="text-primary font-black text-2xl tracking-tighter">${formatPrice(p.price_ngn)}</span>
+                        <div class="flex gap-3 text-slate-400 text-[10px] font-black uppercase">
+                            <span>${p.beds} BR</span><span>${p.baths} BA</span>
                         </div>
                     </div>
                 </div>
@@ -336,198 +290,185 @@
     }
 
     function filterProperties(cat) {
-        document.querySelectorAll('.category-tab').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.category-tab').forEach(btn => btn.classList.remove('active'));
         event.target.classList.add('active');
-        if (cat === 'All') renderGrid(allProperties);
-        else renderGrid(allProperties.filter(p => p.property_type === cat));
+        if (cat === 'All') renderProperties(allProps);
+        else renderProperties(allProps.filter(p => p.property_type === cat));
     }
 
-    function openProduct(p) {
-        const m = document.getElementById('productModal');
+    function openProductDetail(p) {
         document.getElementById('modal-title').innerText = p.title;
-        document.getElementById('modal-loc').innerText = p.location;
+        document.getElementById('modal-loc').innerHTML = `<span class="material-symbols-outlined text-sm">location_on</span> ${p.location}`;
         document.getElementById('modal-price').innerText = formatPrice(p.price_ngn);
         document.getElementById('modal-beds').innerText = p.beds;
         document.getElementById('modal-baths').innerText = p.baths;
         document.getElementById('modal-toilets').innerText = p.toilets;
         document.getElementById('modal-desc').innerText = p.description;
         document.getElementById('modal-status').innerText = p.status;
+        document.getElementById('modal-type').innerText = p.property_type;
         document.getElementById('modal-wa-btn').href = `https://wa.me/2347035375443?text=Interest: ${p.title} in ${p.location}`;
-        document.getElementById('modal-images').innerHTML = p.image_urls.map(url => `<img src="${url}" class="w-full h-auto rounded-3xl mb-2">`).join('');
-        m.classList.add('modal-active');
+        
+        document.getElementById('modal-images').innerHTML = p.image_urls.map(url => `
+            <img src="${url}" class="w-full h-auto rounded-[30px] shadow-md mb-2" onerror="this.src='https://via.placeholder.com/800x600?text=No+Image+Found'">
+        `).join('');
+
+        document.getElementById('productModal').classList.add('modal-active');
         document.body.style.overflow = 'hidden';
     }
 
-    function closeProduct() {
-        document.getElementById('productModal').classList.remove('modal-active');
-        document.body.style.overflow = 'auto';
-    }
+    function closeProduct() { document.getElementById('productModal').classList.remove('modal-active'); document.body.style.overflow = 'auto'; }
 
-    // NEWS
-    async function fetchNews() {
+    // News Engine
+    async function getNews() {
         const { data } = await _supabase.from('justbuy_news').select('*').order('created_at', { ascending: false });
         const grid = document.getElementById('news-grid');
-        if(!data || data.length === 0) {
-            grid.innerHTML = "<p class='col-span-full text-center opacity-30'>Market reports loading...</p>";
-            return;
-        }
+        if(!data || data.length === 0) { grid.innerHTML = "<p class='col-span-full text-center py-20 opacity-20'>Awaiting data feed...</p>"; return; }
         grid.innerHTML = data.map(n => `
-            <div class="bg-slate-50 p-6 rounded-3xl border border-slate-100 hover:bg-white hover:shadow-xl transition-all">
-                <img src="${n.image_url}" class="h-48 w-full object-cover rounded-2xl mb-6">
-                <h3 class="font-bold text-xl text-navy mb-4 leading-tight">${n.title}</h3>
-                <p class="text-slate-500 text-sm line-clamp-3 mb-6">${n.content}</p>
-                <div class="flex justify-between items-center text-[10px] font-black uppercase text-primary tracking-widest">
+            <div class="bg-slate-50 p-6 rounded-[40px] border border-slate-100 hover:bg-white hover:shadow-2xl transition-all duration-500 group">
+                <div class="overflow-hidden rounded-3xl h-56 mb-6"><img src="${n.image_url}" class="h-full w-full object-cover group-hover:scale-110 transition-all duration-700"></div>
+                <h3 class="font-black text-xl text-navy mb-4 leading-tight">${n.title}</h3>
+                <p class="text-slate-500 text-sm line-clamp-3 mb-8 leading-relaxed">${n.content}</p>
+                <div class="flex justify-between items-center text-[9px] font-black uppercase text-primary tracking-widest">
                     <span>${new Date(n.created_at).toLocaleDateString()}</span>
-                    <span>${n.author}</span>
+                    <span>Admin Approved</span>
                 </div>
-            </div>
-        `).join('');
+            </div>`).join('');
     }
 
-    // ADMIN GATEWAY
+    // ADMIN PORTAL
     function handleAdminGate() {
-        const p = prompt("Administrative Access Key:");
+        const p = prompt("Administrative Credentials:");
         if(p === 'techton@3') showListingForm();
-        else if(p === 'techton@4') showInventoryForm();
+        else if(p === 'techton@4') showManageListings();
     }
 
     function handleNewsAdmin() {
-        const p = prompt("Editor Access Key:");
+        const p = prompt("Editor Credentials:");
         if(p === 'Techton') showNewsForm();
-        else if(p === 'Justuy') showNewsManager();
+        else if(p === 'Justuy') showManageNews();
     }
 
     function showListingForm() {
         document.getElementById('adminModal').classList.add('modal-active');
-        document.getElementById('admin-title').innerText = "List Property Portfolio";
         document.getElementById('admin-content').innerHTML = `
-            <form id="adminForm" class="space-y-4">
-                <input type="text" id="p-title" placeholder="Title" class="w-full rounded-xl border-slate-100 p-4" required>
-                <input type="text" id="p-loc" placeholder="Location" class="w-full rounded-xl border-slate-100 p-4" required>
-                <input type="number" id="p-price" placeholder="Price in Naira (NGN)" class="w-full rounded-xl border-slate-100 p-4" required>
+            <form id="pForm" class="space-y-4">
+                <input type="text" id="t" placeholder="Asset Title" class="w-full rounded-2xl border-slate-100 p-4" required>
+                <input type="text" id="l" placeholder="Detailed Location" class="w-full rounded-2xl border-slate-100 p-4" required>
+                <input type="number" id="pr" placeholder="Price in NGN (Example: 120000000)" class="w-full rounded-2xl border-slate-100 p-4" required>
                 <div class="grid grid-cols-3 gap-2">
-                    <input type="number" id="p-beds" placeholder="Beds" class="rounded-xl border-slate-100 p-4">
-                    <input type="number" id="p-baths" placeholder="Baths" class="rounded-xl border-slate-100 p-4">
-                    <input type="number" id="p-toilets" placeholder="Toilets" class="rounded-xl border-slate-100 p-4">
+                    <input type="number" id="bd" placeholder="Beds" class="rounded-xl border-slate-100 p-4" required>
+                    <input type="number" id="ba" placeholder="Baths" class="rounded-xl border-slate-100 p-4" required>
+                    <input type="number" id="to" placeholder="Toilets" class="rounded-xl border-slate-100 p-4" required>
                 </div>
                 <div class="grid grid-cols-2 gap-2">
-                    <select id="p-type" class="rounded-xl border-slate-100 p-4">
-                        <option>Duplex</option><option>Apartment</option><option>Block of Flats</option><option>Bungalow</option><option>Mansion</option><option>Landed Property</option><option>Others</option>
+                    <select id="ty" class="rounded-xl border-slate-100 p-4 font-bold">
+                        <option>Duplex</option><option>Apartment</option><option>Block of Flats</option><option>Bungalow</option><option>Mansion</option><option>Maisonette</option><option>Landed Property</option><option>Others</option>
                     </select>
-                    <select id="p-status" class="rounded-xl border-slate-100 p-4">
+                    <select id="st" class="rounded-xl border-slate-100 p-4 font-bold">
                         <option>For Sale</option><option>For Rent</option>
                     </select>
                 </div>
-                <textarea id="p-desc" placeholder="Details" class="w-full rounded-xl border-slate-100 p-4" rows="3"></textarea>
-                <input type="file" id="p-files" multiple class="w-full text-xs">
-                <button type="submit" class="w-full bg-primary text-white py-5 rounded-2xl font-black">Publish to Store</button>
+                <textarea id="de" placeholder="Structural Description" class="w-full rounded-2xl border-slate-100 p-4" rows="4" required></textarea>
+                <div class="bg-slate-50 p-6 rounded-2xl border-2 border-dashed border-primary/20 text-center">
+                    <label class="text-[10px] font-black uppercase opacity-50 block mb-2">Upload Asset Images (Up to 5)</label>
+                    <input type="file" id="fi" multiple class="w-full text-xs" required>
+                </div>
+                <button type="submit" class="w-full bg-primary text-white py-5 rounded-3xl font-black shadow-xl uppercase tracking-widest">Publish Asset Now</button>
             </form>`;
-        document.getElementById('adminForm').onsubmit = handlePropertyUpload;
+        document.getElementById('pForm').onsubmit = handlePropertyPost;
     }
 
-    async function handlePropertyUpload(e) {
+    async function handlePropertyPost(e) {
         e.preventDefault();
-        const files = document.getElementById('p-files').files;
+        const files = document.getElementById('fi').files;
+        if(files.length > 5) return alert("Limit: 5 images.");
         const btn = e.target.querySelector('button');
-        btn.innerText = "Uploading to Techton Cloud..."; btn.disabled = true;
+        btn.innerText = "Transmitting to Techton Cloud..."; btn.disabled = true;
 
         let urls = [];
-        for(let f of files) {
-            const path = `p-${Date.now()}-${f.name}`;
-            const { data } = await _supabase.storage.from('property-images').upload(path, f);
-            if(data) urls.push(_supabase.storage.from('property-images').getPublicUrl(path).data.publicUrl);
-        }
+        try {
+            for(let f of files) {
+                const path = `p-${Date.now()}-${f.name.replace(/\s/g, '_')}`;
+                const { data, error } = await _supabase.storage.from('property-images').upload(path, f);
+                if(error) throw error;
+                const { data: { publicUrl } } = _supabase.storage.from('property-images').getPublicUrl(path);
+                urls.push(publicUrl);
+            }
 
-        const { error } = await _supabase.from('justbuy_properties').insert([{
-            title: document.getElementById('p-title').value,
-            location: document.getElementById('p-loc').value,
-            price_ngn: document.getElementById('p-price').value,
-            beds: document.getElementById('p-beds').value,
-            baths: document.getElementById('p-baths').value,
-            toilets: document.getElementById('p-toilets').value,
-            property_type: document.getElementById('p-type').value,
-            status: document.getElementById('p-status').value,
-            description: document.getElementById('p-desc').value,
-            image_urls: urls
-        }]);
-        if(!error) location.reload();
+            const { error: dbError } = await _supabase.from('justbuy_properties').insert([{
+                title: document.getElementById('t').value,
+                location: document.getElementById('l').value,
+                price_ngn: document.getElementById('pr').value,
+                beds: document.getElementById('bd').value,
+                baths: document.getElementById('ba').value,
+                toilets: document.getElementById('to').value,
+                property_type: document.getElementById('ty').value,
+                status: document.getElementById('st').value,
+                description: document.getElementById('de').value,
+                image_urls: urls
+            }]);
+            if(dbError) throw dbError;
+            location.reload();
+        } catch(err) { alert("Processing Failed: " + err.message); btn.disabled = false; btn.innerText = "Try Again"; }
     }
 
-    async function showInventoryForm() {
+    async function showManageListings() {
         document.getElementById('adminModal').classList.add('modal-active');
-        document.getElementById('admin-title').innerText = "Delete Listings";
+        document.getElementById('admin-title').innerText = "Inventory Control";
         const { data } = await _supabase.from('justbuy_properties').select('*');
         document.getElementById('admin-content').innerHTML = data.map(p => `
-            <div class="flex justify-between p-4 bg-slate-50 rounded-xl mb-2">
-                <span>${p.title}</span>
-                <button onclick="deleteProp('${p.id}')" class="text-secondary font-black text-xs">DELETE</button>
-            </div>
-        `).join('');
+            <div class="flex justify-between items-center p-5 bg-slate-50 rounded-3xl mb-3 border">
+                <span class="font-bold text-navy text-sm truncate pr-4">${p.title}</span>
+                <button onclick="deleteProp('${p.id}')" class="text-secondary font-black text-[10px] uppercase border px-4 py-2 rounded-xl bg-white hover:bg-red-50">Remove</button>
+            </div>`).join('') || "No active listings.";
     }
 
-    async function deleteProp(id) {
-        if(confirm("Confirm Delete?")) {
-            await _supabase.from('justbuy_properties').delete().eq('id', id);
-            location.reload();
-        }
-    }
+    async function deleteProp(id) { if(confirm("Confirm removal?")) { await _supabase.from('justbuy_properties').delete().eq('id', id); location.reload(); } }
 
     // NEWS ADMIN
     function showNewsForm() {
         document.getElementById('adminModal').classList.add('modal-active');
-        document.getElementById('admin-title').innerText = "Publish Real Estate News";
+        document.getElementById('admin-title').innerText = "Broadcast Insight";
         document.getElementById('admin-content').innerHTML = `
-            <form id="newsForm" class="space-y-4">
-                <input type="text" id="n-title" placeholder="News Headline" class="w-full rounded-xl border-slate-100 p-4" required>
-                <textarea id="n-content" placeholder="Story Content" class="w-full rounded-xl border-slate-100 p-4" rows="5" required></textarea>
-                <input type="file" id="n-file" class="w-full text-xs" required>
-                <button type="submit" class="w-full bg-secondary text-white py-5 rounded-2xl font-black">Publish News</button>
+            <form id="nForm" class="space-y-4">
+                <input type="text" id="nt" placeholder="Story Headline" class="w-full rounded-2xl border-slate-100 p-4" required>
+                <textarea id="nc" placeholder="Content Body" class="w-full rounded-2xl border-slate-100 p-4" rows="6" required></textarea>
+                <input type="file" id="nf" class="w-full text-xs" required>
+                <button type="submit" class="w-full bg-secondary text-white py-5 rounded-3xl font-black shadow-xl">Broadcast News</button>
             </form>`;
-        document.getElementById('newsForm').onsubmit = handleNewsUpload;
+        document.getElementById('nForm').onsubmit = handleNewsPost;
     }
 
-    async function handleNewsUpload(e) {
+    async function handleNewsPost(e) {
         e.preventDefault();
-        const f = document.getElementById('n-file').files[0];
+        const f = document.getElementById('nf').files[0];
         const path = `news-${Date.now()}`;
         await _supabase.storage.from('news-images').upload(path, f);
-        const url = _supabase.storage.from('news-images').getPublicUrl(path).data.publicUrl;
+        const { data: { publicUrl } } = _supabase.storage.from('news-images').getPublicUrl(path);
 
-        await _supabase.from('justbuy_news').insert([{
-            title: document.getElementById('n-title').value,
-            content: document.getElementById('n-content').value,
-            image_url: url
+        await _supabase.from('justbuy_news').insert([{ 
+            title: document.getElementById('nt').value, 
+            content: document.getElementById('nc').value, 
+            image_url: publicUrl 
         }]);
         location.reload();
     }
 
-    async function showNewsManager() {
+    async function showManageNews() {
         document.getElementById('adminModal').classList.add('modal-active');
         const { data } = await _supabase.from('justbuy_news').select('*');
         document.getElementById('admin-content').innerHTML = data.map(n => `
-            <div class="flex justify-between p-4 bg-slate-50 rounded-xl mb-2">
-                <span class="truncate pr-4">${n.title}</span>
-                <button onclick="deleteNews('${n.id}')" class="text-secondary font-black text-xs">DELETE</button>
-            </div>`).join('');
+            <div class="flex justify-between items-center p-5 bg-slate-50 rounded-3xl mb-3 border">
+                <span class="truncate pr-4 font-bold text-xs uppercase opacity-70">${n.title}</span>
+                <button onclick="deleteNews('${n.id}')" class="text-secondary font-black text-[10px] px-4 py-2 border bg-white rounded-xl">Remove</button>
+            </div>`).join('') || "No active news items.";
     }
 
-    async function deleteNews(id) {
-        await _supabase.from('justbuy_news').delete().eq('id', id);
-        location.reload();
-    }
+    async function deleteNews(id) { if(confirm("Confirm removal?")) { await _supabase.from('justbuy_news').delete().eq('id', id); location.reload(); } }
 
     function closeAdmin() { document.getElementById('adminModal').classList.remove('modal-active'); }
 
-    // Chatbot
-    function toggleChat() { document.getElementById('chat-box').classList.toggle('hidden'); }
-    function chatResponse(t) {
-        const box = document.getElementById('chat-messages');
-        const txt = t === 'buying' ? "We have premium duplexes and mansions in New Oko Oba and Banana Island. Would you like a virtual tour?" : "To list, we need a Techton structural report. Our agent will call you to schedule a site visit.";
-        box.innerHTML += `<div class="bg-primary/10 p-3 rounded-2xl rounded-tl-none mb-3">${txt}</div>`;
-        box.scrollTop = box.scrollHeight;
-    }
-
-    window.onload = () => { fetchProperties(); fetchNews(); }
+    window.onload = () => { getProperties(); getNews(); }
 </script>
 
 </body>
