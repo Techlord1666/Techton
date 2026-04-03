@@ -231,7 +231,7 @@
     </div>
 </div>
 
-<!-- ADMIN MODAL (HIDDEN GATE) -->
+<!-- ADMIN MODAL (LISTING FORM) -->
 <div id="adminModal" class="modal-overlay">
     <div class="modal-container">
         <div class="bg-white w-full max-w-lg rounded-[2rem] shadow-2xl p-8 relative my-10">
@@ -252,17 +252,21 @@
         <div>
             <h4 class="font-bold text-primary mb-8 uppercase tracking-widest text-xs">Divisions</h4>
             <ul class="space-y-4 text-slate-400 text-sm">
-                <li><a href="#" class="hover:text-white">Techton Construction</a></li>
-                <li><a href="justbuy.html" class="hover:text-white">JustBuy Real Estate</a></li>
+                <li><a href="#" class="hover:text-white transition-colors">Techton Construction</a></li>
+                <li><a href="justbuy.html" class="hover:text-white transition-colors">JustBuy Real Estate</a></li>
             </ul>
         </div>
         <div>
             <h4 class="font-bold text-primary mb-8 uppercase tracking-widest text-xs">Quick Links</h4>
             <ul class="space-y-4 text-slate-400 text-sm">
-                <li><a href="index.html" class="hover:text-white">Home</a></li>
-                <li><a href="about.html" class="hover:text-white">About Us</a></li>
-                <!-- THE HIDDEN WORD -->
-                <li><a href="javascript:void(0)" onclick="handleAdminGate()" class="opacity-[0.05] hover:opacity-100 transition-opacity">list job opportunity</a></li>
+                <li><a href="index.html" class="hover:text-white transition-colors">Home</a></li>
+                <li><a href="about.html" class="hover:text-white transition-colors">About Us</a></li>
+                <!-- THE HIDDEN BUTTON (discovery mode) -->
+                <li>
+                    <a href="javascript:void(0)" onclick="handleAdminGate()" class="opacity-[0.03] hover:opacity-100 transition-all duration-300 inline-block cursor-default">
+                        list job opportunity
+                    </a>
+                </li>
             </ul>
         </div>
         <div>
@@ -272,7 +276,7 @@
         </div>
     </div>
     <div class="max-w-7xl mx-auto px-6 mt-20 pt-10 border-t border-white/5 text-center">
-        <p class="text-slate-500 text-xs">© 2026 Techton Group International Limited. | <a href="https://wa.me/2349032473005" class="underline">Get a website</a></p>
+        <p class="text-slate-500 text-xs">© 2026 Techton Group International Limited. | <a href="https://wa.me/2349032473005" class="underline hover:text-primary transition-colors">Get a website</a></p>
     </div>
 </footer>
 
@@ -299,7 +303,7 @@
         }
     };
 
-    // Modal Controls
+    // Application Modal Controls
     function openApplyModal(title) {
         document.getElementById('modalJobTitle').innerText = title;
         document.getElementById('jobField').value = title;
@@ -308,27 +312,27 @@
     }
     function closeApplyModal() { document.getElementById('applyModal').classList.remove('modal-active'); document.body.style.overflow = 'auto'; }
 
-    // Admin Logic (Hidden Word)
+    // Admin Logic (Discovery Mode)
     function handleAdminGate() {
-        const pass = prompt("Enter Admin Password:");
+        const pass = prompt("Enter Administration Code:");
         if (pass === 'techton@1') {
             showAddJobForm();
         } else if (pass === 'techton@2') {
             showManageJobs();
         } else {
-            alert("Unauthorized Access.");
+            alert("Error: Unauthorized Access Attempt.");
         }
     }
 
     function showAddJobForm() {
         document.getElementById('adminModal').classList.add('modal-active');
-        document.getElementById('admin-title').innerText = "List Opportunity";
+        document.getElementById('admin-title').innerText = "Post New Vacancy";
         document.getElementById('admin-form-container').innerHTML = `
             <form id="add-job-form" class="space-y-4">
-                <input type="text" id="new-title" placeholder="Job Title" class="w-full rounded-xl border-slate-200" required>
-                <input type="text" id="new-div" placeholder="Division (e.g. Construction)" class="w-full rounded-xl border-slate-200" required>
-                <input type="text" id="new-loc" placeholder="Location" class="w-full rounded-xl border-slate-200" required>
-                <button type="submit" class="w-full bg-primary text-white py-4 rounded-xl font-bold">Post Job Now</button>
+                <input type="text" id="new-title" placeholder="Position Title" class="w-full rounded-xl border-slate-200 p-4" required>
+                <input type="text" id="new-div" placeholder="Division (e.g. Construction)" class="w-full rounded-xl border-slate-200 p-4" required>
+                <input type="text" id="new-loc" placeholder="Location (e.g. Lagos)" class="w-full rounded-xl border-slate-200 p-4" required>
+                <button type="submit" class="w-full bg-primary text-white py-4 rounded-xl font-bold shadow-lg">Submit Listing</button>
             </form>
         `;
         document.getElementById('add-job-form').onsubmit = async (e) => {
@@ -338,49 +342,49 @@
                 division: document.getElementById('new-div').value,
                 location: document.getElementById('new-loc').value
             }]);
-            if (error) alert(error.message); else { alert("Job Listed!"); closeAdminModal(); fetchJobs(); }
+            if (error) alert(error.message); else { alert("Vacancy Live!"); closeAdminModal(); fetchJobs(); }
         };
     }
 
     async function showManageJobs() {
         document.getElementById('adminModal').classList.add('modal-active');
-        document.getElementById('admin-title').innerText = "Manage Active Jobs";
+        document.getElementById('admin-title').innerText = "Manage Active Roles";
         const { data } = await _supabase.from('jobs').select('*');
         document.getElementById('admin-form-container').innerHTML = data.map(j => `
             <div class="flex justify-between items-center p-4 border-b">
-                <div><p class="font-bold">${j.title}</p><p class="text-xs">${j.division}</p></div>
-                <button onclick="deleteJob('${j.id}')" class="text-secondary font-bold text-xs uppercase">Delete</button>
+                <div><p class="font-bold text-navy">${j.title}</p><p class="text-xs text-slate-500">${j.division}</p></div>
+                <button onclick="deleteJob('${j.id}')" class="text-secondary font-bold text-xs uppercase hover:underline">Remove</button>
             </div>
-        `).join('') || "No active jobs.";
+        `).join('') || "No active jobs found.";
     }
 
     async function deleteJob(id) {
-        if(confirm("Permanently delete this listing?")) {
-            await _supabase.from('jobs').delete().eq('id', id);
-            showManageJobs(); fetchJobs();
+        if(confirm("Confirm removal of this position?")) {
+            const { error } = await _supabase.from('jobs').delete().eq('id', id);
+            if(error) alert(error.message); else { showManageJobs(); fetchJobs(); }
         }
     }
     function closeAdminModal() { document.getElementById('adminModal').classList.remove('modal-active'); }
 
-    // Fetch and Display Jobs
+    // Dynamic Job Fetching
     async function fetchJobs() {
         const { data, error } = await _supabase.from('jobs').select('*').order('created_at', { ascending: false });
         const container = document.getElementById('jobs-container');
         if (data && data.length > 0) {
             container.innerHTML = data.map(job => `
                 <div class="bg-white p-8 rounded-3xl border border-slate-100 hover:border-primary transition-all reveal active shadow-sm">
-                    <span class="bg-primary/10 text-primary px-3 py-1 rounded text-[10px] font-bold uppercase">${job.division}</span>
+                    <span class="bg-primary/10 text-primary px-3 py-1 rounded text-[10px] font-bold uppercase tracking-widest">${job.division}</span>
                     <h3 class="text-2xl font-bold mt-4 mb-2 text-navy">${job.title}</h3>
                     <p class="text-slate-500 text-sm mb-8 flex items-center gap-1"><span class="material-symbols-outlined text-sm">location_on</span> ${job.location}</p>
-                    <button onclick="openApplyModal('${job.title}')" class="w-full py-4 bg-slate-50 text-primary font-black rounded-2xl hover:bg-primary hover:text-white transition-all">Apply Now</button>
+                    <button onclick="openApplyModal('${job.title}')" class="w-full py-4 bg-slate-50 text-primary font-black rounded-2xl border border-primary/20 hover:bg-primary hover:text-white transition-all shadow-sm">Apply Now</button>
                 </div>
             `).join('');
         } else {
-            container.innerHTML = `<p class="col-span-full text-center opacity-50">No current vacancies. Check back later.</p>`;
+            container.innerHTML = `<p class="col-span-full text-center opacity-50 py-10">Currently reviewing talent pipeline. Check back soon.</p>`;
         }
     }
 
-    // Application Submission (Supabase + WhatsApp)
+    // Application Logic
     document.getElementById('applyForm').onsubmit = async (e) => {
         e.preventDefault();
         const name = document.getElementById('applicantName').value;
@@ -389,7 +393,7 @@
         const bio = document.getElementById('applicantBio').value;
         const job = document.getElementById('jobField').value;
 
-        // Save to Database
+        // Save to Applications Table
         await _supabase.from('job_applications').insert([{ name, email, phone, bio, position: job }]);
 
         // Open WhatsApp
