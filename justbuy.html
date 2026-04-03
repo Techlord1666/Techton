@@ -38,7 +38,9 @@
         .custom-scroll::-webkit-scrollbar { width: 5px; }
         .custom-scroll::-webkit-scrollbar-thumb { background: #3e5219; border-radius: 10px; }
         .category-tab.active { background: #3e5219; color: white; border-color: #3e5219; shadow: 0 10px 15px -3px rgba(62, 82, 25, 0.4); }
-        #mobile-overlay { background: white; box-shadow: -10px 0 30px rgba(0,0,0,0.1); }
+        
+        /* SOLID NON-TRANSPARENT MOBILE MENU */
+        #mobile-overlay { background: #ffffff !important; box-shadow: -10px 0 30px rgba(0,0,0,0.2); }
     </style>
 </head>
 
@@ -48,7 +50,6 @@
 <div class="bg-navy text-white py-2.5 px-6 text-[10px] md:text-xs flex justify-between items-center z-[110] relative font-bold uppercase tracking-widest border-b border-white/10">
     <div class="flex gap-4">
         <span>📍 Techton HQ: Lagos, Nigeria</span>
-        <span class="hidden md:inline">WhatsApp: +234 703 537 5443</span>
     </div>
     <div class="flex items-center gap-3">
         <span class="opacity-70">Currency:</span>
@@ -77,7 +78,7 @@
             <a href="position.html" class="hover:text-primary transition-colors">Careers</a>
             <a href="#news" class="hover:text-primary transition-colors">Market News</a>
             <div class="flex items-center gap-4 pl-6 border-l border-slate-200">
-                <a href="login.html" class="text-navy hover:text-primary">Login</a>
+                <a href="login.html" class="text-navy hover:text-primary transition-colors">Login</a>
                 <a href="signup.html" class="bg-primary text-white px-6 py-2.5 rounded-xl shadow-lg hover:bg-navy transition-all">Sign Up</a>
             </div>
         </div>
@@ -117,11 +118,11 @@
             <div class="absolute inset-0 bg-navy/60 backdrop-blur-[1px]"></div>
         </div>
         <div class="relative z-10 max-w-4xl animate-in fade-in slide-in-from-bottom-10 duration-1000">
-            <span class="text-primary-fixed uppercase tracking-[0.4em] font-bold text-xs mb-4 block">JustBuy Real Estate</span>
+            <span class="text-primary-fixed uppercase tracking-[0.4em] font-bold text-xs mb-4 block font-body">JustBuy Real Estate Portfolio</span>
             <h1 class="font-headline text-5xl md:text-8xl font-black mb-8 leading-tight tracking-tighter uppercase">Invest in Permanent <span class="text-primary-fixed">Excellence.</span></h1>
-            <p class="text-lg md:text-2xl opacity-90 mb-12 max-w-2xl mx-auto font-medium leading-relaxed">Curation of premium acreage, luxury mansions, and commercial blocks verified by Techton structural engineers.</p>
+            <p class="text-lg md:text-2xl opacity-90 mb-12 max-w-2xl mx-auto font-medium leading-relaxed font-body">Curation of premium acreage, luxury mansions, and commercial blocks verified by Techton structural engineers.</p>
             <div class="flex flex-col sm:flex-row justify-center gap-4">
-                <a href="#store" class="px-12 py-5 bg-secondary rounded-2xl font-black text-lg shadow-2xl hover:scale-105 transition-all">Browse Portfolio</a>
+                <a href="#store" class="px-12 py-5 bg-secondary rounded-2xl font-black text-lg shadow-2xl hover:scale-105 transition-all">Browse Listings</a>
                 <a href="https://wa.me/2347035375443" class="px-12 py-5 bg-white text-navy rounded-2xl font-black text-lg hover:bg-primary hover:text-white transition-all uppercase">Consult Expert</a>
             </div>
         </div>
@@ -150,7 +151,7 @@
                 </div>
             </div>
             <div class="relative group">
-                <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&q=80&w=1000" class="rounded-[60px] shadow-2xl group-hover:scale-[1.02] transition-transform duration-700" alt="JustBuy Office">
+                <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&q=80&w=1000" class="rounded-[60px] shadow-2xl transition-transform duration-700" alt="JustBuy Building">
                 <div class="absolute -bottom-10 -right-10 bg-navy text-white p-10 rounded-[40px] shadow-2xl hidden lg:block border border-white/10">
                     <p class="text-5xl font-black text-primary leading-none mb-1">$4.2B+</p>
                     <p class="text-xs uppercase tracking-[0.2em] font-bold opacity-70">Structural Assets Audited</p>
@@ -226,13 +227,13 @@
         </div>
         <div>
             <h4 class="font-bold text-primary mb-8 uppercase text-[11px] tracking-[0.2em]">Lagos HQ</h4>
-            <p class="text-slate-400 text-sm leading-relaxed mb-6">4B Adewunmi Crescent, New Oko Oba GRA, Agege, Lagos.</p>
+            <p class="text-slate-400 text-sm leading-relaxed mb-6 font-body">4B Adewunmi Crescent, New Oko Oba GRA, Agege, Lagos.</p>
             <p class="text-white font-black text-2xl tracking-tighter">+234 703 537 5443</p>
         </div>
     </div>
     <div class="max-w-7xl mx-auto px-6 mt-12 text-center space-y-6">
-        <p class="text-[10px] opacity-40 uppercase tracking-[0.3em] font-black">© 2026 Techton Group | JustBuy Real Estate</p>
-        <p class="text-[10px] opacity-40 uppercase tracking-[0.3em] font-black">DEVELOPED BY <a href="https://wa.me/2349032473005" class="underline underline-offset-8 decoration-primary hover:text-white transition-colors">Web-Architect</a></p>
+        <p class="text-[10px] opacity-40 uppercase tracking-[0.3em] font-black font-body">© 2026 Techton Group | JustBuy Real Estate</p>
+        <p class="text-[10px] opacity-40 uppercase tracking-[0.3em] font-black font-body">DEVELOPED BY <a href="https://wa.me/2349032473005" class="underline underline-offset-8 decoration-primary hover:text-white transition-colors">Web-Architect</a></p>
     </div>
 </footer>
 
@@ -305,21 +306,19 @@
 </div>
 
 <script>
-    // --- SUPABASE CONFIG ---
     const _supabase = supabase.createClient('https://pnwbputtcsxnkldodfyd.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBud2JwdXR0Y3N4bmtsZG9kZnlkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzUxNTA5OTQsImV4cCI6MjA5MDcyNjk5NH0.OtLQIT89SKyIvZwnm-3bjGK1Js46gipRNoETzBS4stA');
 
     let allProps = [];
     const CURR_RATES = { NGN: 1, USD: 0.00063, GBP: 0.00050 };
     let activeCurr = 'NGN';
 
-    // NAV UI
+    // NAV
     const openMenu = document.getElementById('menu-open');
     const closeMenu = document.getElementById('menu-close');
     const overlay = document.getElementById('mobile-overlay');
     openMenu.onclick = () => overlay.classList.add('mobile-menu-active');
     closeMenu.onclick = () => overlay.classList.remove('mobile-menu-active');
 
-    // CURRENCY ENGINE
     function updateCurrencyDisplay() {
         activeCurr = document.getElementById('currency-select').value;
         renderProperties(allProps);
@@ -331,7 +330,6 @@
         return symbol + Math.round(value).toLocaleString();
     }
 
-    // PROPERTY DATA ENGINE
     async function getProperties() {
         const { data } = await _supabase.from('justbuy_properties').select('*').order('created_at', { ascending: false });
         allProps = data || [];
@@ -340,7 +338,7 @@
 
     function renderProperties(data) {
         const grid = document.getElementById('property-grid');
-        if (data.length === 0) { grid.innerHTML = "<p class='col-span-full text-center py-20 opacity-30 font-black uppercase tracking-widest'>Portfolio Empty.</p>"; return; }
+        if (data.length === 0) { grid.innerHTML = "<p class='col-span-full text-center py-20 opacity-30 font-bold uppercase tracking-widest'>No Assets Found.</p>"; return; }
         
         grid.innerHTML = data.map(p => `
             <div class="bg-white rounded-[55px] overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-1000 cursor-pointer group border border-slate-50" onclick='openProductDetail(${JSON.stringify(p)})'>
@@ -369,7 +367,6 @@
         else renderProperties(allProps.filter(p => p.property_type === cat));
     }
 
-    // PRODUCT MODAL ENGINE
     function openProductDetail(p) {
         document.getElementById('modal-title').innerText = p.title;
         document.getElementById('modal-loc').innerHTML = `<span class="material-symbols-outlined text-sm">location_on</span> ${p.location}`;
@@ -380,24 +377,18 @@
         document.getElementById('modal-desc').innerText = p.description;
         document.getElementById('modal-status').innerText = p.status;
         document.getElementById('modal-type').innerText = p.property_type;
-        document.getElementById('modal-wa-btn').href = `https://wa.me/2347035375443?text=Hi JustBuy, I am interested in the ${p.title} in ${p.location}. Is it still available?`;
-        
-        document.getElementById('modal-images').innerHTML = p.image_urls.map(url => `
-            <img src="${url}" class="w-full h-auto rounded-[35px] shadow-lg mb-4" onerror="this.src='https://via.placeholder.com/800x600?text=Asset+Image'">
-        `).join('');
-
+        document.getElementById('modal-wa-btn').href = `https://wa.me/2347035375443?text=Interest: ${p.title} in ${p.location}`;
+        document.getElementById('modal-images').innerHTML = p.image_urls.map(url => `<img src="${url}" class="w-full h-auto rounded-[35px] shadow-lg mb-4">`).join('');
         document.getElementById('productModal').classList.add('modal-active');
         document.body.style.overflow = 'hidden';
     }
 
     function closeProduct() { document.getElementById('productModal').classList.remove('modal-active'); document.body.style.overflow = 'auto'; }
 
-    // NEWS SYSTEM
     async function getNews() {
         const { data } = await _supabase.from('justbuy_news').select('*').order('created_at', { ascending: false });
         const grid = document.getElementById('news-grid');
-        if(!data || data.length === 0) { grid.innerHTML = "<p class='col-span-full text-center py-20 opacity-20 font-black'>AWAITING GLOBAL DATA...</p>"; return; }
-        
+        if(!data || data.length === 0) { grid.innerHTML = "<p class='col-span-full text-center py-20 opacity-20'>No News items found.</p>"; return; }
         grid.innerHTML = data.map(n => `
             <div class="bg-slate-50 p-7 rounded-[50px] border border-slate-100 hover:bg-white hover:shadow-2xl transition-all duration-700 group">
                 <div class="overflow-hidden rounded-[35px] h-60 mb-8 shadow-inner"><img src="${n.image_url}" class="h-full w-full object-cover group-hover:scale-110 transition-all duration-1000"></div>
@@ -405,12 +396,11 @@
                 <p class="text-slate-500 text-sm line-clamp-3 mb-10 leading-relaxed font-medium">${n.content}</p>
                 <div class="flex justify-between items-center text-[10px] font-black uppercase text-primary tracking-widest border-t pt-6 border-slate-200/50">
                     <span>${new Date(n.created_at).toLocaleDateString()}</span>
-                    <span class="flex items-center gap-1"><span class="material-symbols-outlined text-xs">verified</span> Analysis</span>
+                    <span>Admin Approved</span>
                 </div>
             </div>`).join('');
     }
 
-    // ADMIN GATEWAY (PASSWORD PROTECTED)
     function handleAdminGate() {
         const p = prompt("Administrative Credentials Required:");
         if(p === 'techton@3') showListingForm();
@@ -425,16 +415,15 @@
 
     function showListingForm() {
         document.getElementById('adminModal').classList.add('modal-active');
-        document.getElementById('admin-title').innerText = "List Property Portfolio";
         document.getElementById('admin-content').innerHTML = `
             <form id="pForm" class="space-y-5">
                 <input type="text" id="t" placeholder="Position Title" class="w-full rounded-2xl border-slate-100 p-4 font-bold" required>
-                <input type="text" id="l" placeholder="Location (Lagos, Abuja, etc)" class="w-full rounded-2xl border-slate-100 p-4 font-bold" required>
+                <input type="text" id="l" placeholder="Location" class="w-full rounded-2xl border-slate-100 p-4 font-bold" required>
                 <input type="number" id="pr" placeholder="Price in NGN (Base)" class="w-full rounded-2xl border-slate-100 p-4 font-bold" required>
                 <div class="grid grid-cols-3 gap-2">
-                    <input type="number" id="bd" placeholder="Beds" class="rounded-xl border-slate-100 p-4 font-bold" required>
-                    <input type="number" id="ba" placeholder="Baths" class="rounded-xl border-slate-100 p-4 font-bold" required>
-                    <input type="number" id="to" placeholder="Toilets" class="rounded-xl border-slate-100 p-4 font-bold" required>
+                    <input type="number" id="bd" placeholder="Beds" class="rounded-xl border-slate-100 p-4 font-bold">
+                    <input type="number" id="ba" placeholder="Baths" class="rounded-xl border-slate-100 p-4 font-bold">
+                    <input type="number" id="to" placeholder="Toilets" class="rounded-xl border-slate-100 p-4 font-bold">
                 </div>
                 <div class="grid grid-cols-2 gap-2">
                     <select id="ty" class="rounded-xl border-slate-100 p-4 font-black text-xs uppercase">
@@ -445,11 +434,8 @@
                     </select>
                 </div>
                 <textarea id="de" placeholder="Asset Structural Breakdown" class="w-full rounded-2xl border-slate-100 p-4 font-medium" rows="4" required></textarea>
-                <div class="bg-slate-50 p-6 rounded-3xl border-2 border-dashed border-primary/20 text-center">
-                    <label class="text-[10px] font-black uppercase opacity-50 block mb-3">Upload Imagery (Up to 5)</label>
-                    <input type="file" id="fi" multiple class="w-full text-xs" required>
-                </div>
-                <button type="submit" class="w-full bg-primary text-white py-5 rounded-[25px] font-black shadow-xl uppercase tracking-widest">Publish Portfolio Now</button>
+                <input type="file" id="fi" multiple class="w-full text-xs p-4 bg-slate-50 rounded-2xl border-2 border-dashed border-primary/20" required>
+                <button type="submit" class="w-full bg-primary text-white py-5 rounded-[25px] font-black shadow-xl uppercase tracking-widest">Publish Portfolio</button>
             </form>`;
         document.getElementById('pForm').onsubmit = handlePropertyPost;
     }
@@ -457,21 +443,16 @@
     async function handlePropertyPost(e) {
         e.preventDefault();
         const files = document.getElementById('fi').files;
-        if(files.length > 5) return alert("Limit: 5 images.");
         const btn = e.target.querySelector('button');
         btn.innerText = "Transmitting to Supabase Cloud..."; btn.disabled = true;
-
         let urls = [];
         try {
             for(let f of files) {
                 const path = `p-${Date.now()}-${f.name.replace(/\s/g, '_')}`;
-                const { error } = await _supabase.storage.from('property-images').upload(path, f);
-                if(error) throw error;
-                const { data: { publicUrl } } = _supabase.storage.from('property-images').getPublicUrl(path);
-                urls.push(publicUrl);
+                await _supabase.storage.from('property-images').upload(path, f);
+                urls.push(_supabase.storage.from('property-images').getPublicUrl(path).data.publicUrl);
             }
-
-            const { error: dbError } = await _supabase.from('justbuy_properties').insert([{
+            await _supabase.from('justbuy_properties').insert([{
                 title: document.getElementById('t').value,
                 location: document.getElementById('l').value,
                 price_ngn: document.getElementById('pr').value,
@@ -483,45 +464,39 @@
                 description: document.getElementById('de').value,
                 image_urls: urls
             }]);
-            if(dbError) throw dbError;
-            alert("Listing Success."); location.reload();
-        } catch(err) { alert("ERROR: " + err.message); btn.disabled = false; btn.innerText = "Retry Listing"; }
+            location.reload();
+        } catch(err) { alert("Processing Failed: " + err.message); btn.disabled = false; btn.innerText = "Confirm Listing"; }
     }
 
     async function showManageListings() {
         document.getElementById('adminModal').classList.add('modal-active');
-        document.getElementById('admin-title').innerText = "Delete Listing Portfolio";
         const { data } = await _supabase.from('justbuy_properties').select('*');
         document.getElementById('admin-content').innerHTML = data.map(p => `
-            <div class="flex justify-between items-center p-6 bg-slate-50 rounded-[25px] mb-3 border">
-                <span class="font-black text-navy text-[10px] uppercase truncate pr-4">${p.title}</span>
-                <button onclick="deleteProp('${p.id}')" class="text-secondary font-black text-[10px] px-5 py-2 border bg-white rounded-xl shadow-sm active:scale-95">REMOVE</button>
-            </div>`).join('') || "No active listings found.";
+            <div class="flex justify-between items-center p-6 bg-slate-50 rounded-[25px] mb-3 border text-[10px] font-black uppercase">
+                <span>${p.title}</span>
+                <button onclick="deleteProp('${p.id}')" class="text-secondary border-b-2 border-secondary">REMOVE</button>
+            </div>`).join('');
     }
-
     async function deleteProp(id) { if(confirm("Confirm asset removal?")) { await _supabase.from('justbuy_properties').delete().eq('id', id); location.reload(); } }
 
-    // NEWS ADMIN
     function showNewsForm() {
         document.getElementById('adminModal').classList.add('modal-active');
-        document.getElementById('admin-title').innerText = "Publish Global Insight";
         document.getElementById('admin-content').innerHTML = `
             <form id="nForm" class="space-y-4">
-                <input type="text" id="nt" placeholder="News Headline" class="w-full rounded-2xl border-slate-100 p-4 font-bold" required>
-                <textarea id="nc" placeholder="Insight Body" class="w-full rounded-2xl border-slate-100 p-4 font-medium" rows="6" required></textarea>
-                <input type="file" id="nf" class="w-full text-xs p-4 bg-slate-50 rounded-2xl" required>
-                <button type="submit" class="w-full bg-secondary text-white py-5 rounded-2xl font-black uppercase tracking-widest">Publish Insight</button>
+                <input type="text" id="nt" placeholder="Headline" class="w-full rounded-2xl border-slate-100 p-4 font-bold" required>
+                <textarea id="nc" placeholder="Content Body" class="w-full rounded-2xl border-slate-100 p-4 font-medium" rows="6" required></textarea>
+                <input type="file" id="nf" class="w-full text-xs p-4 bg-slate-50" required>
+                <button type="submit" class="w-full bg-secondary text-white py-5 rounded-2xl font-black uppercase">Broadcast News</button>
             </form>`;
         document.getElementById('nForm').onsubmit = handleNewsPost;
     }
-
     async function handleNewsPost(e) {
         e.preventDefault();
         const f = document.getElementById('nf').files[0];
         const path = `news-${Date.now()}`;
         await _supabase.storage.from('news-images').upload(path, f);
-        const { data: { publicUrl } } = _supabase.storage.from('news-images').getPublicUrl(path);
-        await _supabase.from('justbuy_news').insert([{ title: document.getElementById('nt').value, content: document.getElementById('nc').value, image_url: publicUrl }]);
+        const url = _supabase.storage.from('news-images').getPublicUrl(path).data.publicUrl;
+        await _supabase.from('justbuy_news').insert([{ title: document.getElementById('nt').value, content: document.getElementById('nc').value, image_url: url }]);
         location.reload();
     }
 
@@ -529,27 +504,22 @@
         document.getElementById('adminModal').classList.add('modal-active');
         const { data } = await _supabase.from('justbuy_news').select('*');
         document.getElementById('admin-content').innerHTML = data.map(n => `
-            <div class="flex justify-between items-center p-6 bg-slate-50 rounded-[25px] mb-3 border">
-                <span class="truncate pr-4 font-black text-[10px] uppercase opacity-70">${n.title}</span>
-                <button onclick="deleteNews('${n.id}')" class="text-secondary font-black text-[10px] px-5 py-2 border bg-white rounded-xl">REMOVE</button>
-            </div>`).join('') || "No active news.";
+            <div class="flex justify-between items-center p-5 bg-slate-50 rounded-[25px] mb-3 border text-[10px] font-black uppercase">
+                <span>${n.title}</span>
+                <button onclick="deleteNews('${n.id}')" class="text-secondary border-b-2 border-secondary">REMOVE</button>
+            </div>`).join('');
     }
-
-    async function deleteNews(id) { if(confirm("Confirm news removal?")) { await _supabase.from('justbuy_news').delete().eq('id', id); location.reload(); } }
+    async function deleteNews(id) { if(confirm("Permanently delete news?")) { await _supabase.from('justbuy_news').delete().eq('id', id); location.reload(); } }
 
     function closeAdmin() { document.getElementById('adminModal').classList.remove('modal-active'); }
-
-    // CHATBOT
     function toggleChat() { document.getElementById('chat-box').classList.toggle('hidden'); }
     function chatResponse(t) {
         const box = document.getElementById('chat-messages');
-        const msg = t === 'buying' ? "We currently have premium duplexes and mansions in Ikoyi, Banana Island, and Lagos Mainland. Every asset has a verified structural report. Would you like a consultation?" : "To list your asset, our structural engineers must conduct a mandatory inspection audit. Please send us your property location on WhatsApp.";
-        box.innerHTML += `<div class="bg-primary text-white p-4 rounded-[20px] rounded-tl-none mb-4 shadow-md font-medium leading-relaxed">${msg}</div>`;
+        const msg = t === 'buying' ? "We have verified listings in Ikoyi and New Oko Oba. Structural reports are available. Shall I connect you?" : "Site inspections are mandatory. Please WhatsApp your property location to start.";
+        box.innerHTML += `<div class="bg-primary text-white p-4 rounded-2xl rounded-tl-none mb-4 text-xs font-bold leading-relaxed">${msg}</div>`;
         box.scrollTop = box.scrollHeight;
     }
-
     window.onload = () => { getProperties(); getNews(); }
 </script>
-
 </body>
 </html>
