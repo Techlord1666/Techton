@@ -5,8 +5,8 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
     
     <!-- SEO Setup -->
-    <title>Art Keepers Lamp | Sculptural Illumination & Fine Art</title>
-    <meta name="description" content="Artisan lamps and sculptures by Art Keepers. A Techton Group Subsidiary. Hand-sculpted porcelain and architectural lighting.">
+    <title>Art Keepers Lamp | Techton Group Subsidiary</title>
+    <meta name="description" content="Sculptural illumination and contemporary art. Hand-sculpted porcelain and architectural lighting pieces.">
     <link rel="icon" type="image/jpeg" href="artkeeper.jpeg">
 
     <!-- SDKs -->
@@ -31,7 +31,6 @@
         },
       }
     </script>
-
     <style>
         :root {
             --fluid-h1: clamp(2.2rem, 8vw, 5rem);
@@ -43,27 +42,20 @@
         .modal-overlay { display: none; position: fixed; inset: 0; z-index: 1000; background: rgba(0,0,0,0.96); overflow-y: auto; }
         .modal-active { display: block; }
         .mobile-menu-active { transform: translateX(0) !important; }
+        
+        /* Solid Mobile Menu */
+        #mobile-overlay { background: #ffffff !important; box-shadow: -10px 0 30px rgba(0,0,0,0.2); }
+        
         .custom-scroll::-webkit-scrollbar { width: 5px; }
         .custom-scroll::-webkit-scrollbar-thumb { background: #3e5219; border-radius: 10px; }
         .category-tab.active { background: #3e5219; color: white; border-color: #3e5219; box-shadow: 0 10px 15px rgba(62, 82, 25, 0.3); }
         
-        #mobile-overlay { background: #ffffff !important; box-shadow: -10px 0 30px rgba(0,0,0,0.2); }
-        
-        /* Hero section fixes */
-        .hero-section { 
-            min-height: 100vh; 
-            display: flex; 
-            align-items: center; 
-            padding-top: 100px;
-            padding-bottom: 80px;
-        }
-
-        /* Metadata Grid fix for mobile */
+        .hero-section { min-height: 100vh; display: flex; align-items: center; padding: 100px 0; }
         .meta-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
         
-        /* Product Card Image Control */
-        .card-img-container { height: 180px; }
-        @media (min-width: 1024px) { .card-img-container { height: 260px; } }
+        /* Mobile Image Gallery Scroll */
+        .img-scroll-x { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 10px; }
+        .img-scroll-x img { flex: 0 0 100%; scroll-snap-align: center; height: 350px; object-fit: cover; border-radius: 24px; }
     </style>
 </head>
 
@@ -86,7 +78,6 @@
 <nav class="sticky top-0 w-full z-[100] bg-white border-b shadow-sm">
     <div class="flex justify-between items-center px-6 py-4 max-w-7xl mx-auto">
         <a href="index.html" class="flex items-center gap-2">
-            <!-- UPDATED LOGO -->
             <img src="artkeeper.jpeg" alt="Art Keepers" class="h-12 w-12 rounded-lg object-cover">
             <div class="hidden sm:block leading-none">
                 <span class="font-headline font-extrabold text-navy text-xl tracking-tighter uppercase">Art Keepers</span><br>
@@ -96,10 +87,10 @@
 
         <div class="hidden md:flex items-center space-x-8 text-sm font-bold">
             <a href="index.html" class="hover:text-primary transition-colors">Home</a>
-            <a href="about.html" class="hover:text-primary transition-colors">About Us</a>
-            <a href="justbuy.html" class="hover:text-primary transition-colors text-navy">JustBuy</a>
-            <div class="flex items-center gap-4 pl-6 border-l border-slate-200">
-                <a href="login.html" class="text-navy hover:text-primary">Login</a>
+            <a href="about.html" class="hover:text-primary transition-colors">The Ethos</a>
+            <a href="justbuy.html" class="hover:text-primary transition-colors text-navy font-black">JustBuy</a>
+            <div class="flex items-center gap-4 pl-6 border-l">
+                <a href="login.html" class="text-navy">Login</a>
                 <a href="signup.html" class="bg-primary text-white px-6 py-2.5 rounded-xl shadow-lg hover:bg-navy transition-all">Sign Up</a>
             </div>
         </div>
@@ -109,16 +100,16 @@
         </button>
     </div>
 
-    <!-- Solid Mobile Menu -->
+    <!-- Mobile Menu Overlay -->
     <div id="mobile-overlay" class="fixed inset-0 z-[200] translate-x-full transition-transform duration-500 md:hidden flex flex-col">
         <div class="flex justify-between items-center px-6 py-6 border-b bg-white">
             <img src="artkeeper.jpeg" class="h-10 w-10 rounded object-cover">
             <button id="menu-close" class="bg-slate-100 p-2 rounded-full text-navy"><span class="material-symbols-outlined text-4xl">close</span></button>
         </div>
         <div class="flex-1 px-8 py-12 space-y-8 font-headline font-black text-3xl text-navy">
-            <a class="block hover:text-primary" href="index.html">Home</a>
-            <a class="block hover:text-primary" href="about.html">About Us</a>
-            <a class="block hover:text-primary" href="justbuy.html">JustBuy Real Estate</a>
+            <a class="block" href="index.html">Home</a>
+            <a class="block" href="about.html">About Us</a>
+            <a class="block" href="justbuy.html">JustBuy Real Estate</a>
             <div class="grid grid-cols-1 gap-4 pt-12">
                 <a href="login.html" class="w-full py-5 border-2 border-navy rounded-2xl text-center text-xl">Login</a>
                 <a href="signup.html" class="w-full py-5 bg-primary text-white rounded-2xl text-center text-xl shadow-xl">Sign Up</a>
@@ -128,71 +119,71 @@
 </nav>
 
 <main>
-    <!-- New Hero Section (No Ships) -->
+    <!-- Hero Section -->
     <section class="hero-section relative text-white text-center px-6 overflow-hidden">
         <div class="absolute inset-0 z-0">
-            <!-- Updated Hero: Elegant Sculpture Gallery context -->
+            <!-- Professional Artistic Background -->
             <img src="https://images.unsplash.com/photo-1549490349-8643362247b5?auto=format&fit=crop&q=80&w=2000" class="w-full h-full object-cover">
             <div class="absolute inset-0 bg-navy/70 backdrop-blur-[1px]"></div>
         </div>
         <div class="relative z-10 max-w-5xl mx-auto flex flex-col items-center animate-in fade-in slide-in-from-bottom-10 duration-1000">
-            <span class="text-primary-fixed uppercase tracking-[0.5em] font-bold text-[10px] mb-6 block font-body">Curated Structural Art</span>
-            <h1 class="font-headline font-black mb-8 leading-[1.1] tracking-tighter uppercase">Artistic <span class="text-primary-fixed italic">Monoliths.</span></h1>
-            <p class="text-base md:text-2xl opacity-90 mb-12 max-w-2xl mx-auto font-medium leading-relaxed">Where Techton engineering meets contemporary aesthetics. Hand-sculpted pieces designed to illuminate legacies.</p>
-            <div class="flex flex-col sm:flex-row justify-center gap-5 w-full sm:w-auto">
-                <a href="#store" class="px-12 py-5 bg-secondary rounded-2xl font-black text-lg shadow-2xl hover:scale-105 transition-all text-center uppercase tracking-widest">Exhibition Store</a>
-                <a href="https://wa.me/2347035375443" class="px-12 py-5 bg-white text-navy rounded-2xl font-black text-lg hover:bg-primary hover:text-white transition-all uppercase text-center tracking-widest">Bespoke Inquiry</a>
+            <span class="text-primary-fixed uppercase tracking-[0.5em] font-bold text-xs mb-6 block font-body">Structural Illumination</span>
+            <h1 class="font-headline font-black mb-8 leading-[1.1] tracking-tighter uppercase text-center">Artistic <span class="text-primary-fixed italic">Monoliths.</span></h1>
+            <p class="text-base md:text-2xl opacity-90 mb-12 max-w-2xl mx-auto font-medium leading-relaxed font-body">Hand-sculpted pieces where civil engineering meets contemporary aesthetic. Light as a curated exhibition.</p>
+            <div class="flex flex-col sm:flex-row justify-center gap-5 w-full sm:w-auto px-4">
+                <a href="#store" class="px-12 py-5 bg-secondary rounded-2xl font-black text-lg shadow-2xl hover:scale-105 transition-all uppercase tracking-widest text-center">View Collection</a>
+                <a href="https://wa.me/2347035375443" class="px-12 py-5 bg-white text-navy rounded-2xl font-black text-lg hover:bg-primary hover:text-white transition-all uppercase tracking-widest text-center">Inquire Bespoke</a>
             </div>
         </div>
     </section>
 
-    <!-- About Us: Art Keepers Section -->
-    <section class="py-24 bg-white" id="about-keepers">
+    <!-- About Us: The Art Keepers Ethos -->
+    <section class="py-24 bg-white" id="ethos">
         <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
             <div class="space-y-8">
                 <div>
-                    <span class="text-primary font-bold uppercase tracking-widest text-sm">Techton Art Division</span>
+                    <span class="text-primary font-bold uppercase tracking-widest text-sm">Techton Art Arm</span>
                     <h2 class="font-headline font-black text-navy mt-2 leading-tight">The Art of Structural Illumination</h2>
                 </div>
-                <p class="text-slate-600 text-lg leading-relaxed text-justify">Art Keepers Lamp Ltd is the creative soul of <strong>Techton Group International</strong>. We believe that light is a structural element. Our studio specializes in high-concept lamps and sculptures that utilize industrial materials like reinforced porcelain, bronze, and architectural glass.</p>
-                <p class="text-slate-600 leading-relaxed text-justify">Each piece is hand-poured in our Lagos studio and serialized to guarantee exclusivity. By combining the rigorous standards of civil engineering with fine art, we create "monoliths" that transform any interior into a private gallery.</p>
-                <div class="grid grid-cols-2 gap-4 pt-4">
+                <p class="text-slate-600 text-lg leading-relaxed text-justify font-medium">Art Keepers Lamp Ltd is the creative division of <strong>Techton Group International</strong>. We believe light is more than a utility—it is a structural element. Our studio creates high-concept monoliths inspired by architectural geometry.</p>
+                <p class="text-slate-600 leading-relaxed text-justify">Using industrial-grade materials like reinforced porcelain and bronze, each piece is hand-poured and serialized to ensure exclusivity for our global clientele. Engineering standard, artistic soul.</p>
+                
+                <div class="grid grid-cols-2 gap-4 pt-6">
                     <div class="p-6 bg-slate-50 rounded-[30px] border-l-4 border-primary">
-                        <h4 class="font-black text-navy text-xs uppercase mb-1">Hand-Poured</h4>
-                        <p class="text-[10px] text-slate-400 font-bold uppercase">Small batch production only.</p>
+                        <h4 class="font-black text-navy text-[10px] uppercase mb-1">Hand-Poured</h4>
+                        <p class="text-[9px] text-slate-400 font-bold uppercase">Serialized small batches.</p>
                     </div>
                     <div class="p-6 bg-slate-50 rounded-[30px] border-l-4 border-primary">
-                        <h4 class="font-black text-navy text-xs uppercase mb-1">Certified</h4>
-                        <p class="text-[10px] text-slate-400 font-bold uppercase">Engineering Grade Materials.</p>
+                        <h4 class="font-black text-navy text-[10px] uppercase mb-1">Structural</h4>
+                        <p class="text-[9px] text-slate-400 font-bold uppercase">Civil engineering focus.</p>
                     </div>
                 </div>
             </div>
-            <div class="relative">
-                <img src="https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?auto=format&fit=crop&q=80&w=1000" class="rounded-[60px] shadow-2xl" alt="Art Sculpture">
-                <div class="absolute -bottom-10 -right-10 bg-navy text-white p-10 rounded-[40px] shadow-2xl hidden lg:block border border-white/10">
-                    <p class="text-4xl font-black text-primary italic">"Light is Structure"</p>
+            <div class="relative group">
+                <img src="https://images.unsplash.com/photo-1554188248-986adbb73be4?auto=format&fit=crop&q=80&w=1000" class="rounded-[60px] shadow-2xl transition-all duration-700 group-hover:scale-[1.02]" alt="Sculpture Art">
+                <div class="absolute -bottom-10 -right-10 bg-navy text-white p-10 rounded-[40px] shadow-2xl hidden lg:block">
+                    <p class="text-4xl font-black text-primary italic leading-none">"Light is Structure"</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Collection Grid (4 Laptop / 2 Mobile) -->
+    <!-- Art Exhibition Store (4-column Laptop / 2-column Mobile) -->
     <section class="py-24 bg-slate-50" id="store">
-        <div class="max-w-[1400px] mx-auto px-4">
+        <div class="max-w-[1440px] mx-auto px-4">
             <div class="text-center mb-16 px-4">
-                <h2 class="font-headline font-black text-navy uppercase tracking-tighter">Artisanal Catalogue</h2>
+                <h2 class="font-headline font-black text-navy uppercase tracking-tighter">Artisanal Exhibition</h2>
                 <div class="flex flex-wrap justify-center gap-2 md:gap-3 mt-12" id="category-tabs">
-                    <button onclick="filterArt('All')" class="category-tab active px-5 py-2 rounded-full border border-slate-200 text-[10px] font-black uppercase transition-all shadow-sm">All</button>
-                    <button onclick="filterArt('Sculptures')" class="category-tab px-5 py-2 rounded-full border border-slate-200 text-[10px] font-black uppercase transition-all shadow-sm">Sculptures</button>
-                    <button onclick="filterArt('Table Lamps')" class="category-tab px-5 py-2 rounded-full border border-slate-200 text-[10px] font-black uppercase transition-all shadow-sm">Table Lamps</button>
-                    <button onclick="filterArt('Floor Lamps')" class="category-tab px-5 py-2 rounded-full border border-slate-200 text-[10px] font-black uppercase transition-all shadow-sm">Floor Lamps</button>
-                    <button onclick="filterArt('Pendants')" class="category-tab px-5 py-2 rounded-full border border-slate-200 text-[10px] font-black uppercase transition-all shadow-sm">Pendants</button>
-                    <button onclick="filterArt('Art Works')" class="category-tab px-5 py-2 rounded-full border border-slate-200 text-[10px] font-black uppercase transition-all shadow-sm">Art Works</button>
+                    <button onclick="filterArt('All')" class="category-tab active px-5 py-2 rounded-full border border-slate-200 text-[10px] font-black uppercase tracking-widest transition-all shadow-sm">All</button>
+                    <button onclick="filterArt('Sculptures')" class="category-tab px-5 py-2 rounded-full border border-slate-200 text-[10px] font-black uppercase tracking-widest transition-all shadow-sm">Sculptures</button>
+                    <button onclick="filterArt('Table Lamps')" class="category-tab px-5 py-2 rounded-full border border-slate-200 text-[10px] font-black uppercase tracking-widest transition-all shadow-sm">Table Lamps</button>
+                    <button onclick="filterArt('Floor Lamps')" class="category-tab px-5 py-2 rounded-full border border-slate-200 text-[10px] font-black uppercase tracking-widest transition-all shadow-sm">Floor Lamps</button>
+                    <button onclick="filterArt('Pendants')" class="category-tab px-5 py-2 rounded-full border border-slate-200 text-[10px] font-black uppercase tracking-widest transition-all shadow-sm">Pendants</button>
                 </div>
             </div>
 
             <div id="art-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-10">
-                <p class="col-span-full text-center py-20 opacity-30 font-black uppercase">Retrieving Exhibition Pieces...</p>
+                <p class="col-span-full text-center py-20 opacity-30 font-black uppercase tracking-widest">Opening the Vault...</p>
             </div>
         </div>
     </section>
@@ -204,12 +195,12 @@
         <div class="bg-white w-full max-w-6xl rounded-[35px] md:rounded-[50px] shadow-2xl overflow-hidden relative my-4 animate-in zoom-in-95 duration-300">
             <button onclick="closeModal()" class="absolute top-4 right-4 z-[60] bg-white rounded-full p-2 text-navy shadow-xl active:scale-90 transition-all"><span class="material-symbols-outlined text-2xl font-bold">close</span></button>
             <div class="flex flex-col lg:flex-row h-full">
-                <!-- Gallery -->
+                <!-- Gallery Section -->
                 <div id="modal-images" class="w-full lg:w-3/5 lg:overflow-y-auto custom-scroll bg-slate-100 h-[350px] md:h-[500px] lg:h-[80vh] p-3 space-y-4"></div>
-                <!-- Details -->
+                <!-- Details Section -->
                 <div class="w-full lg:w-2/5 p-8 md:p-12 overflow-y-auto lg:h-[80vh] bg-white">
                     <div class="flex justify-between items-start mb-6">
-                        <span id="m-status" class="bg-secondary text-white text-[9px] font-black px-3 py-1 rounded-md uppercase tracking-widest"></span>
+                        <span id="m-status" class="bg-secondary text-white text-[9px] font-black px-4 py-1.5 rounded-md uppercase tracking-widest"></span>
                         <span id="m-cat" class="text-primary font-black text-[10px] uppercase tracking-widest border border-primary/20 px-3 py-1 rounded-full"></span>
                     </div>
                     <h2 id="m-title" class="font-headline font-black text-navy leading-tight mb-2 tracking-tighter text-2xl md:text-3xl uppercase"></h2>
@@ -231,19 +222,19 @@
                         <p id="m-desc" class="text-slate-600 leading-relaxed text-sm text-justify font-medium"></p>
                     </div>
 
-                    <a id="m-wa-btn" href="#" target="_blank" class="block w-full bg-primary text-white text-center py-6 rounded-[20px] font-black shadow-xl hover:bg-navy transition-all uppercase tracking-[0.2em] text-xs">Acquire Masterpiece</a>
+                    <a id="m-wa-btn" href="#" target="_blank" class="block w-full bg-primary text-white text-center py-6 rounded-[25px] font-black shadow-xl hover:bg-navy transition-all uppercase tracking-[0.2em] text-xs">Acquire Masterpiece</a>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-<!-- ADMIN MODAL (SCROLLABLE FORM) -->
+<!-- ADMIN MODAL (SCROLLABLE) -->
 <div id="adminModal" class="modal-overlay">
     <div class="flex justify-center p-6 min-h-screen items-start">
-        <div class="bg-white w-full max-w-2xl rounded-[40px] p-8 md:p-12 relative shadow-2xl my-10 border border-slate-100 overflow-y-auto">
+        <div class="bg-white w-full max-w-2xl rounded-[40px] p-8 md:p-12 relative shadow-2xl my-10 border overflow-y-auto max-h-[90vh] custom-scroll">
             <button onclick="closeAdmin()"><span class="material-symbols-outlined absolute top-6 right-6 text-slate-300">cancel</span></button>
-            <h2 id="admin-title" class="font-headline text-2xl font-black text-navy mb-10 uppercase border-b pb-4 tracking-tighter">Art Curation</h2>
+            <h2 id="admin-title" class="font-headline text-3xl font-black text-navy mb-10 uppercase border-b pb-4 tracking-tighter">Admin Portal</h2>
             <div id="admin-content"></div>
         </div>
     </div>
@@ -254,13 +245,13 @@
     <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-16 border-b border-white/10 pb-20">
         <div class="space-y-8">
             <div class="flex items-center gap-3">
-                <img src="artkeeper.jpeg" class="h-10 w-10 rounded-lg object-cover">
+                <img src="artkeeper.jpeg" class="h-10 w-10 rounded-lg object-cover bg-white">
                 <span class="text-2xl font-black tracking-tighter uppercase font-headline">Art Keepers</span>
             </div>
-            <p class="text-slate-400 text-sm leading-relaxed">Strategic art arm of Techton Group. Hand-crafted precision for elite global interiors.</p>
+            <p class="text-slate-400 text-sm leading-relaxed">Structural art branch of Techton Group. Hand-crafted precision for high-end African residences.</p>
         </div>
         <div>
-            <h4 class="font-bold text-primary mb-8 uppercase text-[10px] tracking-[0.2em]">Exhibition</h4>
+            <h4 class="font-bold text-primary mb-8 uppercase text-[11px] tracking-[0.2em]">Exhibition</h4>
             <ul class="space-y-4 text-slate-400 text-sm">
                 <li>Hand-Poured Sculptures</li>
                 <li>Monolith Floor Lamps</li>
@@ -268,16 +259,16 @@
             </ul>
         </div>
         <div>
-            <h4 class="font-bold text-primary mb-8 uppercase text-[10px] tracking-[0.2em]">Navigation</h4>
+            <h4 class="font-bold text-primary mb-8 uppercase text-[11px] tracking-[0.2em]">Navigation</h4>
             <ul class="space-y-4 text-slate-400 text-sm">
                 <li><a href="about.html" class="hover:text-white">Our Ethos</a></li>
                 <li><a href="justbuy.html" class="hover:text-white">JustBuy Real Estate</a></li>
-                <!-- HIDDEN WORD: list sculpture -->
+                <!-- HIDDEN WORD -->
                 <li><a href="javascript:void(0)" onclick="handleAdminGate()" class="opacity-[0.02] hover:opacity-100 transition-all cursor-default text-[10px]">list sculpture</a></li>
             </ul>
         </div>
         <div>
-            <h4 class="font-bold text-primary mb-8 uppercase text-[10px] tracking-[0.2em]">Studio Lagos</h4>
+            <h4 class="font-bold text-primary mb-8 uppercase text-[11px] tracking-[0.2em]">HQ Lagos</h4>
             <p class="text-white font-black text-2xl tracking-tighter font-headline leading-none">+234 703 537 5443</p>
         </div>
     </div>
@@ -287,7 +278,7 @@
 </footer>
 
 <script>
-    // SUPABASE CONFIG
+    // --- SUPABASE & ACTIVITY CONFIG ---
     const _supabase = supabase.createClient('https://pnwbputtcsxnkldodfyd.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBud2JwdXR0Y3N4bmtsZG9kZnlkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzUxNTA5OTQsImV4cCI6MjA5MDcyNjk5NH0.OtLQIT89SKyIvZwnm-3bjGK1Js46gipRNoETzBS4stA');
 
     let allArt = [];
@@ -304,7 +295,17 @@
     function updateCurrencyDisplay() { activeCurr = document.getElementById('currency-select').value; renderArt(allArt); }
     function formatPrice(n) { const s = activeCurr === 'NGN' ? '₦' : activeCurr === 'USD' ? '$' : '£'; return s + Math.round(n * CURR_RATES[activeCurr]).toLocaleString(); }
 
-    // DATA
+    // ACTIVITY TRACKER
+    async function trackAction(action, details) {
+        const { data: { user } } = await _supabase.auth.getUser();
+        if (user) {
+            await _supabase.from('user_activities').insert([{ 
+                user_id: user.id, subsidiary: 'ArtKeepers', action: action, details: details 
+            }]);
+        }
+    }
+
+    // DATA FETCHING
     async function fetchArt() {
         const { data } = await _supabase.from('art_keepers_products').select('*').order('created_at', { ascending: false });
         allArt = data || [];
@@ -313,17 +314,17 @@
 
     function renderArt(data) {
         const grid = document.getElementById('art-grid');
-        if (data.length === 0) { grid.innerHTML = "<p class='col-span-full text-center py-20 opacity-30'>Curating Exhibition...</p>"; return; }
+        if (data.length === 0) { grid.innerHTML = "<p class='col-span-full text-center py-20 opacity-30 uppercase font-black font-headline'>No items found.</p>"; return; }
         
         grid.innerHTML = data.map(p => `
-            <div class="bg-white rounded-[35px] md:rounded-[45px] overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-1000 cursor-pointer group border border-slate-50" onclick='openArtDetail(${JSON.stringify(p)})'>
-                <div class="card-img-container overflow-hidden relative">
+            <div class="bg-white rounded-[45px] overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-1000 cursor-pointer group border border-slate-50" onclick='openArtDetail(${JSON.stringify(p)})'>
+                <div class="h-48 md:h-72 overflow-hidden relative">
                     <img src="${p.image_urls[0]}" class="w-full h-full object-cover group-hover:scale-110 transition-all duration-1000">
-                    <div class="absolute top-3 left-3 bg-white/95 text-navy text-[7px] md:text-[9px] font-black px-3 py-1.5 rounded-full uppercase shadow-lg border border-primary/10 tracking-widest">${p.category}</div>
+                    <div class="absolute top-4 left-4 bg-white/95 text-navy text-[7px] font-black px-3 py-1.5 rounded-full uppercase shadow-lg">${p.category}</div>
                 </div>
-                <div class="p-5 md:p-10 text-center lg:text-left">
-                    <h3 class="font-headline font-black text-xs md:text-lg text-navy mb-1 group-hover:text-primary transition-colors truncate tracking-tighter uppercase">${p.title}</h3>
-                    <p class="text-slate-400 text-[8px] md:text-[10px] mb-6 font-black uppercase tracking-widest">${p.material}</p>
+                <div class="p-6 md:p-10 text-center lg:text-left">
+                    <h3 class="font-headline font-black text-xs md:text-lg text-navy mb-1 group-hover:text-primary transition-colors truncate uppercase">${p.title}</h3>
+                    <p class="text-slate-400 text-[8px] md:text-[9px] mb-6 font-black uppercase tracking-widest">${p.material}</p>
                     <div class="flex flex-col md:flex-row justify-between items-center pt-6 border-t border-slate-50 gap-2">
                         <span class="text-primary font-black text-lg md:text-xl tracking-tighter">${formatPrice(p.price_ngn)}</span>
                         <span class="text-secondary font-black text-[8px] uppercase tracking-widest">${p.status}</span>
@@ -339,8 +340,8 @@
         else renderArt(allArt.filter(p => p.category === cat));
     }
 
-    // MODAL
     function openArtDetail(p) {
+        trackAction('Viewed Piece', p.title);
         document.getElementById('m-title').innerText = p.title;
         document.getElementById('m-cat').innerText = p.category;
         document.getElementById('m-price').innerText = formatPrice(p.price_ngn);
@@ -348,7 +349,7 @@
         document.getElementById('m-dim').innerText = p.dimensions;
         document.getElementById('m-desc').innerText = p.description;
         document.getElementById('m-status').innerText = p.status;
-        document.getElementById('m-wa-btn').href = `https://wa.me/2347035375443?text=Art Acquisition: ${p.title} (${p.category})`;
+        document.getElementById('m-wa-btn').href = `https://wa.me/2347035375443?text=Interest: ${p.title} (${p.category})`;
         
         document.getElementById('modal-images').innerHTML = p.image_urls.map(url => `
             <img src="${url}" class="w-full h-auto rounded-[30px] shadow-lg mb-4" onerror="this.src='https://via.placeholder.com/800x600?text=Exhibition+Piece'">
@@ -360,9 +361,9 @@
 
     function closeModal() { document.getElementById('artModal').classList.remove('modal-active'); document.body.style.overflow = 'auto'; }
 
-    // ADMIN GATEWAY
+    // ADMIN LOGIC
     function handleAdminGate() {
-        const p = prompt("Administrative Credentials Required:");
+        const p = prompt("Administrative Access Key:");
         if(p === 'art@1') showListingForm();
         else if(p === 'art@2') showManageListings();
     }
@@ -374,19 +375,16 @@
                 <input type="text" id="at" placeholder="Piece Title" class="w-full rounded-2xl border-slate-100 p-4 font-bold" required>
                 <input type="number" id="ap" placeholder="Price (NGN)" class="w-full rounded-2xl border-slate-100 p-4 font-bold" required>
                 <div class="grid grid-cols-2 gap-2">
-                    <input type="text" id="am" placeholder="Material (e.g. Bronze)" class="rounded-xl border-slate-100 p-4 font-bold" required>
-                    <input type="text" id="ad" placeholder="Dimensions (e.g. 40x20cm)" class="rounded-xl border-slate-100 p-4 font-bold" required>
+                    <input type="text" id="am" placeholder="Material" class="rounded-xl border-slate-100 p-4 font-bold" required>
+                    <input type="text" id="ad" placeholder="Dimensions" class="rounded-xl border-slate-100 p-4 font-bold" required>
                 </div>
                 <div class="grid grid-cols-2 gap-2">
                     <select id="ac" class="rounded-xl border-slate-100 p-4 font-black text-xs uppercase"><option>Sculptures</option><option>Table Lamps</option><option>Floor Lamps</option><option>Pendants</option><option>Art Works</option></select>
                     <select id="as" class="rounded-xl border-slate-100 p-4 font-black text-xs uppercase"><option>Available</option><option>Limited</option><option>Sold Out</option></select>
                 </div>
                 <textarea id="ade" placeholder="Artist Narrative" class="w-full rounded-2xl border-slate-100 p-4 font-medium" rows="4" required></textarea>
-                <div class="bg-slate-50 p-6 rounded-3xl border-2 border-dashed border-primary/20 text-center">
-                    <label class="text-[10px] font-black uppercase opacity-50 block mb-3 text-navy">Upload Imagery (Up to 5)</label>
-                    <input type="file" id="af" multiple class="w-full text-xs" required>
-                </div>
-                <button type="submit" class="w-full bg-primary text-white py-5 rounded-[25px] font-black shadow-xl uppercase tracking-widest active:scale-95 transition-all">Publish Piece</button>
+                <input type="file" id="af" multiple class="w-full text-xs p-4 bg-slate-50 rounded-2xl border-2 border-dashed border-primary/20" required>
+                <button type="submit" class="w-full bg-primary text-white py-5 rounded-3xl font-black shadow-xl uppercase tracking-widest transition-all">Publish Piece</button>
             </form>`;
         document.getElementById('artForm').onsubmit = handleArtPost;
     }
@@ -396,8 +394,7 @@
         const files = document.getElementById('af').files;
         if(files.length > 5) return alert("System limit: 5 images.");
         const btn = e.target.querySelector('button');
-        btn.innerText = "Transmitting to Studio Cloud..."; btn.disabled = true;
-
+        btn.innerText = "Transmitting..."; btn.disabled = true;
         let urls = [];
         try {
             for(let f of files) {
@@ -412,21 +409,22 @@
                 description: document.getElementById('ade').value, image_urls: urls
             }]);
             location.reload();
-        } catch(err) { alert(err.message); btn.disabled = false; btn.innerText="Retry Publication"; }
+        } catch(err) { alert(err.message); btn.disabled = false; }
     }
 
     async function showManageListings() {
         document.getElementById('adminModal').classList.add('modal-active');
         const { data } = await _supabase.from('art_keepers_products').select('*');
         document.getElementById('admin-content').innerHTML = data.map(p => `
-            <div class="flex justify-between items-center p-6 bg-slate-50 rounded-[25px] mb-3 border text-[10px] font-black uppercase tracking-widest">
+            <div class="flex justify-between items-center p-6 bg-slate-50 rounded-[25px] mb-3 border text-[10px] font-black uppercase">
                 <span>${p.title}</span><button onclick="deleteArt('${p.id}')" class="text-secondary border-b-2 border-secondary font-bold">REMOVE</button>
             </div>`).join('');
     }
-    async function deleteArt(id) { if(confirm("Confirm removal from exhibition?")) { await _supabase.from('art_keepers_products').delete().eq('id', id); location.reload(); } }
+    async function deleteArt(id) { if(confirm("Confirm removal?")) { await _supabase.from('art_keepers_products').delete().eq('id', id); location.reload(); } }
 
     function closeAdmin() { document.getElementById('adminModal').classList.remove('modal-active'); }
     window.onload = fetchArt;
 </script>
+
 </body>
 </html>
