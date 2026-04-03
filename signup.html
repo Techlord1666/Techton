@@ -3,13 +3,20 @@
 <head>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    
+    <!-- SEO Setup -->
     <title>Sign Up | Techton Group International</title>
+    <meta name="description" content="Create your account to join the Techton Group International ecosystem. Access construction, real estate, and trade dashboards.">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="TECTHTON.png">
 
     <!-- Supabase SDK -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
+    <!-- Tailwind & Fonts -->
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
 
     <script id="tailwind-config">
@@ -18,33 +25,58 @@
             extend: {
               "colors": {
                 "primary": "#3e5219", // Techton Olive
-                "secondary": "#b22b1d", // Ox Red
+                "secondary": "#8B0000", // Ox Red
                 "navy": "#1B365D",
                 "surface": "#f9f9fb",
               },
               "fontFamily": {
-                "headline": ["Manrope"],
-                "body": ["Inter"],
+                "headline": ["Manrope", "sans-serif"],
+                "body": ["Inter", "sans-serif"],
               }
             },
           }
         }
     </script>
     <style>
-        .material-symbols-outlined { vertical-align: middle; }
-        .monolith-overlay {
-            background: linear-gradient(135deg, rgba(27, 54, 93, 0.95) 0%, rgba(62, 82, 25, 0.85) 100%);
+        /* Fluid Typography and Layout Fixes */
+        :root {
+            --h1-clamp: clamp(1.875rem, 5vw, 4rem);
+            --h2-clamp: clamp(1.5rem, 3vw, 2.5rem);
         }
+
+        .fluid-h1 { font-size: var(--h1-clamp); line-height: 1.1; }
+        .fluid-h2 { font-size: var(--h2-clamp); line-height: 1.2; }
+
+        .material-symbols-outlined { vertical-align: middle; }
+        
+        .monolith-overlay {
+            background: linear-gradient(135deg, rgba(27, 54, 93, 0.96) 0%, rgba(62, 82, 25, 0.85) 100%);
+        }
+
         .ghost-border-input {
             border: none;
-            border-bottom: 1px solid rgba(197, 200, 184, 0.3);
+            border-bottom: 1px solid rgba(197, 200, 184, 0.4);
             transition: all 0.3s ease-out;
             background: transparent !important;
+            padding-left: 0 !important;
         }
+
         .ghost-border-input:focus {
             border-bottom: 2px solid #3e5219;
             box-shadow: none;
             outline: none;
+        }
+
+        /* Prevent image stretching */
+        .img-hero-fix {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+        }
+
+        /* Mobile specific bottom padding for the form */
+        @media (max-width: 768px) {
+            .branding-height { min-height: 350px; }
         }
     </style>
 </head>
@@ -52,125 +84,139 @@
 <body class="bg-surface font-body text-slate-900 antialiased overflow-x-hidden">
 
 <main class="min-h-screen flex flex-col md:flex-row">
-    <!-- Left Side: Branding -->
-    <section class="relative w-full md:w-[40%] min-h-[400px] md:min-h-screen flex items-end p-8 md:p-16 overflow-hidden">
+    <!-- Left Side: Visual Branding (Laptop: Side / Mobile: Top) -->
+    <section class="relative w-full md:w-[40%] branding-height md:min-h-screen flex items-end p-6 md:p-16 overflow-hidden">
         <div class="absolute inset-0 z-0">
-            <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=2000" class="w-full h-full object-cover" alt="Architecture">
-            <div class="absolute inset-0 monolith-overlay backdrop-blur-sm"></div>
+            <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=2000" class="img-hero-fix" alt="Modern Architecture">
+            <div class="absolute inset-0 monolith-overlay backdrop-blur-[2px]"></div>
         </div>
-        <div class="relative z-10">
-            <img src="TECTHTON.png" class="h-12 mb-8 bg-white p-2 rounded-lg" alt="Techton Logo">
-            <h1 class="text-white font-headline font-black text-4xl lg:text-6xl leading-tight mb-6 tracking-tighter">
-                Build Your Future in the Techton Ecosystem.
+        <div class="relative z-10 w-full">
+            <!-- Brand Identity -->
+            <div class="bg-white p-3 rounded-2xl inline-block mb-6 md:mb-8 shadow-2xl">
+                <img src="TECTHTON.png" class="h-8 md:h-10 w-auto" alt="Techton Logo">
+            </div>
+            <h1 class="text-white font-headline font-black fluid-h1 mb-4 md:mb-6 tracking-tighter">
+                Access the Future <br class="hidden md:block"> of Infrastructure.
             </h1>
-            <p class="text-white/80 text-lg mb-10 font-medium">
-                Access your global dashboard across our construction, real estate, and trade subsidiaries.
+            <p class="text-white/80 text-sm md:text-lg mb-8 md:mb-10 font-medium max-w-md">
+                Join the ecosystem of Techton Group International and manage your global assets seamlessly.
             </p>
-            <div class="flex items-center gap-4 text-white/60 font-bold uppercase tracking-widest text-xs">
-                <div class="w-10 h-px bg-white/40"></div>
-                <span>Strategic Excellence</span>
+            <div class="flex items-center gap-4 text-white/60 font-bold uppercase tracking-widest text-[10px] md:text-xs">
+                <div class="w-8 md:w-12 h-px bg-white/40"></div>
+                <span>Building Excellence</span>
             </div>
         </div>
     </section>
 
-    <!-- Right Side: Form -->
-    <section class="w-full md:w-[60%] bg-white flex flex-col justify-center items-center p-8 md:p-24 lg:p-32">
+    <!-- Right Side: Registration Form (Laptop: Main / Mobile: Scrolling) -->
+    <section class="w-full md:w-[60%] bg-white flex flex-col justify-center items-center py-12 px-6 md:p-24 lg:p-32">
         <div class="w-full max-w-md">
             <div class="mb-10 text-center md:text-left">
-                <h2 class="font-headline font-black text-4xl text-navy tracking-tight mb-3">Create Account</h2>
-                <p class="text-slate-500 font-medium">Join the international workforce of Techton Group.</p>
+                <h2 class="font-headline font-black fluid-h2 text-navy tracking-tight mb-2">Create Account</h2>
+                <p class="text-slate-500 text-sm md:text-base font-medium">Register for the Techton corporate dashboard.</p>
             </div>
 
-            <form id="signupForm" class="space-y-6">
-                <!-- Full Name -->
-                <div class="space-y-2">
-                    <label class="block text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">Full Name</label>
-                    <input type="text" id="fullname" required class="w-full py-4 ghost-border-input text-navy font-bold placeholder-slate-300" placeholder="Enter your full name">
+            <form id="signupForm" class="space-y-6 md:space-y-8">
+                <!-- Full Name Field -->
+                <div class="space-y-1">
+                    <label class="block text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">Full Legal Name</label>
+                    <input type="text" id="fullname" required class="w-full py-3 md:py-4 ghost-border-input text-navy font-bold placeholder-slate-300 text-base md:text-lg" placeholder="John Doe">
                 </div>
 
-                <!-- Email -->
-                <div class="space-y-2">
+                <!-- Email Address Field -->
+                <div class="space-y-1">
                     <label class="block text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">Email Address</label>
-                    <input type="email" id="email" required class="w-full py-4 ghost-border-input text-navy font-bold placeholder-slate-300" placeholder="name@company.com">
+                    <input type="email" id="email" required class="w-full py-3 md:py-4 ghost-border-input text-navy font-bold placeholder-slate-300 text-base md:text-lg" placeholder="name@company.com">
                 </div>
 
-                <!-- Password -->
-                <div class="space-y-2">
-                    <label class="block text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">Create Password</label>
+                <!-- Password Field -->
+                <div class="space-y-1">
+                    <label class="block text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">Secure Password</label>
                     <div class="relative">
-                        <input type="password" id="password" required class="w-full py-4 ghost-border-input text-navy font-bold placeholder-slate-300" placeholder="••••••••">
-                        <button type="button" onclick="togglePass()" class="absolute right-0 top-1/2 -translate-y-1/2 text-slate-400 hover:text-primary">
+                        <input type="password" id="password" required class="w-full py-3 md:py-4 ghost-border-input text-navy font-bold placeholder-slate-300 text-base md:text-lg" placeholder="••••••••">
+                        <button type="button" onclick="togglePass()" class="absolute right-0 top-1/2 -translate-y-1/2 text-slate-400 hover:text-primary p-2">
                             <span class="material-symbols-outlined" id="passIcon">visibility</span>
                         </button>
                     </div>
                 </div>
 
-                <!-- Terms -->
-                <div class="flex items-center gap-3 py-2">
-                    <input type="checkbox" required class="w-5 h-5 rounded border-slate-300 text-primary focus:ring-primary">
-                    <label class="text-sm text-slate-500">I agree to the <span class="text-primary font-bold">Terms</span> and <span class="text-primary font-bold">Privacy Policy</span>.</label>
+                <!-- Terms Checkbox -->
+                <div class="flex items-start gap-3 py-2">
+                    <input type="checkbox" required class="mt-1 w-5 h-5 rounded border-slate-300 text-primary focus:ring-primary">
+                    <label class="text-xs md:text-sm text-slate-500 leading-relaxed">
+                        I acknowledge the 
+                        <span class="text-primary font-bold cursor-pointer hover:underline">Terms of Service</span> and 
+                        <span class="text-primary font-bold cursor-pointer hover:underline">Privacy Policy</span>.
+                    </label>
                 </div>
 
-                <!-- Submit -->
-                <button type="submit" id="submitBtn" class="w-full bg-primary text-white font-headline font-black py-5 rounded-2xl shadow-xl hover:bg-navy hover:scale-[1.02] transition-all uppercase tracking-widest text-sm">
-                    Register Now
+                <!-- Submit Button -->
+                <button type="submit" id="submitBtn" class="w-full bg-primary text-white font-headline font-black py-4 md:py-5 rounded-2xl shadow-xl hover:bg-navy hover:scale-[1.01] transition-all uppercase tracking-widest text-xs md:text-sm active:scale-95">
+                    Register Account
                 </button>
             </form>
 
-            <div class="mt-10 text-center">
-                <p class="text-slate-500 font-medium">
+            <div class="mt-10 md:mt-12 text-center">
+                <p class="text-slate-500 text-sm font-medium">
                     Already part of the group? 
-                    <a class="text-primary font-black hover:underline ml-1" href="login.html">Sign In</a>
+                    <a class="text-primary font-black hover:underline ml-1" href="login.html">Sign In Here</a>
                 </p>
             </div>
         </div>
     </section>
 </main>
 
-<!-- Full Information Footer -->
+<!-- Corporate Footer (Fully Responsive Grid) -->
 <footer class="bg-navy text-white pt-20 pb-10">
-    <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-12 border-b border-white/10 pb-16">
+    <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 border-b border-white/10 pb-16">
         <div class="space-y-6">
-            <img src="TECTHTON.png" class="h-10 w-auto bg-white p-1 rounded">
-            <p class="text-slate-400 text-sm leading-relaxed">Techton Group International Limited: Building excellence across Africa through integrated engineering, real estate, and global logistics.</p>
+            <div class="bg-white p-2 rounded-xl inline-block">
+                <img src="TECTHTON.png" class="h-8 w-auto" alt="Logo">
+            </div>
+            <p class="text-slate-400 text-xs md:text-sm leading-relaxed max-w-xs">
+                Techton Group International Limited: Building excellence across Africa through integrated engineering and global trade.
+            </p>
         </div>
         
         <div>
-            <h4 class="font-bold text-primary uppercase text-xs tracking-widest mb-6">Group Subsidiaries</h4>
-            <ul class="space-y-4 text-sm opacity-70">
-                <li>Techton Construction</li>
-                <li><a href="justbuy.html" class="hover:text-primary">JustBuy Real Estate</a></li>
-                <li>ArtKeepers Lamp Ltd</li>
-                <li>Jinoish International</li>
+            <h4 class="font-bold text-primary mb-6 uppercase text-[10px] tracking-widest">Subsidiaries</h4>
+            <ul class="space-y-3 text-slate-400 text-xs md:text-sm">
+                <li><a href="#" class="hover:text-primary transition-colors">Techton Construction</a></li>
+                <li><a href="justbuy.html" class="hover:text-primary transition-colors">JustBuy Real Estate</a></li>
+                <li><a href="#" class="hover:text-primary transition-colors">ArtKeepers Lamp Ltd</a></li>
+                <li><a href="#" class="hover:text-primary transition-colors">Jinoish International</a></li>
             </ul>
         </div>
 
         <div>
-            <h4 class="font-bold text-primary uppercase text-xs tracking-widest mb-6">Quick Links</h4>
-            <ul class="space-y-4 text-sm opacity-70">
-                <li><a href="index.html" class="hover:text-primary">Home</a></li>
-                <li><a href="about.html" class="hover:text-primary">About Us</a></li>
-                <li><a href="position.html" class="hover:text-primary">Careers</a></li>
-                <li><a href="login.html" class="hover:text-primary">Admin Portal</a></li>
+            <h4 class="font-bold text-primary mb-6 uppercase text-[10px] tracking-widest">Navigation</h4>
+            <ul class="space-y-3 text-slate-400 text-xs md:text-sm">
+                <li><a href="index.html" class="hover:text-primary transition-colors">Home</a></li>
+                <li><a href="about.html" class="hover:text-primary transition-colors">About Us</a></li>
+                <li><a href="position.html" class="hover:text-primary transition-colors">Careers</a></li>
+                <li><a href="login.html" class="hover:text-primary font-bold">Admin Login</a></li>
             </ul>
         </div>
 
         <div>
-            <h4 class="font-bold text-primary uppercase text-xs tracking-widest mb-6">Headquarters</h4>
-            <p class="text-sm opacity-70 mb-4">4B Adewunmi Crescent, New Oko Oba GRA, Agege, Lagos, Nigeria.</p>
-            <p class="text-white font-bold text-lg">+234 703 537 5443</p>
+            <h4 class="font-bold text-primary mb-6 uppercase text-[10px] tracking-widest">Contact Info</h4>
+            <p class="text-slate-400 text-xs md:text-sm leading-relaxed mb-4">
+                4B Adewunmi Crescent, <br>
+                Agege, Lagos, Nigeria.
+            </p>
+            <p class="text-white font-black text-lg md:text-xl tracking-tighter">+234 703 537 5443</p>
         </div>
     </div>
     
     <div class="max-w-7xl mx-auto px-6 mt-10 text-center">
-        <p class="text-[10px] uppercase tracking-[0.2em] opacity-40">
-            © 2026 Techton Group International Limited. | <a href="https://wa.me/2349032473005" class="underline">Get a website</a>
+        <p class="text-[10px] uppercase tracking-[0.2em] opacity-40 font-bold">
+            © 2026 Techton Group International Limited. | <a href="https://wa.me/2349032473005" class="underline underline-offset-8 decoration-primary hover:text-white transition-all">Web-Architect</a>
         </p>
     </div>
 </footer>
 
 <script>
-    // --- SUPABASE CONFIG ---
+    // --- SUPABASE AUTH CONFIG ---
     const SUPABASE_URL = 'https://pnwbputtcsxnkldodfyd.supabase.co';
     const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBud2JwdXR0Y3N4bmtsZG9kZnlkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzUxNTA5OTQsImV4cCI6MjA5MDcyNjk5NH0.OtLQIT89SKyIvZwnm-3bjGK1Js46gipRNoETzBS4stA';
     const _supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
@@ -185,7 +231,7 @@
         const email = document.getElementById('email').value;
         const password = document.getElementById('password').value;
 
-        submitBtn.innerText = "Registering...";
+        submitBtn.innerText = "Registering Securely...";
         submitBtn.disabled = true;
 
         try {
@@ -201,12 +247,12 @@
 
             if (error) throw error;
 
-            alert("Registration successful! Redirecting to login...");
+            alert("Account created successfully! Redirecting to Login...");
             window.location.href = "login.html";
 
         } catch (err) {
             alert("Registration Error: " + err.message);
-            submitBtn.innerText = "Register Now";
+            submitBtn.innerText = "Register Account";
             submitBtn.disabled = false;
         }
     };
