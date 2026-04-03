@@ -29,25 +29,33 @@
     <style>
         .custom-scroll::-webkit-scrollbar { width: 4px; }
         .custom-scroll::-webkit-scrollbar-thumb { background: #3e5219; border-radius: 10px; }
-        .sidebar-link.active { background: #3e5219; color: white; }
+        .sidebar-link.active { background: #3e5219; color: white; opacity: 1 !important; }
         
-        /* Chatbot Animations */
-        @keyframes slideUp {
-            from { transform: translateY(20px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
-        .animate-chat { animation: slideUp 0.4s ease-out; }
+        /* Mobile Sidebar Animation */
+        #mobile-sidebar { transition: transform 0.3s ease-in-out; z-index: 1000; }
+        .sidebar-closed { transform: translateX(-100%); }
+        .sidebar-open { transform: translateX(0); }
+        #sidebar-overlay { transition: opacity 0.3s ease; z-index: 900; }
     </style>
 </head>
 
 <body class="bg-slate-50 font-body text-slate-900 antialiased overflow-hidden">
 
 <div class="flex h-screen overflow-hidden">
-    <!-- Sidebar (Laptop) -->
-    <aside class="hidden lg:flex flex-col w-72 bg-navy text-white p-6">
-        <div class="flex items-center gap-3 mb-12">
-            <img src="TECTHTON.png" class="h-10 w-auto bg-white rounded-lg p-1">
-            <span class="font-headline font-bold text-xl tracking-tighter text-white">Techton</span>
+    
+    <!-- Sidebar Overlay (Mobile Only) -->
+    <div id="sidebar-overlay" class="fixed inset-0 bg-black/50 opacity-0 pointer-events-none lg:hidden" onclick="toggleMobileMenu()"></div>
+
+    <!-- Sidebar (Laptop & Mobile) -->
+    <aside id="mobile-sidebar" class="fixed lg:static inset-y-0 left-0 w-72 bg-navy text-white p-6 flex flex-col sidebar-closed lg:sidebar-open shadow-2xl lg:shadow-none">
+        <div class="flex items-center justify-between mb-12">
+            <div class="flex items-center gap-3">
+                <img src="TECTHTON.png" class="h-10 w-auto bg-white rounded-lg p-1">
+                <span class="font-headline font-bold text-xl tracking-tighter">Techton</span>
+            </div>
+            <button class="lg:hidden text-white" onclick="toggleMobileMenu()">
+                <span class="material-symbols-outlined">close</span>
+            </button>
         </div>
 
         <nav class="flex-1 space-y-2">
@@ -57,23 +65,24 @@
             <button onclick="showSection('activities')" class="sidebar-link flex items-center gap-3 w-full p-4 rounded-2xl transition-all font-semibold opacity-70 hover:opacity-100">
                 <span class="material-symbols-outlined">history</span> My Activity
             </button>
-            <div class="pt-6 pb-2 text-[10px] uppercase tracking-widest opacity-40 font-bold">Subsidiaries</div>
+            
+            <div class="pt-6 pb-2 text-[10px] uppercase tracking-widest opacity-40 font-bold">Business Units</div>
             <a href="justbuy.html" class="flex items-center gap-3 w-full p-4 rounded-2xl opacity-70 hover:opacity-100 transition-all text-white no-underline">
                 <span class="material-symbols-outlined text-primary">home_work</span> JustBuy
             </a>
-            <a href="#" class="flex items-center gap-3 w-full p-4 rounded-2xl opacity-70 hover:opacity-100 transition-all text-white no-underline">
-                <span class="material-symbols-outlined text-secondary">lightbulb</span> Art Keepers
+            <a href="about.html" class="flex items-center gap-3 w-full p-4 rounded-2xl opacity-70 hover:opacity-100 transition-all text-white no-underline">
+                <span class="material-symbols-outlined text-secondary">info</span> Techton Group
             </a>
-            <a href="#" class="flex items-center gap-3 w-full p-4 rounded-2xl opacity-70 hover:opacity-100 transition-all text-white no-underline">
-                <span class="material-symbols-outlined text-blue-400">public</span> Jinoish
+            <a href="position.html" class="flex items-center gap-3 w-full p-4 rounded-2xl opacity-70 hover:opacity-100 transition-all text-white no-underline">
+                <span class="material-symbols-outlined text-blue-400">work</span> Careers
             </a>
         </nav>
 
         <div class="pt-6 border-t border-white/10">
-            <button onclick="showSection('settings')" class="flex items-center gap-3 w-full p-4 rounded-2xl opacity-70 hover:opacity-100 transition-all">
+            <button onclick="showSection('settings')" class="sidebar-link flex items-center gap-3 w-full p-4 rounded-2xl opacity-70 hover:opacity-100 transition-all font-semibold">
                 <span class="material-symbols-outlined">settings</span> Settings
             </button>
-            <button onclick="handleLogout()" class="flex items-center gap-3 w-full p-4 rounded-2xl text-red-400 hover:bg-red-500/10 transition-all">
+            <button onclick="handleLogout()" class="flex items-center gap-3 w-full p-4 rounded-2xl text-red-400 hover:bg-red-500/10 transition-all font-bold">
                 <span class="material-symbols-outlined">logout</span> Logout
             </button>
         </div>
@@ -82,100 +91,98 @@
     <!-- Main Content -->
     <main class="flex-1 flex flex-col h-full overflow-hidden">
         <!-- Header -->
-        <header class="bg-white border-b p-6 flex justify-between items-center">
-            <div>
-                <h1 class="font-headline font-black text-2xl text-navy">Welcome back, <span id="user-name-display" class="text-primary">User</span>!</h1>
-                <p class="text-xs text-slate-400 font-bold uppercase tracking-widest mt-1" id="current-date"></p>
-            </div>
-            
-            <div class="flex items-center gap-4">
-                <div class="hidden md:block text-right">
-                    <p id="user-email" class="text-sm font-bold text-navy"></p>
-                    <p class="text-[10px] text-primary uppercase font-black">Verified Member</p>
-                </div>
-                <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold text-xl border-2 border-primary/20" id="user-initial">
-                    T
-                </div>
+        <header class="bg-white border-b p-4 md:p-6 flex justify-between items-center">
+            <div class="flex items-center gap-3">
                 <button class="lg:hidden p-2 bg-slate-100 rounded-xl" onclick="toggleMobileMenu()">
                     <span class="material-symbols-outlined">menu</span>
                 </button>
+                <div>
+                    <h1 class="font-headline font-black text-lg md:text-2xl text-navy leading-none">Hello, <span id="user-name-display" class="text-primary">User</span>!</h1>
+                    <p class="text-[10px] text-slate-400 font-bold uppercase tracking-widest mt-1 hidden md:block" id="current-date"></p>
+                </div>
+            </div>
+            
+            <div class="flex items-center gap-4">
+                <div class="hidden sm:block text-right">
+                    <p id="user-email" class="text-xs font-bold text-navy"></p>
+                    <p class="text-[9px] text-primary uppercase font-black">Authorized Member</p>
+                </div>
+                <div class="w-10 h-10 md:w-12 md:h-12 rounded-full bg-primary text-white flex items-center justify-center font-bold text-lg border-4 border-slate-50" id="user-initial">
+                    T
+                </div>
             </div>
         </header>
 
         <!-- Content Area -->
-        <div class="flex-1 overflow-y-auto p-6 md:p-10 custom-scroll pb-32 lg:pb-10">
+        <div class="flex-1 overflow-y-auto p-4 md:p-10 custom-scroll pb-32">
             
             <!-- OVERVIEW SECTION -->
-            <section id="section-overview" class="space-y-10 animate-in fade-in slide-in-from-bottom-4 duration-500">
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                    <div class="bg-white p-6 rounded-[32px] shadow-sm border border-slate-100">
-                        <span class="material-symbols-outlined p-3 bg-primary/10 text-primary rounded-2xl mb-4">home</span>
-                        <p class="text-slate-400 text-xs font-bold uppercase tracking-widest">JustBuy Interest</p>
-                        <h3 class="text-2xl font-black text-navy mt-1" id="count-justbuy">0</h3>
+            <section id="section-overview" class="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
+                <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+                    <div class="bg-white p-5 rounded-[24px] shadow-sm border border-slate-100">
+                        <span class="material-symbols-outlined text-primary mb-2">home</span>
+                        <p class="text-slate-400 text-[9px] font-bold uppercase tracking-widest">JustBuy Items</p>
+                        <h3 class="text-xl font-black text-navy" id="count-justbuy">0</h3>
                     </div>
-                    <div class="bg-white p-6 rounded-[32px] shadow-sm border border-slate-100">
-                        <span class="material-symbols-outlined p-3 bg-secondary/10 text-secondary rounded-2xl mb-4">engineering</span>
-                        <p class="text-slate-400 text-xs font-bold uppercase tracking-widest">Career Applications</p>
-                        <h3 class="text-2xl font-black text-navy mt-1" id="count-techton">0</h3>
+                    <div class="bg-white p-5 rounded-[24px] shadow-sm border border-slate-100">
+                        <span class="material-symbols-outlined text-secondary mb-2">engineering</span>
+                        <p class="text-slate-400 text-[9px] font-bold uppercase tracking-widest">Job Applications</p>
+                        <h3 class="text-xl font-black text-navy" id="count-techton">0</h3>
                     </div>
-                    <div class="bg-white p-6 rounded-[32px] shadow-sm border border-slate-100">
-                        <span class="material-symbols-outlined p-3 bg-blue-100 text-blue-600 rounded-2xl mb-4">payments</span>
-                        <p class="text-slate-400 text-xs font-bold uppercase tracking-widest">Trade Logs</p>
-                        <h3 class="text-2xl font-black text-navy mt-1" id="count-jinoish">0</h3>
+                    <div class="bg-white p-5 rounded-[24px] shadow-sm border border-slate-100">
+                        <span class="material-symbols-outlined text-blue-500 mb-2">public</span>
+                        <p class="text-slate-400 text-[9px] font-bold uppercase tracking-widest">Global Views</p>
+                        <h3 class="text-xl font-black text-navy" id="count-global">0</h3>
                     </div>
-                    <div class="bg-white p-6 rounded-[32px] shadow-sm border border-slate-100">
-                        <span class="material-symbols-outlined p-3 bg-amber-100 text-amber-600 rounded-2xl mb-4">palette</span>
-                        <p class="text-slate-400 text-xs font-bold uppercase tracking-widest">Art Favorites</p>
-                        <h3 class="text-2xl font-black text-navy mt-1" id="count-art">0</h3>
+                    <div class="bg-white p-5 rounded-[24px] shadow-sm border border-slate-100">
+                        <span class="material-symbols-outlined text-amber-500 mb-2">verified</span>
+                        <p class="text-slate-400 text-[9px] font-bold uppercase tracking-widest">Status</p>
+                        <h3 class="text-xl font-black text-navy">Active</h3>
                     </div>
                 </div>
 
                 <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                    <div class="lg:col-span-2 bg-white p-8 rounded-[40px] shadow-sm border">
-                        <h3 class="font-headline font-bold text-xl mb-6 flex items-center gap-2 text-navy">
-                            <span class="material-symbols-outlined text-primary">analytics</span> Recent Activity
+                    <div class="lg:col-span-2 bg-white p-6 md:p-8 rounded-[32px] shadow-sm border">
+                        <h3 class="font-headline font-bold text-lg mb-6 text-navy flex items-center gap-2">
+                            <span class="material-symbols-outlined text-primary">history</span> Your Recent Actions
                         </h3>
                         <div id="activity-feed" class="space-y-6">
-                            <p class="text-sm text-slate-400 italic">No recent history found.</p>
+                            <p class="text-sm text-slate-400 italic">Tracking your ecosystem interactions...</p>
                         </div>
                     </div>
-                    <div class="bg-navy text-white p-8 rounded-[40px] shadow-xl relative overflow-hidden">
-                        <div class="relative z-10">
-                            <h3 class="font-headline font-bold text-xl mb-4 text-white">Ecosystem Status</h3>
-                            <p class="text-sm opacity-60 mb-8">All services are operational.</p>
-                            <div class="space-y-4">
-                                <div class="flex justify-between items-center bg-white/5 p-3 rounded-2xl">
-                                    <span class="text-xs font-bold">Techton Group</span>
-                                    <span class="w-2 h-2 bg-green-400 rounded-full"></span>
-                                </div>
-                                <div class="flex justify-between items-center bg-white/5 p-3 rounded-2xl">
-                                    <span class="text-xs font-bold">JustBuy Real Estate</span>
-                                    <span class="w-2 h-2 bg-green-400 rounded-full"></span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="absolute -bottom-10 -right-10 w-40 h-40 bg-primary/20 rounded-full blur-3xl"></div>
+                    
+                    <div class="bg-primary text-white p-8 rounded-[32px] shadow-xl relative overflow-hidden">
+                        <h3 class="font-headline font-bold text-xl mb-4">Quick Link</h3>
+                        <p class="text-sm opacity-80 mb-6">Need a site audit or structural report? Contact our engineers.</p>
+                        <a href="https://wa.me/2347035375443" class="block bg-white text-primary text-center py-3 rounded-xl font-bold hover:scale-105 transition-all">WhatsApp HQ</a>
+                        <div class="absolute -bottom-10 -right-10 w-32 h-32 bg-white/10 rounded-full blur-3xl"></div>
                     </div>
                 </div>
             </section>
 
-            <!-- SETTINGS SECTION -->
+            <!-- SETTINGS SECTION (UPDATED WITH PHONE & ADDRESS) -->
             <section id="section-settings" class="hidden space-y-8 animate-in fade-in slide-in-from-right-4 duration-500">
-                <div class="max-w-2xl bg-white p-8 md:p-12 rounded-[40px] shadow-sm border">
-                    <h2 class="font-headline font-black text-3xl text-navy mb-2">Profile Settings</h2>
-                    <p class="text-slate-500 mb-10">Update your corporate identity.</p>
+                <div class="max-w-2xl bg-white p-6 md:p-10 rounded-[32px] shadow-sm border">
+                    <h2 class="font-headline font-black text-2xl text-navy mb-1">Account Information</h2>
+                    <p class="text-xs text-slate-500 mb-8 uppercase tracking-widest font-bold">Update your official contact details</p>
                     
-                    <form id="update-form" class="space-y-6">
-                        <div>
-                            <label class="block text-[10px] font-black uppercase tracking-widest text-slate-400 mb-2">Full Legal Name</label>
-                            <input type="text" id="set-name" class="w-full bg-slate-50 border-none rounded-2xl p-4 focus:ring-2 focus:ring-primary/20 font-bold" required>
+                    <form id="update-form" class="space-y-5">
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-[10px] font-black uppercase tracking-widest text-slate-400 mb-1.5 ml-1">Full Legal Name</label>
+                                <input type="text" id="set-name" class="w-full bg-slate-50 border border-slate-100 rounded-xl p-3.5 focus:ring-2 focus:ring-primary/20 font-bold outline-none" required>
+                            </div>
+                            <div>
+                                <label class="block text-[10px] font-black uppercase tracking-widest text-slate-400 mb-1.5 ml-1">Phone Number</label>
+                                <input type="tel" id="set-phone" placeholder="+234..." class="w-full bg-slate-50 border border-slate-100 rounded-xl p-3.5 focus:ring-2 focus:ring-primary/20 font-bold outline-none">
+                            </div>
+                            <div>
+                                <label class="block text-[10px] font-black uppercase tracking-widest text-slate-400 mb-1.5 ml-1">Contact Address</label>
+                                <textarea id="set-address" rows="2" placeholder="Home or Office Address" class="w-full bg-slate-50 border border-slate-100 rounded-xl p-3.5 focus:ring-2 focus:ring-primary/20 font-bold outline-none"></textarea>
+                            </div>
                         </div>
-                        <div>
-                            <label class="block text-[10px] font-black uppercase tracking-widest text-slate-400 mb-2">Email Address</label>
-                            <input type="email" id="set-email" class="w-full bg-slate-100 border-none rounded-2xl p-4 text-slate-400 cursor-not-allowed font-bold" readonly>
-                        </div>
-                        <button type="submit" id="save-btn" class="bg-primary text-white px-10 py-4 rounded-2xl font-bold shadow-lg hover:shadow-xl transition-all">
-                            Save Changes
+                        <button type="submit" id="save-btn" class="w-full sm:w-auto bg-navy text-white px-10 py-4 rounded-xl font-bold shadow-lg hover:bg-primary transition-all active:scale-95">
+                            Sync Profile
                         </button>
                     </form>
                 </div>
@@ -183,68 +190,38 @@
 
             <!-- ACTIVITIES SECTION -->
             <section id="section-activities" class="hidden animate-in fade-in duration-500">
-                <div class="bg-white p-8 rounded-[40px] shadow-sm border">
-                    <h2 class="font-headline font-black text-3xl text-navy mb-8">Activity Log</h2>
-                    <div id="full-activity-list" class="divide-y border-t"></div>
+                <div class="bg-white p-6 md:p-8 rounded-[32px] shadow-sm border">
+                    <h2 class="font-headline font-black text-2xl text-navy mb-6">Full Log History</h2>
+                    <div id="full-activity-list" class="divide-y divide-slate-50"></div>
                 </div>
             </section>
         </div>
     </main>
 </div>
 
-<!-- CHATBOT INTERFACE -->
-<div class="fixed bottom-24 lg:bottom-10 right-6 z-[300]">
-    <!-- Chat Window -->
-    <div id="chat-window" class="hidden flex flex-col w-80 md:w-96 h-[500px] bg-white rounded-[32px] shadow-2xl border border-slate-100 overflow-hidden animate-chat">
-        <!-- Chat Header -->
-        <div class="bg-navy p-5 text-white flex justify-between items-center">
+<!-- CHATBOT -->
+<div class="fixed bottom-6 right-6 z-[300]">
+    <div id="chat-window" class="hidden flex flex-col w-[320px] md:w-[380px] h-[450px] bg-white rounded-[24px] shadow-2xl border border-slate-100 overflow-hidden mb-4">
+        <div class="bg-navy p-4 text-white flex justify-between items-center">
             <div class="flex items-center gap-3">
-                <div class="w-2 h-2 bg-green-400 rounded-full animate-pulse shadow-[0_0_10px_#4ade80]"></div>
-                <div>
-                    <p class="font-headline font-bold text-sm leading-none">Techton Assistant</p>
-                    <p class="text-[10px] opacity-60">Online • AI Support</p>
-                </div>
+                <div class="w-2 h-2 bg-green-400 rounded-full animate-pulse shadow-[0_0_8px_#4ade80]"></div>
+                <span class="font-headline font-bold text-sm">Techton Assistant</span>
             </div>
-            <button onclick="toggleChat()" class="p-1 hover:bg-white/10 rounded-full transition-all">
-                <span class="material-symbols-outlined text-lg">close</span>
-            </button>
+            <button onclick="toggleChat()"><span class="material-symbols-outlined text-lg">close</span></button>
         </div>
-
-        <!-- Chat Body -->
-        <div id="chat-content" class="flex-1 overflow-y-auto p-5 space-y-4 custom-scroll bg-slate-50/50">
-            <div class="bg-white p-4 rounded-2xl rounded-tl-none shadow-sm text-sm text-slate-600 border border-slate-100">
-                Hello <span id="chat-user-name" class="font-bold text-primary">Member</span>, I am the Techton Group Assistant. How can I help you today?
-            </div>
-            <!-- Quick Options -->
-            <div class="flex flex-wrap gap-2 pt-2">
-                <button onclick="botReply('track')" class="text-[10px] bg-white border border-slate-200 px-3 py-2 rounded-full font-bold hover:border-primary transition-all">How to track activity?</button>
-                <button onclick="botReply('justbuy')" class="text-[10px] bg-white border border-slate-200 px-3 py-2 rounded-full font-bold hover:border-primary transition-all">About JustBuy</button>
-                <button onclick="botReply('careers')" class="text-[10px] bg-white border border-slate-200 px-3 py-2 rounded-full font-bold hover:border-primary transition-all">Job Enquiries</button>
-                <button onclick="botReply('human')" class="text-[10px] bg-primary/10 text-primary border border-primary/20 px-3 py-2 rounded-full font-bold">Talk to a Human</button>
+        <div id="chat-content" class="flex-1 overflow-y-auto p-4 space-y-4 bg-slate-50 custom-scroll text-sm">
+            <div class="bg-white p-3 rounded-2xl rounded-tl-none shadow-sm border border-slate-100">
+                Hello <span id="chat-user-name" class="font-bold text-primary">Member</span>! How can I help you navigate the ecosystem today?
             </div>
         </div>
-
-        <!-- Chat Input -->
-        <div class="p-4 bg-white border-t flex gap-2">
-            <input type="text" id="chat-input" placeholder="Type a message..." class="flex-1 bg-slate-100 border-none rounded-xl px-4 py-2 text-sm focus:ring-2 focus:ring-primary/20">
-            <button onclick="sendMessage()" class="bg-primary text-white p-2 rounded-xl flex items-center justify-center">
-                <span class="material-symbols-outlined text-lg">send</span>
-            </button>
+        <div class="p-3 bg-white border-t flex gap-2">
+            <input type="text" id="chat-input" placeholder="Ask a question..." class="flex-1 bg-slate-100 border-none rounded-lg px-4 py-2 text-xs focus:ring-1 focus:ring-primary">
+            <button onclick="sendMessage()" class="bg-primary text-white p-2 rounded-lg"><span class="material-symbols-outlined text-sm">send</span></button>
         </div>
     </div>
-
-    <!-- Trigger Button -->
-    <button id="chat-trigger" onclick="toggleChat()" class="mt-4 float-right w-16 h-16 bg-primary text-white rounded-full shadow-2xl flex items-center justify-center hover:scale-110 active:scale-95 transition-all border-4 border-white">
+    <button onclick="toggleChat()" class="float-right w-14 h-14 bg-primary text-white rounded-full shadow-2xl flex items-center justify-center hover:scale-110 active:scale-95 transition-all">
         <span class="material-symbols-outlined text-3xl">smart_toy</span>
     </button>
-</div>
-
-<!-- Mobile Bottom Nav -->
-<div class="lg:hidden fixed bottom-0 w-full bg-white border-t px-6 py-4 flex justify-between items-center z-[200]">
-    <button onclick="showSection('overview')" class="flex flex-col items-center text-primary"><span class="material-symbols-outlined">home</span><span class="text-[10px] font-bold">Home</span></button>
-    <button onclick="showSection('activities')" class="flex flex-col items-center opacity-40"><span class="material-symbols-outlined">history</span><span class="text-[10px] font-bold">Logs</span></button>
-    <button onclick="showSection('settings')" class="flex flex-col items-center opacity-40"><span class="material-symbols-outlined">settings</span><span class="text-[10px] font-bold">Config</span></button>
-    <button onclick="handleLogout()" class="flex flex-col items-center text-red-500"><span class="material-symbols-outlined">logout</span><span class="text-[10px] font-bold">Exit</span></button>
 </div>
 
 <script>
@@ -258,16 +235,20 @@
         if (error || !user) { window.location.href = "login.html"; return; }
 
         currentUser = user;
-        const name = user.user_metadata.full_name || "Member";
+        const meta = user.user_metadata;
+        const name = meta.full_name || "Member";
         
+        // Update UI
         document.getElementById('user-name-display').innerText = name;
         document.getElementById('chat-user-name').innerText = name;
         document.getElementById('user-email').innerText = user.email;
         document.getElementById('user-initial').innerText = name.charAt(0).toUpperCase();
-        document.getElementById('current-date').innerText = new Date().toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' });
         
+        // Fill Settings Form
         document.getElementById('set-name').value = name;
         document.getElementById('set-email').value = user.email;
+        document.getElementById('set-phone').value = meta.phone || "";
+        document.getElementById('set-address').value = meta.address || "";
 
         loadActivities();
     }
@@ -278,66 +259,88 @@
 
         document.getElementById('count-justbuy').innerText = data.filter(a => a.subsidiary === 'JustBuy').length;
         document.getElementById('count-techton').innerText = data.filter(a => a.subsidiary === 'Techton').length;
-        document.getElementById('count-jinoish').innerText = data.filter(a => a.subsidiary === 'Jinoish').length;
-        document.getElementById('count-art').innerText = data.filter(a => a.subsidiary === 'ArtKeepers').length;
+        document.getElementById('count-global').innerText = data.length;
 
-        const listHtml = data.map(a => `
-            <div class="py-4 flex justify-between items-center text-sm">
-                <div><p class="font-bold text-navy">${a.action}</p><p class="text-[10px] text-slate-400 uppercase tracking-widest">${a.subsidiary} • ${a.details}</p></div>
-                <p class="text-[10px] text-slate-300">${new Date(a.created_at).toLocaleDateString()}</p>
+        const feedHtml = data.slice(0, 4).map(a => `
+            <div class="flex items-start gap-4">
+                <div class="w-8 h-8 rounded-lg bg-slate-50 flex items-center justify-center border text-primary">
+                    <span class="material-symbols-outlined text-sm">bolt</span>
+                </div>
+                <div>
+                    <p class="text-sm font-bold text-navy">${a.action}</p>
+                    <p class="text-[10px] text-slate-400 uppercase tracking-widest font-black">${a.subsidiary} • ${a.details}</p>
+                </div>
             </div>`).join('');
         
-        document.getElementById('full-activity-list').innerHTML = listHtml || "<p class='p-10 opacity-30 text-center'>No logs found.</p>";
+        document.getElementById('activity-feed').innerHTML = feedHtml || "<p class='text-xs opacity-50'>No activity yet.</p>";
+        
+        document.getElementById('full-activity-list').innerHTML = data.map(a => `
+            <div class="py-4 flex justify-between items-center text-xs">
+                <div><p class="font-bold text-navy">${a.action}</p><p class="opacity-50">${a.details}</p></div>
+                <p class="opacity-40 font-bold">${new Date(a.created_at).toLocaleDateString()}</p>
+            </div>`).join('');
     }
 
-    // --- CHATBOT LOGIC ---
-    function toggleChat() {
-        const win = document.getElementById('chat-window');
-        win.classList.toggle('hidden');
-    }
-
-    function addMessage(text, isUser = false) {
-        const content = document.getElementById('chat-content');
-        const div = document.createElement('div');
-        div.className = isUser ? "bg-primary text-white p-4 rounded-2xl rounded-tr-none shadow-sm text-sm self-end ml-10" : "bg-white p-4 rounded-2xl rounded-tl-none shadow-sm text-sm text-slate-600 border border-slate-100 mr-10";
-        div.innerText = text;
-        content.appendChild(div);
-        content.scrollTop = content.scrollHeight;
-    }
-
-    function botReply(type) {
-        let reply = "";
-        if(type === 'track') reply = "To track your activity, simply visit any Techton subsidiary page while logged in. Your views and applications are recorded automatically!";
-        if(type === 'justbuy') reply = "JustBuy Real Estate offers verified high-end properties. You can explore available villas and land via the 'JustBuy' link in the sidebar.";
-        if(type === 'careers') reply = "You can view open positions at Techton Group on the 'Careers' page. All applications are reviewed within 48 hours.";
-        if(type === 'human') {
-            window.open("https://wa.me/2347035375443?text=Hi, I need assistance with my Techton account.", "_blank");
-            reply = "Redirecting you to our human agent on WhatsApp...";
+    // --- MOBILE MENU FIX ---
+    function toggleMobileMenu() {
+        const sidebar = document.getElementById('mobile-sidebar');
+        const overlay = document.getElementById('sidebar-overlay');
+        
+        if (sidebar.classList.contains('sidebar-closed')) {
+            sidebar.classList.remove('sidebar-closed');
+            sidebar.classList.add('sidebar-open');
+            overlay.classList.remove('opacity-0', 'pointer-events-none');
+            overlay.classList.add('opacity-100', 'pointer-events-auto');
+        } else {
+            sidebar.classList.add('sidebar-closed');
+            sidebar.classList.remove('sidebar-open');
+            overlay.classList.add('opacity-0', 'pointer-events-none');
+            overlay.classList.remove('opacity-100', 'pointer-events-auto');
         }
-        addMessage(reply);
     }
 
-    function sendMessage() {
-        const input = document.getElementById('chat-input');
-        if(!input.value.trim()) return;
-        addMessage(input.value, true);
-        input.value = "";
-        setTimeout(() => addMessage("Thank you for your message. Please use the quick action buttons above or click 'Talk to a Human' for direct assistance."), 800);
-    }
-
-    // Settings Update
+    // --- SETTINGS UPDATE (NAME, PHONE, ADDRESS) ---
     document.getElementById('update-form').onsubmit = async (e) => {
         e.preventDefault();
-        const newName = document.getElementById('set-name').value;
-        const { error } = await _supabase.auth.updateUser({ data: { full_name: newName } });
-        if (error) alert(error.message); else { alert("Profile Updated Successfully!"); location.reload(); }
+        const btn = document.getElementById('save-btn');
+        btn.innerText = "Syncing...";
+
+        const { error } = await _supabase.auth.updateUser({
+            data: { 
+                full_name: document.getElementById('set-name').value,
+                phone: document.getElementById('set-phone').value,
+                address: document.getElementById('set-address').value
+            }
+        });
+
+        if (error) {
+            alert("Error: " + error.message);
+            btn.innerText = "Sync Profile";
+        } else {
+            alert("Ecosystem Profile Updated!");
+            location.reload();
+        }
     };
 
     function showSection(id) {
         ['overview', 'settings', 'activities'].forEach(s => document.getElementById('section-' + s).classList.add('hidden'));
         document.getElementById('section-' + id).classList.remove('hidden');
         document.querySelectorAll('.sidebar-link').forEach(l => l.classList.remove('active'));
-        event.currentTarget.classList.add('active');
+        if (window.innerWidth < 1024) toggleMobileMenu();
+    }
+
+    // Chatbot
+    function toggleChat() { document.getElementById('chat-window').classList.toggle('hidden'); }
+    function sendMessage() {
+        const input = document.getElementById('chat-input');
+        if(!input.value.trim()) return;
+        const content = document.getElementById('chat-content');
+        content.innerHTML += `<div class="bg-primary text-white p-3 rounded-xl rounded-tr-none self-end ml-10 text-xs">${input.value}</div>`;
+        input.value = "";
+        setTimeout(() => {
+            content.innerHTML += `<div class="bg-white border p-3 rounded-xl rounded-tl-none mr-10 text-xs text-slate-600">I've noted your message. Our specialist will respond via your registered email or phone soon.</div>`;
+            content.scrollTop = content.scrollHeight;
+        }, 600);
     }
 
     async function handleLogout() {
