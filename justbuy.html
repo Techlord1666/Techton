@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "inverse-on-surface": "#f0f0f3",
+              "on-primary-fixed": "#131f00",
+              "primary-fixed": "#d2eca2",
+              "inverse-surface": "#2f3133",
+              "surface": "#f9f9fb",
+              "primary-fixed-dim": "#b6d088",
+              "on-error-container": "#93000a",
+              "on-primary-container": "#d0eba1",
+              "on-primary": "#ffffff",
+              "background": "#f9f9fb",
+              "surface-variant": "#e2e2e5",
+              "secondary": "#b22b1d",
+              "on-secondary-container": "#650000",
+              "surface-bright": "#f9f9fb",
+              "error": "#ba1a1a",
+              "surface-container": "#edeef0",
+              "on-surface": "#1a1c1e",
+              "tertiary-fixed-dim": "#b1c5ff",
+              "on-surface-variant": "#45483c",
+              "primary-container": "#556b2f",
+              "secondary-fixed-dim": "#ffb4a8",
+              "on-tertiary-container": "#d8e0ff",
+              "on-primary-fixed-variant": "#394d14",
+              "on-secondary-fixed-variant": "#8f0f07",
+              "surface-dim": "#d9dadc",
+              "on-error": "#ffffff",
+              "primary": "#3e5219",
+              "on-secondary": "#ffffff",
+              "surface-container-lowest": "#ffffff",
+              "on-secondary-fixed": "#410000",
+              "surface-container-low": "#f3f3f6",
+              "error-container": "#ffdad6",
+              "on-background": "#1a1c1e",
+              "on-tertiary-fixed-variant": "#00419e",
+              "outline-variant": "#c5c8b8",
+              "secondary-fixed": "#ffdad4",
+              "secondary-container": "#fe624e",
+              "inverse-primary": "#b6d088",
+              "outline": "#75796b",
+              "surface-tint": "#50652a",
+              "surface-container-high": "#e8e8ea",
+              "tertiary-container": "#2c5fc3",
+              "tertiary-fixed": "#dae2ff",
+              "surface-container-highest": "#e2e2e5",
+              "tertiary": "#0046a8",
+              "on-tertiary-fixed": "#001946",
+              "on-tertiary": "#ffffff"
+            },
+            fontFamily: {
+              "headline": ["Manrope"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-nav {
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface">
+<nav class="fixed top-0 w-full z-50 bg-white/85 dark:bg-gray-900/85 backdrop-blur-md shadow-xl shadow-black/5">
+<div class="flex justify-between items-center px-8 py-4 max-w-full mx-auto">
+<div class="text-2xl font-black tracking-tighter text-[#556B2F] dark:text-[#d0eba1] font-headline">
+                Techton Group
+            </div>
+<div class="hidden md:flex items-center space-x-8">
+<a class="text-[#556B2F] border-b-2 border-[#556B2F] pb-1 font-headline font-bold tracking-tight text-lg transition-all duration-300 ease-out hover:opacity-80" href="#">Subsidiaries</a>
+<a class="text-gray-600 dark:text-gray-400 hover:text-[#556B2F] font-headline font-bold tracking-tight text-lg transition-all duration-300 ease-out hover:opacity-80" href="#">Careers</a>
+<a class="text-gray-600 dark:text-gray-400 hover:text-[#556B2F] font-headline font-bold tracking-tight text-lg transition-all duration-300 ease-out hover:opacity-80" href="#">About</a>
+<a class="text-gray-600 dark:text-gray-400 hover:text-[#556B2F] font-headline font-bold tracking-tight text-lg transition-all duration-300 ease-out hover:opacity-80" href="#">Contact</a>
+</div>
+<div class="flex items-center space-x-4">
+<button class="px-6 py-2 text-[#556B2F] font-bold transition-transform scale-95 active:scale-100">Login</button>
+<button class="px-6 py-2 bg-primary text-on-primary font-bold rounded-lg transition-transform scale-95 active:scale-100">Sign Up</button>
+</div>
+</div>
+</nav>
+<main class="pt-24">
+<!-- Hero Section -->
+<section class="relative min-h-[870px] flex items-center px-8 md:px-16 overflow-hidden">
+<div class="absolute inset-0 z-0">
+<div class="absolute inset-0 bg-gradient-to-r from-primary/90 to-primary-container/40 z-10"></div>
+<img alt="Luxury Real Estate" class="w-full h-full object-cover" data-alt="Modern luxury architectural residence with glass walls and clean lines at dusk with warm interior lighting and manicured lawn" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCblrQI5LmbeVKand6K9lNa-wn61wNfKzAilaYiLpW7yte1luzNfmOuie9KCqqbc3_x95PvQNXSMElCrN5X8U34ICYTKIPomn9KEs2Eu-v-jQyGXctITCqxuxEW2rPC8fcg-oDDONkKZ-1kzXSomYjrS68XpnxujWXXsBvybcz2co8cPBmdML_2oSPRpvq1vQieayPMFmoTH9ckrpcwOSFvSpgX42bPznj3nnIwSLn_lsRVYJXQ8LxPEs-UQ1C9lzgAKcWAvo5gX4A"/>
+</div>
+<div class="relative z-20 max-w-4xl grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+<div class="md:col-span-8 -ml-4 md:-ml-8 bg-surface-container-lowest/10 backdrop-blur-sm p-8 md:p-12 border-l-8 border-secondary">
+<span class="text-on-primary-container font-headline font-extrabold tracking-widest uppercase text-sm mb-4 block">JustBuy Real Estate</span>
+<h1 class="font-headline font-extrabold text-5xl md:text-7xl text-white leading-tight mb-6 -tracking-wider">
+                        Invest in Permanent <span class="text-primary-fixed">Excellence.</span>
+</h1>
+<p class="text-white/90 text-lg md:text-xl max-w-xl leading-relaxed mb-8">
+                        The architectural monolith of real estate acquisition. From sprawling acreage to ultra-modern penthouses, we curate the foundation of your legacy.
+                    </p>
+<div class="flex flex-wrap gap-4">
+<button class="px-8 py-4 bg-secondary text-white font-bold rounded-lg shadow-lg hover:translate-y-[-2px] transition-all">
+                            Browse Portfolio
+                        </button>
+<button class="px-8 py-4 bg-white/10 backdrop-blur-md text-white border border-white/20 font-bold rounded-lg hover:bg-white/20 transition-all">
+                            Consult an Expert
+                        </button>
+</div>
+</div>
+</div>
+</section>
+<!-- Advanced Search Anchor -->
+<section class="relative z-30 -mt-16 px-8 max-w-7xl mx-auto">
+<div class="bg-surface-container-lowest shadow-2xl rounded-xl p-8 grid grid-cols-1 md:grid-cols-4 gap-6 items-end">
+<div class="space-y-2">
+<label class="text-xs font-bold text-on-surface-variant uppercase tracking-widest px-1">Location</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">location_on</span>
+<input class="w-full pl-10 pr-4 py-3 bg-surface-container-low border-b-2 border-outline-variant focus:border-primary focus:ring-0 transition-all outline-none" placeholder="City or District" type="text"/>
+</div>
+</div>
+<div class="space-y-2">
+<label class="text-xs font-bold text-on-surface-variant uppercase tracking-widest px-1">Property Type</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">home_work</span>
+<select class="w-full pl-10 pr-4 py-3 bg-surface-container-low border-b-2 border-outline-variant focus:border-primary focus:ring-0 transition-all outline-none appearance-none">
+<option>Residential Villa</option>
+<option>Commercial Space</option>
+<option>Landed Property</option>
+<option>Modern Apartment</option>
+</select>
+</div>
+</div>
+<div class="space-y-2">
+<label class="text-xs font-bold text-on-surface-variant uppercase tracking-widest px-1">Price Range</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">payments</span>
+<select class="w-full pl-10 pr-4 py-3 bg-surface-container-low border-b-2 border-outline-variant focus:border-primary focus:ring-0 transition-all outline-none appearance-none">
+<option>$500k - $1M</option>
+<option>$1M - $5M</option>
+<option>$5M - $20M</option>
+<option>Luxury Custom</option>
+</select>
+</div>
+</div>
+<button class="w-full py-4 bg-primary text-white font-bold rounded-lg flex items-center justify-center gap-2 hover:bg-primary/90 transition-all">
+<span class="material-symbols-outlined">search</span> Search Properties
+                </button>
+</div>
+</section>
+<!-- Property Portfolio Grid -->
+<section class="py-24 px-8 max-w-full mx-auto bg-surface">
+<div class="max-w-7xl mx-auto mb-16 flex flex-col md:flex-row justify-between items-end gap-6">
+<div class="max-w-2xl">
+<h2 class="font-headline font-extrabold text-4xl text-primary mb-4 tracking-tight">Curated Listings</h2>
+<div class="h-1 w-24 bg-secondary mb-6"></div>
+<p class="text-on-surface-variant text-lg">Strictly vetted assets across the most prestigious economic hubs. Every property represents a fusion of utility and lasting value.</p>
+</div>
+<div class="flex gap-2">
+<button class="p-3 bg-surface-container-high rounded-full hover:bg-primary hover:text-white transition-all">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<button class="p-3 bg-surface-container-high rounded-full hover:bg-primary hover:text-white transition-all">
+<span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 max-w-7xl mx-auto">
+<!-- Card 1 -->
+<div class="group bg-surface-container-lowest rounded-xl overflow-hidden hover:shadow-2xl transition-all duration-500">
+<div class="relative h-72 overflow-hidden">
+<img alt="Luxury Villa" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="Ultra-modern white villa with geometric architecture, infinity pool, and palm trees under a bright blue sky" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAqci1RqshVcHOzCtlwRrDyzllGIBa2xpR_RFZ5FcjmLwyItdQLShfKoDIKqvQo0AO8aKMcRc41vWfLer1T092wB7wPpTzlWkNx-H1EJMuWOvIgSF2Vfp-_ut5ONc9twOm-zjs6AMk6cSNhS9AbMQXnPBUDR1GBnD07Z-SDnEFevSdrmSgYDBTb0AVZ4zm_o4p-_pJKQ8C6-79CJToZgGvqx4d8eQn4YcU2RDeKMNyFB1xXZNViK-aiiERICh7XK07IsgHd5cVKke0"/>
+<div class="absolute top-4 left-4 bg-secondary text-white text-xs font-bold px-3 py-1 rounded-full">New Listing</div>
+</div>
+<div class="p-8">
+<div class="flex justify-between items-start mb-4">
+<div>
+<h3 class="font-headline font-bold text-2xl text-on-surface mb-1">The Onyx Pavilion</h3>
+<p class="text-on-surface-variant flex items-center gap-1 text-sm">
+<span class="material-symbols-outlined text-sm">location_on</span> Banana Island, Lagos
+                                </p>
+</div>
+<span class="text-primary font-extrabold text-xl font-headline">$2,450,000</span>
+</div>
+<div class="flex items-center gap-6 py-6 border-y border-outline-variant/30 mb-8">
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-primary">bed</span> <span class="font-bold">6</span>
+</div>
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-primary">bathtub</span> <span class="font-bold">8</span>
+</div>
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-primary">square_foot</span> <span class="font-bold">12,500</span>
+</div>
+</div>
+<button class="w-full py-4 bg-primary-container text-on-primary-container font-bold rounded-lg hover:bg-primary hover:text-on-primary transition-colors flex items-center justify-center gap-2">
+                            View Details <span class="material-symbols-outlined text-sm">north_east</span>
+</button>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="group bg-surface-container-lowest rounded-xl overflow-hidden hover:shadow-2xl transition-all duration-500">
+<div class="relative h-72 overflow-hidden">
+<img alt="Commercial Land" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="Wide expansive green field of land at sunrise with a distant farmhouse and rolling hills in soft morning light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAN1wfo9Hsf1tb-_n4BZxGF6BXnD9cSD4xYvUo6JO1417FLZyayYhM63CDTr0LZhM1PVbTGXL0n0MTkVcQWX_Snl0e4JtlaHx7DSMbNJ0m0FFZ_2Udf5XjaXog7jdFqvPvud_BlGsf2KudmgI0uC3WKfrZMVWTmWTd779w8h2vvQRB5MlTASSAy0bS_E9hD2bVLzKJFO12GZ9QArBhfugMZtRkKSXaD3alcmBtcrmtF1k-1djCvWkiVvyZGJ36HadGs4-DaqYbI6Cw"/>
+<div class="absolute top-4 left-4 bg-tertiary text-white text-xs font-bold px-3 py-1 rounded-full">Investment Opportunity</div>
+</div>
+<div class="p-8">
+<div class="flex justify-between items-start mb-4">
+<div>
+<h3 class="font-headline font-bold text-2xl text-on-surface mb-1">Skyline Commercial Hub</h3>
+<p class="text-on-surface-variant flex items-center gap-1 text-sm">
+<span class="material-symbols-outlined text-sm">location_on</span> New Oko Oba GRA, Lagos
+                                </p>
+</div>
+<span class="text-primary font-extrabold text-xl font-headline">$890,000</span>
+</div>
+<div class="flex items-center gap-6 py-6 border-y border-outline-variant/30 mb-8">
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-primary">layers</span> <span class="font-bold">2.5 Acres</span>
+</div>
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-primary">foundation</span> <span class="font-bold">Zoned</span>
+</div>
+</div>
+<button class="w-full py-4 bg-primary-container text-on-primary-container font-bold rounded-lg hover:bg-primary hover:text-on-primary transition-colors flex items-center justify-center gap-2">
+                            View Details <span class="material-symbols-outlined text-sm">north_east</span>
+</button>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="group bg-surface-container-lowest rounded-xl overflow-hidden hover:shadow-2xl transition-all duration-500">
+<div class="relative h-72 overflow-hidden">
+<img alt="Luxury Interior" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="Modern high-end kitchen with dark marble island, gold fixtures, and minimalist white cabinetry with luxury lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBgLlZqfBbZeFO5dW0NcIrbHwYzNyT9EZaEQ16Bb04eP2qPowPvHaKa3s5p2UwVD_eQeU2vZqyiMcR8BWOU6VyY-IIOG7N4JgSm5i1IQb5K8GoVrYH2nQq3SoLB6CeLssD7A_O1sUIWKKEP3_GMtjEkFKEWdUGYCl-YdlxG_qlNtBd4WhEcCNd_lDhDoDgYEp7PB6uyKrNXgvLmGGevhSlUnRVvU9NfizWML8IjlTa1TS6Puxb0IuyfMZ35RWtbSWZQnvsr-AqmkdY"/>
+<div class="absolute top-4 left-4 bg-primary-container text-on-primary-container text-xs font-bold px-3 py-1 rounded-full">Featured</div>
+</div>
+<div class="p-8">
+<div class="flex justify-between items-start mb-4">
+<div>
+<h3 class="font-headline font-bold text-2xl text-on-surface mb-1">Azure Penthouse</h3>
+<p class="text-on-surface-variant flex items-center gap-1 text-sm">
+<span class="material-symbols-outlined text-sm">location_on</span> Victoria Island, Lagos
+                                </p>
+</div>
+<span class="text-primary font-extrabold text-xl font-headline">$1,200,000</span>
+</div>
+<div class="flex items-center gap-6 py-6 border-y border-outline-variant/30 mb-8">
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-primary">bed</span> <span class="font-bold">4</span>
+</div>
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-primary">bathtub</span> <span class="font-bold">5</span>
+</div>
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-primary">apartment</span> <span class="font-bold">Level 42</span>
+</div>
+</div>
+<button class="w-full py-4 bg-primary-container text-on-primary-container font-bold rounded-lg hover:bg-primary hover:text-on-primary transition-colors flex items-center justify-center gap-2">
+                            View Details <span class="material-symbols-outlined text-sm">north_east</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- CTA Section: Asymmetric Layout -->
+<section class="py-24 px-8">
+<div class="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-16">
+<div class="lg:w-1/2 relative">
+<div class="absolute -top-10 -left-10 w-40 h-40 bg-primary-container/20 -z-10 rounded-full blur-3xl"></div>
+<div class="bg-primary-container p-1 rounded-xl shadow-2xl rotate-2">
+<img alt="Sell with JustBuy" class="rounded-lg shadow-inner -rotate-2 hover:rotate-0 transition-transform duration-500 h-[500px] w-full object-cover" data-alt="Professional real estate agent showing a set of keys to a smiling client in a brightly lit modern office" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC2Q9fye7cw2zN_1Wn9yNPE31M8BqkszuoxOiUeJCXFjvzqz_TxlF8pznCN9fPnKYoTk3g83HoN5Aw1Pom9sMPWt9IRyw-LS_I5vP5b8tmtyf2FigyPS07qcSDtvPDFee4d5S23amLQ2U4pf1gt8XnCm-SHpxu5JAEzVwDaXzmwNSzBNmSuFvHStUWtcMNZ-1zVjqITirgcgZss7jl5xPt2vvfEH8oYYQvZ6E97qn08gplAX5ERWl1SdZowvoy3mazOcPXzKF8MvYg"/>
+</div>
+</div>
+<div class="lg:w-1/2">
+<h2 class="font-headline font-extrabold text-5xl text-on-surface mb-8 leading-tight">Maximize your asset's <span class="text-secondary">True Worth.</span></h2>
+<p class="text-xl text-on-surface-variant leading-relaxed mb-10">
+                        Listing with JustBuy means leveraging Techton Group's global network of high-net-worth investors and world-class marketing infrastructure. We don't just sell property; we engineer successful exits.
+                    </p>
+<div class="space-y-6">
+<div class="flex items-start gap-4">
+<div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-primary">analytics</span>
+</div>
+<div>
+<h4 class="font-bold text-lg mb-1">Precision Valuation</h4>
+<p class="text-on-surface-variant">Data-driven appraisal based on local trends and global demand.</p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<div class="w-12 h-12 bg-secondary/10 rounded-lg flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-secondary">campaign</span>
+</div>
+<div>
+<h4 class="font-bold text-lg mb-1">Premium Marketing</h4>
+<p class="text-on-surface-variant">Cinematic virtual tours and high-end architectural photography.</p>
+</div>
+</div>
+</div>
+<div class="mt-12">
+<button class="px-10 py-5 bg-secondary text-white font-black text-lg rounded-lg shadow-xl shadow-secondary/20 hover:scale-105 transition-all">
+                            Sell or List with JustBuy
+                        </button>
+</div>
+</div>
+</div>
+</section>
+<!-- Global Presence (Zonal Color Blocking) -->
+<section class="bg-surface-container-low py-24 px-8">
+<div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12">
+<div class="text-center p-8 bg-surface-container-lowest rounded-xl">
+<div class="text-5xl font-black font-headline text-primary mb-2">$4.2B+</div>
+<div class="text-sm font-bold text-on-surface-variant uppercase tracking-widest">Assets Managed</div>
+</div>
+<div class="text-center p-8 bg-surface-container-lowest rounded-xl">
+<div class="text-5xl font-black font-headline text-primary mb-2">12k+</div>
+<div class="text-sm font-bold text-on-surface-variant uppercase tracking-widest">Global Clients</div>
+</div>
+<div class="text-center p-8 bg-surface-container-lowest rounded-xl">
+<div class="text-5xl font-black font-headline text-primary mb-2">15</div>
+<div class="text-sm font-bold text-on-surface-variant uppercase tracking-widest">Countries Present</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full mt-20 bg-[#556B2F] dark:bg-gray-950 text-[#d0eba1]">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-12 px-12 py-16 w-full">
+<div class="col-span-1 md:col-span-1">
+<div class="text-xl font-bold text-white mb-6">Techton Group</div>
+<p class="font-['Inter'] leading-relaxed text-sm text-white/80 max-w-xs">
+                    Building the digital and physical infrastructure of tomorrow. A global conglomerate dedicated to excellence.
+                </p>
+</div>
+<div>
+<h4 class="text-white font-bold mb-6">Real Estate Ecosystem</h4>
+<ul class="space-y-4">
+<li><a class="text-white/80 hover:text-white underline font-bold transition-transform duration-200 hover:translate-x-1 block" href="#">JustBuy</a></li>
+<li><a class="text-white/80 hover:text-white transition-transform duration-200 hover:translate-x-1 block" href="#">Art Keepers Lamp</a></li>
+<li><a class="text-white/80 hover:text-white transition-transform duration-200 hover:translate-x-1 block" href="#">Jinoish International</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-white font-bold mb-6">Opportunities</h4>
+<ul class="space-y-4">
+<li><a class="text-white/80 hover:text-white transition-transform duration-200 hover:translate-x-1 block" href="#">Careers</a></li>
+<li><a class="text-white/80 hover:text-white transition-transform duration-200 hover:translate-x-1 block" href="#">Investor Relations</a></li>
+<li><a class="text-white/80 hover:text-white transition-transform duration-200 hover:translate-x-1 block" href="#">Partner Program</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-white font-bold mb-6">Legal</h4>
+<ul class="space-y-4">
+<li><a class="text-white/80 hover:text-white transition-transform duration-200 hover:translate-x-1 block" href="#">Privacy Policy</a></li>
+<li><a class="text-white/80 hover:text-white transition-transform duration-200 hover:translate-x-1 block" href="#">Terms of Service</a></li>
+</ul>
+</div>
+</div>
+<div class="px-12 py-8 border-t border-white/10 text-center md:text-left">
+<p class="font-['Inter'] leading-relaxed text-sm text-white/60">
+                © 2024 Techton Group International Limited. 4b Adewunmi Crescent, New Oko Oba GRA, Agege, Lagos. +2347035375443
+            </p>
+</div>
+</footer>
+</body></html>
